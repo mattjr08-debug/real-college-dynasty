@@ -38,6 +38,7 @@ function oc() {
     [coachOpen, setCoachOpen] = (0, N.useState)(!1),
     [teamViewId, setTeamViewId] = (0, N.useState)(null),
     [fpl, setFpl] = (0, N.useState)(null),
+    [searchOpen, setSearchOpen] = (0, N.useState)(!1),
     [startAsk, setStartAsk] = (0, N.useState)(!1),
     [startOpts, setStartOpts] = (0, N.useState)({ auto: !0, fin: !0 }),
     [simAsk, setSimAsk] = (0, N.useState)(null),
@@ -64,6 +65,15 @@ function oc() {
   }, [e?.jobOffers?.join(","), e?.year]);
   (0, N.useEffect)(() => {
     wo();
+  }, []);
+  (0, N.useEffect)(() => {
+    // search: press / (outside a text box) or Ctrl/Cmd+K
+    const onKey = (ev) => {
+      const tg = ev.target, typing = tg && (/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName) || tg.isContentEditable);
+      if (((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === "k") || (ev.key === "/" && !typing && !ev.ctrlKey && !ev.metaKey && !ev.altKey)) { ev.preventDefault(); setSearchOpen(!0); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
   let sc = async (z) => {
       if (Yn.current) return !1;
@@ -525,6 +535,14 @@ function oc() {
                                     : ["ROUND ", Math.min(8, e.round), " / 8"],
                             }),
                         ],
+                      }),
+                      (0, s.jsx)("button", {
+                        className: "icon-btn search-btn",
+                        title: "Search players and schools (press /)",
+                        "aria-label": "Search players and schools",
+                        onClick: () => setSearchOpen(!0),
+                        style: { marginLeft: "auto", marginRight: 10, fontSize: 18 },
+                        children: "\uD83D\uDD0D",
                       }),
                       (0, s.jsxs)("div", {
                         className: "save-status",
@@ -1894,6 +1912,7 @@ function oc() {
           }),
         }),
       e && (0, s.jsx)(LinkLayer, { g: e, openTeam: setTeamViewId, openForeign: setFpl, openOwn: (p) => m(p.id) }),
+      searchOpen && e && (0, s.jsx)(GameSearch, { g: e, onClose: () => setSearchOpen(!1), openTeam: setTeamViewId, openForeign: setFpl, openOwn: (p) => m(p.id), go: cu }),
       teamViewId && e && (0, s.jsx)(TeamView, { g: e, id: teamViewId, onClose: () => setTeamViewId(null), openPlayer: setFpl }),
       fpl && e && (0, s.jsx)(ForeignPlayerCard, { g: e, pl: fpl, onClose: () => setFpl(null), openTeam: (id) => { setFpl(null); setTeamViewId(id); } }),
       coachOpen &&

@@ -1,3 +1,15 @@
+// Player-name search on the Choose your rebuild page (Real College Dynasty): typing a player's name also finds his school.
+function W_careerPlayerHits(ql) {
+  const out = new Map();
+  if (typeof REAL_TEAMS === "undefined" || !ql || ql.length < 3) return out;
+  const nz = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
+  const toks = nz(ql).split(" ").filter(Boolean); if (!toks.length) return out;
+  for (const school of Object.keys(REAL_TEAMS)) for (const r of REAL_TEAMS[school].r || []) {
+    const n = nz(r[0]); if (!toks.every((k) => n.includes(k))) continue;
+    const l = out.get(school) || []; if (l.length < 3) l.push(`${r[0]} \u00B7 ${r[1]} \u00B7 ${["Fr", "So", "Jr", "Sr"][Math.max(0, Math.min(3, r[2] - 1))]} \u00B7 OVR ${r[3]}`); out.set(school, l);
+  }
+  return out;
+}
 var TIER_RANGE = ["$15M\u2013$25M+", "$7M\u2013$15M", "$3M\u2013$7M", "$1.5M\u2013$3M", "$500K\u2013$1.5M", "$0\u2013$500K"];
 function XC({ onStart: e, onCancel: a, existing: t, busy: l }) {
   let u0 = Xl.find((i) => i.id === "coastal") || Xl[0],
@@ -6,6 +18,7 @@ function XC({ onStart: e, onCancel: a, existing: t, busy: l }) {
     [op, setOp] = (0, N.useState)(() => new Set([W_nilTier(u0.budget).n])),
     [sq, setSq] = (0, N.useState)(""),
     ql = sq.trim().toLowerCase(),
+    pm = (0, N.useMemo)(() => W_careerPlayerHits(ql), [ql]),
     [r, n] = (0, N.useState)("Coach Jackson"),
     [i, d] = (0, N.useState)("Development");
   return (0, s.jsxs)("div", {
@@ -61,7 +74,7 @@ function XC({ onStart: e, onCancel: a, existing: t, busy: l }) {
               }),
               (0, s.jsx)("input", {
                 className: "school-search",
-                placeholder: "Search all " + REAL_N + " schools, mascots or conferences",
+                placeholder: "Search all " + REAL_N + " schools, mascots, conferences or players",
                 value: sq,
                 onChange: (ev) => setSq(ev.target.value),
               }),
@@ -69,7 +82,7 @@ function XC({ onStart: e, onCancel: a, existing: t, busy: l }) {
                 className: "tier-list",
                 children: tiers.map((g) => {
                   let list = ql
-                      ? g.schools.filter((f) => `${f.name} ${f.league} ${f.mascot} ${f.city}`.toLowerCase().includes(ql))
+                      ? g.schools.filter((f) => `${f.name} ${f.league} ${f.mascot} ${f.city}`.toLowerCase().includes(ql) || pm.has(f.name))
                       : g.schools,
                     isOpen = ql ? list.length > 0 : op.has(g.tier.n);
                   return (0, s.jsxs)(
@@ -148,6 +161,7 @@ function XC({ onStart: e, onCancel: a, existing: t, busy: l }) {
                             }),
                           ],
                         }),
+                        pm.has(f.name) && (0, s.jsx)("p", { className: "school-players", style: { color: "#7cc4ff", fontSize: "0.85em" }, children: "Player: " + pm.get(f.name).join("  |  ") }),
                         (0, s.jsx)("p", { className: "school-story", children: f.story }),
                         u.id === f.id &&
                           (0, s.jsxs)("span", {
