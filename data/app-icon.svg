@@ -1,76 +1,43 @@
 <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background gradient -->
   <defs>
-    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#003478;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FFB81C;stop-opacity:1" />
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16294f"/>
+      <stop offset="1" stop-color="#070d1c"/>
     </linearGradient>
-    <linearGradient id="ballGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#FF8C42;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#D84315;stop-opacity:1" />
+    <radialGradient id="ball" cx="0.38" cy="0.32" r="0.8">
+      <stop offset="0" stop-color="#ff9a4d"/>
+      <stop offset="0.55" stop-color="#f26a1b"/>
+      <stop offset="1" stop-color="#b6420c"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd86b"/>
+      <stop offset="1" stop-color="#e0a21d"/>
     </linearGradient>
+    <clipPath id="ballclip"><circle cx="256" cy="226" r="132"/></clipPath>
+    <clipPath id="card"><rect width="512" height="512" rx="112"/></clipPath>
   </defs>
 
-  <!-- Main background -->
-  <rect width="512" height="512" fill="url(#bgGradient)" rx="100"/>
-
-  <!-- Court lines (subtle) -->
-  <g stroke="rgba(255,255,255,0.15)" stroke-width="3" fill="none">
-    <!-- Center circle -->
-    <circle cx="256" cy="256" r="60"/>
-    <!-- Center line -->
-    <line x1="256" y1="100" x2="256" y2="412"/>
-    <!-- Three-point line (left) -->
-    <path d="M 80 150 Q 80 220 120 256 Q 80 292 80 362" stroke-width="2"/>
-    <!-- Three-point line (right) -->
-    <path d="M 432 150 Q 432 220 392 256 Q 432 292 432 362" stroke-width="2"/>
-  </g>
-
-  <!-- Basketball -->
-  <g filter="drop-shadow(0 8px 16px rgba(0,0,0,0.3))">
-    <!-- Main ball -->
-    <circle cx="256" cy="280" r="90" fill="url(#ballGradient)"/>
-
-    <!-- Basketball panel lines -->
-    <g stroke="rgba(0,0,0,0.4)" stroke-width="2.5" fill="none" stroke-linecap="round">
-      <!-- Vertical line -->
-      <line x1="256" y1="195" x2="256" y2="365"/>
-      <!-- Horizontal line -->
-      <ellipse cx="256" cy="280" rx="85" ry="20" fill="none" opacity="0.5"/>
-      <!-- Curve lines (top) -->
-      <path d="M 210 230 Q 256 220 302 230" stroke-width="1.8"/>
-      <path d="M 200 250 Q 256 245 312 250" stroke-width="1.8"/>
-      <!-- Curve lines (bottom) -->
-      <path d="M 210 330 Q 256 340 302 330" stroke-width="1.8"/>
-      <path d="M 200 310 Q 256 315 312 310" stroke-width="1.8"/>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <g clip-path="url(#card)">
+    <g fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="6">
+      <circle cx="256" cy="226" r="196"/>
+      <circle cx="256" cy="226" r="250"/>
     </g>
-
-    <!-- Shine/highlight -->
-    <ellipse cx="220" cy="240" rx="30" ry="25" fill="rgba(255,255,255,0.25)"/>
+    <rect x="0" y="382" width="512" height="130" fill="#0a1228"/>
+    <rect x="0" y="382" width="512" height="8" fill="url(#gold)"/>
   </g>
 
-  <!-- Dollar signs symbolizing NIL -->
-  <g fill="rgba(255,255,255,0.9)" font-family="Arial, sans-serif" font-size="48" font-weight="bold">
-    <!-- Top left $ -->
-    <text x="100" y="120" text-anchor="middle" opacity="0.85">$</text>
-    <!-- Bottom right $ -->
-    <text x="380" y="420" text-anchor="middle" opacity="0.85">$</text>
+  <ellipse cx="256" cy="372" rx="104" ry="14" fill="#000" opacity="0.35"/>
+
+  <circle cx="256" cy="226" r="132" fill="url(#ball)"/>
+  <g clip-path="url(#ballclip)" fill="none" stroke="#2a1006" stroke-opacity="0.75" stroke-width="7" stroke-linecap="round">
+    <line x1="256" y1="90" x2="256" y2="362"/>
+    <line x1="120" y1="226" x2="392" y2="226"/>
+    <path d="M 168 112 C 218 168 218 284 168 340"/>
+    <path d="M 344 112 C 294 168 294 284 344 340"/>
   </g>
+  <circle cx="256" cy="226" r="132" fill="none" stroke="#2a1006" stroke-opacity="0.75" stroke-width="7"/>
+  <path d="M 170 150 A 112 112 0 0 1 236 108" fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="10" stroke-linecap="round"/>
 
-  <!-- Crown symbol (top center) - representing championship -->
-  <g fill="rgba(255,255,255,0.9)">
-    <path d="M 240 60 L 260 100 L 280 60 L 290 100 L 310 60 L 305 80 Q 305 90 295 95 Q 256 110 217 95 Q 207 90 207 80 Z" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
-  </g>
-
-  <!-- App name badge (bottom) -->
-  <rect x="80" y="430" width="352" height="60" fill="rgba(0,0,0,0.2)" rx="12"/>
-  <text x="256" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white">
-    Real College BB
-  </text>
-
-  <!-- Version indicator -->
-  <text x="256" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.8)">
-    v2.0
-  </text>
+  <text x="256" y="462" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="900" font-size="78" letter-spacing="10" fill="url(#gold)">RCD</text>
 </svg>

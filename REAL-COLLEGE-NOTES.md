@@ -42,3 +42,7 @@ To change a school or conference: edit data/real-schools.final.txt, then run `no
 - 371 of the 601 photo-less roster players got photos from `photo-work/Missing Player Photos Found 2026-27.zip` (198) and `New Photos Found 2026-10-12.zip` (173). Resized to 128 px wide, saved as `realdata/photos-128/<School>/<Player>.jpg`, and appended to `realdata/photos-src/Roster list 2026-27.csv` (Jersey and ESPN ID blank). Photos now total 5,089.
 - Then `node tools/build-photos.js && node tools/apply-real.js && node tools/build.js`; `python3 tools/build-sprites.py` rebuilt the phone sprite sheets (now 5: photos-0..4.jpg). The phone page is NOT republished yet, and the Mac app was not repackaged (`zsh tools/make-real-app.sh`).
 - 230 players are still STILL MISSING in `photo-work/Missing players - found vs still missing.csv` (see HANDOFF for schools to try).
+
+## New app icon (Oct 13, 2026)
+- `data/app-icon.svg` is a new original icon: basketball on a navy card with a gold "RCD" and floor line. `tools/make-real-app.sh` renders it into the Mac app icon (checked in the packaged app). Old icon is in git history.
+- The phone page (claude.ai artifact) takes its tab icon from the artifact settings, not from this file, so it is unchanged.
