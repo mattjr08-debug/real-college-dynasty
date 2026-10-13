@@ -37,3 +37,8 @@ To change a school or conference: edit data/real-schools.final.txt, then run `no
 - build-real-rosters.js also writes 0000f-RealPortal.js (REAL_PORTAL): 2025-26 players with eligibility left who are on no 2026-27 roster (ESPN, Torvik 2027 or a photo folder). They fill the first slots of the starting transfer portal (W_realPortalP).
 - Portal headshots: realdata/photos-128/_portal. 2 from Wikimedia Commons (Myles Rice: Maryland GovPics, CC BY 4.0; Noam Dovrat: CC BY-SA 4.0). 24 from school roster pages (SIDEARM Sports terms 2.3 allow copying for personal use only), sources listed in realdata/portal-photos-raw/credits.json. Personal use only: do not share the game with these photos.
 - Phone layout: REAL-PHONE-SCROLL in src/css/ui-polish.css lets the page scroll on screens narrower than 1000px.
+
+## Missing photos added (Oct 13, 2026)
+- 371 of the 601 photo-less roster players got photos from `photo-work/Missing Player Photos Found 2026-27.zip` (198) and `New Photos Found 2026-10-12.zip` (173). Resized to 128 px wide, saved as `realdata/photos-128/<School>/<Player>.jpg`, and appended to `realdata/photos-src/Roster list 2026-27.csv` (Jersey and ESPN ID blank). Photos now total 5,089.
+- Then `node tools/build-photos.js && node tools/apply-real.js && node tools/build.js`; `python3 tools/build-sprites.py` rebuilt the phone sprite sheets (now 5: photos-0..4.jpg). The phone page is NOT republished yet, and the Mac app was not repackaged (`zsh tools/make-real-app.sh`).
+- 230 players are still STILL MISSING in `photo-work/Missing players - found vs still missing.csv` (see HANDOFF for schools to try).
