@@ -3,7 +3,7 @@
 set -e
 export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SRC_SHELL="$HOME/Documents/College-Dynasty/desktop"
+SRC_SHELL="$HOME/Documents/College Dynasty/desktop"
 cd "$ROOT"
 echo "1/6 Building the game ..."; node tools/build.js | tail -1
 echo "2/6 Copying the app shell ..."
