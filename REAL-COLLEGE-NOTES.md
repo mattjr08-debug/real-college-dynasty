@@ -46,3 +46,8 @@ To change a school or conference: edit data/real-schools.final.txt, then run `no
 ## New app icon (Oct 13, 2026)
 - `data/app-icon.svg` is a new original icon: basketball on a navy card with a gold "RCD" and floor line. `tools/make-real-app.sh` renders it into the Mac app icon (checked in the packaged app). Old icon is in git history.
 - The phone page (claude.ai artifact) takes its tab icon from the artifact settings, not from this file, so it is unchanged.
+
+## Search (Oct 13, 2026)
+- In game: `src/js/0112d-GameSearch.js` (GameSearch). Magnifier button in the top bar, `/` (outside a text box) or Ctrl/Cmd+K. Search every school and every player (all teams, your roster, recruits, portal, walk-ons). Enter opens the top result. A school opens the team view, another team's player opens the player card, your player opens your window, a recruit jumps to Recruiting / Transfer portal / Walk-on pool. Wired in `0070-oc.js`, listed in `manifest.json` after `0112c-FavStar.js`.
+- Career page: `0071-XC.js` `W_careerPlayerHits`: typing a player's name also finds his school and shows "Player: name . pos . class . OVR" on the school card (uses REAL_TEAMS).
+- The same in-game search was added to College Dynasty (its CLAUDE.md has the note). Tested in a headless browser; Mac apps for both rebuilt, College Dynasty phone site republished.
