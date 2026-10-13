@@ -1,0 +1,16 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: The game plays differently.
+Request: Finish three tuning gaps that are still open. Measure them with TRIALS=6 SEASONS=4 npm run test:balance and npm run test:long, and use the cheaper TRIALS=2 SEASONS=3 balance check while you adjust, running the full ones once at the end.
+
+1. Small-budget tournament rate. The latest full run shows 11.8% against an expected 20% (the expected rates by NIL budget are about 10, 20, 30, 48 and 83%, within 8 points). Raise it into 12 to 28% by tuning how the field is ranked and how strong each league is, not by making teams win more.
+
+2. Getting fired. In the 6-trial long-career runs, the Moderate, Challenging and Hard levels see 44 to 56% of coaches fired within 8 seasons (the limit is about 40%). Bring each of those levels under 40% without moving wins above goal by more than 1.5 in any level.
+
+3. The year-5 dip. Wins fall about 2.1 from season 4 to season 5 on average. Reduce it to under 1.0 by smoothing class turnover (staggered classes, more mid-career transfers) without changing the star pyramid of the high school class or the portal volume.
+
+Constraints: every other balance row must still pass, no realism row may get worse, save size may not grow by more than 25%, and the draft shares must stay in range. Keep a short before and after table of every number you changed. Do not change anything about how the game looks.
+
+Rules: make the smallest change that does the job and do not change unrelated things. After changing, rebuild (npm run build) and run npm test. Also run the test that matches the change (npm run test:realism for anything that changes game numbers, npm run test:balance for difficulty). For anything that changes a screen, use the quick screen test while you work (npm run test:ui:quick, about 45 seconds) and run the full one (npm run test:ui, about 2 minutes) only once, at the very end. If a check fails, fix it or say so clearly. Commit with a clear message (git add -A, git commit). Do not run git push. Never end your turn while a test or other command is still running in the background. Run long checks in the foreground (no trailing &), or wait for them with a sleep loop, read the result, and only then continue. If you ever start something in the background, wait for it and read its result before you finish. Always commit your finished work before you end.
+
+End your report with three short parts: (1) What I changed, in plain words. (2) What I tested and the results. (3) Anything I am unsure about, or that the owner should look at while playing.

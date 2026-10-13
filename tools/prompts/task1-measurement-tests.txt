@@ -1,0 +1,27 @@
+Read CLAUDE.md first. Do NOT change anything under src/ in this task. Only add tests and npm scripts.
+
+Goal: add two measurement tests so later fixes can be proven, not guessed.
+
+1) tests/realism.js
+- Load dist/College-Dynasty-V12.html in headless Google Chrome with playwright-core, exactly like tests/smoke.js does.
+- Use window.__dbg (sy, fy, Xl, tierOf, Ps, _s, TUNE, W_game) to auto-play one season for 8 schools spread across the 5 tiers.
+- Report, from your games' box scores (schedule entries with .box) and from the other teams' compact stats in e.rosters:
+  points per game, FG%, 3P% and 3P share of shots, FT% and attempts, turnovers, rebounds, assists, steals, blocks,
+  margin standard deviation, home win % and away win %.
+- Print a table: metric, measured, target, status (PASS within 8%, NEAR within 15%, FAR otherwise).
+  Targets are in CLAUDE.md ("Sim realism targets"). Exit code 0 always; this is a measurement tool.
+
+2) tests/balance.js
+- Auto-play every school in Xl for N seasons (default 1 trial and 4 seasons, configurable with env vars TRIALS and SEASONS),
+  using window.__dbg only (no UI), with fy actions: autoRecruit, startSeason {auto:true, finish:true}, sim {count:'season', auto:true}, nextYear.
+  Resolve pending e.xfers and e.draft with stay:false before recruiting, like tests/smoke.js does.
+- Split the schools across several parallel Chrome processes (4 to 6) so it finishes in a few minutes.
+- Print, by difficulty tier (tierOf): schools, seasons, average wins, average win goal (_s), wins minus goal, tournament rate (history.bt contains "berth"),
+  titles, number fired, average team rating. Also print wins minus goal for year 1 versus later years.
+- Targets are in CLAUDE.md ("Balance"). Print PASS or CHECK per tier. Exit code 0 always.
+
+Also: add npm scripts "test:realism" and "test:balance" to package.json (keep existing scripts).
+Run tests/realism.js once and show me the table. Run tests/balance.js with TRIALS=1 SEASONS=3 once (it may take several minutes: run its parallel workers
+in the background and wait; do not let any single command exceed 9 minutes) and show me the summary.
+Finally: git add the new files and package.json and commit with the message "Add realism and balance measurement tests". Do not run git push.
+End with a short report: what you added, the measured numbers, and anything you could not verify.

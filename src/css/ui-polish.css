@@ -1,0 +1,1227 @@
+/* ===== UI polish: visual layer only. Delete this block to get the original look back. ===== */
+:root{--bg:#0b0e14;--panel:#121721;--panel2:#19202c;--line:#252d3b;--muted:#a6afc1}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+h1,h2,h3{letter-spacing:-.01em}
+.eyebrow,.nav-label{letter-spacing:.9px}
+th{letter-spacing:.5px;font-size:.8125rem;text-transform:uppercase}
+
+/* the whole app takes the school's colour */
+.app-shell{--orange:var(--team)}
+.app-shell .btn.primary{background:var(--team);border-color:var(--team);color:var(--on-team,#10131a);box-shadow:none}
+.app-shell .btn.primary:hover:not(:disabled){background:var(--team);border-color:var(--team);filter:brightness(1.14)}
+.app-shell .badge.orange{color:color-mix(in srgb,var(--team) 62%,#fff);background:color-mix(in srgb,var(--team) 13%,transparent);border-color:color-mix(in srgb,var(--team) 38%,transparent)}
+.app-shell :is(button,a,input,select):focus-visible{outline-color:var(--team)}
+.btn{border-radius:8px}
+.panel{border-radius:12px}
+
+/* sidebar */
+.sidebar{background:#0e1219;padding:20px 14px 14px}.brand{font-size:1.35rem}
+.sidebar nav{gap:3px}
+.sidebar nav button{min-height:38px;padding:8px 12px;border-radius:8px;color:#aab3c4}
+.sidebar nav button:hover{background:#171d28;color:#fff}
+.sidebar nav button.active{color:#fff;background:color-mix(in srgb,var(--team) 15%,#0e1219);border-color:transparent;box-shadow:inset 3px 0 0 var(--team)}
+.program-mini{margin-top:18px;padding:10px;background:color-mix(in srgb,var(--team) 8%,#161c27);border-color:color-mix(in srgb,var(--team) 30%,var(--line))}
+
+/* top bar stays in view; page heading is tighter */
+.topbar{position:sticky;top:0;z-index:30;height:58px;background:#0b0e14e8;backdrop-filter:blur(10px)}
+.main{padding:26px 36px 96px}
+.page-heading{margin-bottom:20px}
+.page-heading h1{font-size:1.75rem;letter-spacing:-.025em}
+
+/* the export / import strip is docked, so it never covers content */
+.offline-controls{left:234px;right:0;bottom:0;border-radius:0;border-width:1px 0 0;padding:8px 36px;justify-content:flex-end;gap:14px;background:#0e1219f2;box-shadow:none}
+.offline-controls .offline-label{display:flex;flex-direction:row;gap:12px;align-items:baseline;margin-right:auto}.offline-controls .offline-label strong{font-size:.75rem;letter-spacing:.8px}.offline-controls .offline-label span{font-size:.875rem;color:#8d97aa}
+.offline-controls .btn.small{min-height:30px;padding:4px 12px;font-size:.875rem}
+body:not(:has(.sidebar)) .offline-controls{left:0}
+@media (max-width:1100px){.offline-controls{left:0}}
+
+/* home banner is shorter, so numbers show higher up the page */
+.hq-banner{min-height:216px;background:linear-gradient(120deg,#1b2230 0%,#141923 60%,color-mix(in srgb,var(--team) 20%,#141923) 100%);border-color:#2b3342}
+.banner-copy{padding:24px 30px}
+.banner-season strong{color:color-mix(in srgb,var(--team) 60%,#8a8f9c)}
+.banner-season{color:#7d8696}
+.metrics{margin:18px 0 22px;gap:14px}
+.metrics>*{border-radius:12px}
+
+/* coaching: lineup pickers are wide enough to read */
+.lineup-selectors{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px 12px}.lineup-selectors select{font-size:.9rem;padding-left:10px;padding-right:24px}
+.lineup-selectors select{text-overflow:ellipsis;width:100%}
+.court{height:380px}
+
+/* tables are a little tighter, with clearer rows */
+td{padding:12px 18px}
+th{padding:11px 18px}
+tbody tr:hover{background:#ffffff06}
+.table-sub{margin-top:2px}
+
+/* cards */
+.board-card:hover{border-color:var(--team)}
+.check-row{padding:16px 22px}
+
+/* quiet scrollbars, calmer motion */
+*{scrollbar-width:thin;scrollbar-color:#2d3647 transparent}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.nav-label{margin:20px 12px 8px}.coach-block{margin-top:auto}
+
+/* recruit table fits without sideways scrolling */
+.prospect-table td,.prospect-table th{padding-left:12px;padding-right:12px}.prospect-table td:last-child{display:flex;align-items:center;gap:6px;border-top:0}.prospect-table tr{border-top:1px solid var(--line)}.prospect-table td{border-top:0}
+
+.prospect-table{white-space:normal}.prospect-table td:first-child,.prospect-table td:last-child,.prospect-table th{white-space:nowrap}.prospect-table td{padding-top:10px;padding-bottom:10px}.prospect-table td:nth-child(5){min-width:90px;white-space:normal}.prospect-table .player-cell{min-width:230px}
+
+.prospect-table{font-size:.9rem}.prospect-table td:first-child{white-space:nowrap}.prospect-table .player-cell{min-width:0}.prospect-table td:last-child .btn.small{padding:5px 9px}
+.prospect-table td,.prospect-table th{padding-left:9px;padding-right:9px}.prospect-table .meter{width:56px}
+
+/* bigger text */
+:root{font-size:17.5px}
+
+/* smaller icons */
+.sidebar nav button>svg{width:16px;height:16px}
+.metrics svg{width:15px;height:15px}
+.btn svg,.text-button svg{width:14px;height:14px}
+.save-status svg,.topbar svg{width:14px;height:14px}
+.crest.small.has-logo{width:30px;height:34px}
+.banner-emblem>div.emblem-logo{width:6.5rem;height:6.5rem}
+.banner-emblem{margin-right:90px}
+
+/* choose-a-school tiles: smaller, three across */
+.setup-layout{grid-template-columns:1.9fr 1fr}
+.school-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.school-card{padding:14px 16px;display:flex;flex-direction:column;justify-content:flex-start}
+.school-card .crest.has-logo{width:44px;height:44px}
+.school-card h3{margin-top:6px;font-size:1.05rem}
+.school-numbers{gap:22px;margin-top:8px;padding:10px 0 8px}
+.school-numbers strong{font-size:1.2rem}
+.school-numbers span{margin-top:3px}
+.school-story{font-size:.875rem;line-height:1.5;margin-bottom:8px}
+.prospect-table{font-size:.9rem}.prospect-table td,.prospect-table td strong,.prospect-table .table-sub{font-size:.9rem}.prospect-table .table-sub{font-size:.8rem}.prospect-table .name-ovr{display:none}.sidebar nav button{min-height:35px;padding:6px 12px}.sidebar nav{gap:2px}.sidebar .nav-label{margin:14px 12px 6px}.program-mini{margin-top:12px}.school-card>.row.between{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;min-height:80px}.school-card .crest.has-logo{flex:none;height:44px;padding:0}.school-card .badge{margin-left:0;font-size:.75rem;padding:3px 7px}.school-card .school-selected{position:static;display:flex;margin-top:4px}.school-card .school-story{margin-bottom:6px}@media (max-width:1250px){.school-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){.school-grid{grid-template-columns:1fr}}
+@media (max-width:700px){.offline-controls{padding:8px 14px;gap:8px;flex-wrap:nowrap}.offline-controls .offline-label span{display:none}.offline-controls .offline-label{margin-right:auto}.main{padding-bottom:70px}}
+
+/* ===== fit-to-screen layout (desktop): pages stay inside the window and long lists scroll inside their own panel ===== */
+@media (min-width:1000px) and (min-height:640px){
+  .workspace{height:100vh;overflow:hidden}
+  .main{display:flex;flex-direction:column;gap:12px;height:calc(100vh - 58px);padding:12px 22px 56px;overflow:auto}
+  .main>*{flex:none;margin:0}
+  .main>.panel:last-of-type,.main>.board-grid:last-child{flex:none;overflow:visible}
+  .footer{display:none}
+  .page-heading{margin:0;gap:12px}
+  .page-heading>div:first-child{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .page-heading .eyebrow{margin:0}
+  .page-heading h1{font-size:1.4rem}
+  .section-head{padding:12px 18px}
+  th{position:sticky;top:0;z-index:2;padding:8px 14px}
+  td{padding:7px 14px}
+  .table-wrap{overflow:auto}
+
+  /* home: three columns, banner trimmed */
+  .hq-banner{min-height:150px}
+  .banner-copy{padding:16px 24px}
+  .hq-banner{min-height:96px}
+  .banner-copy{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;padding:12px 22px}
+  .banner-copy h2{font-size:1.7rem;letter-spacing:-.02em;margin:0}
+  .banner-copy h2 br{display:none}
+  .banner-copy h2 span{margin-left:.3em}
+  .banner-copy>p:not(.eyebrow){display:none}
+  .banner-copy .badge{display:none}
+  .banner-season{display:none}
+  .banner-emblem>div.emblem-logo{width:5rem;height:5rem}
+  .banner-emblem>span{display:none}
+  .metrics{margin:0;gap:10px}
+  .metrics>*{padding:10px 14px}
+  .metrics strong,.metrics b{font-size:1.5rem}
+  .metrics>* p,.metrics>* small{margin:0}
+  .dashboard-columns{grid-template-columns:minmax(0,1.1fr) minmax(0,1.5fr) minmax(0,1fr);gap:12px;flex:none;min-height:0;align-items:start;overflow:visible}
+  .dashboard-columns>.stack:first-child{display:contents}
+  .dashboard-columns{grid-template-areas:"plan core feed" "rep res feed";grid-template-rows:max-content max-content;align-content:start}
+  .dashboard-columns>.stack:last-child{display:contents}
+  .dashboard-columns>.stack:first-child>.panel:nth-child(1){grid-area:plan}
+  .dashboard-columns>.stack:first-child>.panel:nth-child(2){grid-area:core}
+  .dashboard-columns>.stack:last-child>.panel:nth-child(1){grid-area:feed;align-self:stretch;min-height:0;overflow:visible}
+  .dashboard-columns>.stack:last-child>.panel:nth-child(2){grid-area:rep;align-self:start}
+  .dashboard-columns>.stack:last-child>.panel:nth-child(3){grid-area:res;align-self:start}
+  .dashboard-columns .reputation>p{display:none}
+  .check-row{padding:10px 16px}
+  .core-grid{padding:10px;grid-template-columns:1fr}
+
+  /* roster / cards: photo on the left, details on the right, so all 15 players fit on screen */
+  .roster-grid,.core-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+  .roster-grid .player-card,.core-grid .player-card{flex-direction:row;align-items:stretch;min-height:0}
+  .roster-grid .card-image,.core-grid .card-image{width:92px;flex:none;aspect-ratio:1;height:92px}
+  .roster-grid .card-image:after,.core-grid .card-image:after{display:none}
+  .roster-grid .card-body,.core-grid .card-body{padding:7px 10px;display:flex;flex-direction:column;justify-content:center;gap:1px;min-width:0}
+  .roster-grid .card-body h3,.core-grid .card-body h3{font-size:.95rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .roster-grid .card-body p,.roster-grid .mood,.roster-grid .card-detail,.core-grid .card-body p,.core-grid .mood,.core-grid .card-detail{font-size:.76rem;margin:0}
+  .roster-grid .card-detail,.core-grid .card-detail{padding-top:3px;margin-top:3px}
+  .roster-grid .jersey,.core-grid .jersey{font-size:.62rem;padding:0 3px;top:3px;left:3px}
+  .roster-grid .overall,.core-grid .overall{top:auto;bottom:3px;right:3px;font-size:1rem;padding:1px 5px;transform:none;line-height:1.05}
+  .roster-grid .overall small,.core-grid .overall small{display:none}
+  .roster-grid .card-image-bottom,.core-grid .card-image-bottom{left:3px;right:auto;bottom:3px;gap:3px}
+  .roster-grid .card-image-bottom span,.core-grid .card-image-bottom span{font-size:.62rem}
+  .roster-grid .card-image-bottom .badge:not(.red),.core-grid .card-image-bottom .badge:not(.red){display:none}
+  .roster-grid+.panel{flex:none;overflow:visible}
+  .toolbar{margin:0}
+
+  /* recruiting pages: banner and round bar become one slim strip each */
+  .recruit-banner{padding:10px 20px;min-height:0}
+  .recruit-banner p:not(.eyebrow){display:none}
+  .recruit-banner h2{font-size:1.1rem;margin:0}
+  .recruit-banner .eyebrow{margin-bottom:2px}
+  .recruit-round{padding:8px 16px}
+  .footnote{display:none}
+  .board-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;overflow:auto}
+  .board-card{padding:12px;gap:8px}
+  .board-grid{flex:none;overflow:visible}
+  .board-grid+.panel{flex:none}
+  .main:has(.board-card){display:block;overflow:auto}.main:has(.board-card)>*{margin-bottom:12px}.main:has(.board-card) .board-grid{overflow:visible!important;flex:none!important;min-height:0}
+
+  /* coaching / schedule / season / budget */
+  .coaching-top{gap:12px;margin:0}
+  .court{height:340px;margin:8px 14px 0}
+  .slot-0{top:214px}.slot-1{top:192px}.slot-2{top:192px}.slot-3{top:50px}.slot-4{top:50px}
+  .court-player{transform:translate(-50%) scale(.9);transform-origin:top center}
+  .coaching-top .panel p{font-size:.78rem;line-height:1.3}
+  .coaching-top .panel label{gap:4px;font-size:.85rem}
+  .coaching-top .panel select{min-height:34px;padding-top:4px;padding-bottom:4px}
+  .coaching-top .panel>div:not(.section-head){padding-top:10px;padding-bottom:10px}
+  .tactics{padding:12px 18px;gap:10px}
+  .lineup-selectors{padding:8px 14px 12px;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 10px}
+  .lineup-selectors label{font-size:.75rem;gap:4px}
+  .lineup-selectors select{font-size:.78rem;min-height:34px;padding:4px 20px 4px 8px}
+  .callout{padding:10px 16px;font-size:.85rem}
+  .callout p{font-size:.85rem;line-height:1.4}
+  .season-control{padding:14px 20px}
+  .season-columns{gap:12px}
+}
+
+@media (min-width:1000px) and (min-height:640px){
+  .season-columns td,.season-columns .check-row{padding-top:4px;padding-bottom:4px}
+  .season-columns .section-head p,.panel .section-head p{font-size:.78rem}
+  .season-control h2{font-size:1.5rem}
+  .season-control p{font-size:.85rem}
+  .season-columns .player-cell img,.season-columns .portrait.tiny{width:34px;height:34px}
+}
+@media (min-width:1000px) and (min-height:640px) and (max-height:820px){.main{gap:8px;padding:8px 18px 50px}.page-heading h1{font-size:1.25rem}.court{height:252px!important}.slot-0{top:158px!important}.slot-1{top:142px!important}.slot-2{top:142px!important}.slot-3{top:36px!important}.slot-4{top:36px!important}.season-control{padding:10px 16px!important}.season-control h2{font-size:1.2rem!important}.season-columns td{padding-top:3px!important;padding-bottom:3px!important}.season-columns .section-head{padding:8px 14px!important}.roster-grid .card-image,.core-grid .card-image{width:76px!important;height:76px!important}.roster-grid{gap:6px!important}.metrics>*{padding:8px 12px!important}.hq-banner{min-height:80px!important}.lineup-selectors{padding-top:4px!important}.coaching-top .panel p{display:none}.fit-note{display:none}.review-strip{padding:8px 14px!important}}
+
+/* ===== pop-ups: one polished look (plain alerts now match the ceremony pop-ups) ===== */
+@keyframes popIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes popFade{from{opacity:0}to{opacity:1}}
+.modal-backdrop{background:radial-gradient(ellipse at 50% 35%,#0b1020b0,#02040ae6 70%);animation:popFade .18s ease-out}
+.modal{border:1px solid #33405a;border-radius:16px;background:linear-gradient(180deg,color-mix(in srgb,var(--team,var(--orange)) 13%,#161d28) 0,#151b26 150px,#131924);box-shadow:0 30px 120px #000c,inset 0 1px 0 #ffffff12;animation:popIn .26s cubic-bezier(.2,.9,.3,1.15)}
+.drawer-backdrop .modal{animation:none}
+.modal:before{content:"";position:absolute;inset:0 0 auto 0;height:4px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,var(--team,var(--orange)),color-mix(in srgb,var(--team,var(--orange)) 35%,#f5c542))}
+.modal:has(.ceremony):before{display:none}
+.modal .btn.primary{background:var(--team,var(--orange));border-color:var(--team,var(--orange));color:var(--on-team,#10131a)}
+.modal .btn.primary:hover:not(:disabled){filter:brightness(1.12)}
+.modal>.eyebrow,.alert-modal>.eyebrow{display:inline-flex;align-self:flex-start;padding:4px 10px;border-radius:999px;font-size:.7rem;letter-spacing:1.2px;color:color-mix(in srgb,var(--team,var(--orange)) 70%,#fff);background:color-mix(in srgb,var(--team,var(--orange)) 14%,transparent);border:1px solid color-mix(in srgb,var(--team,var(--orange)) 35%,transparent)}
+.alert-modal h2,.modal>h2{font-size:1.55rem;letter-spacing:-.02em}
+.alert-modal>p:not(.eyebrow),.modal>p:not(.eyebrow){color:#c9d0dc;line-height:1.55}
+.alert-modal>.row.gap:last-child,.modal>.row.gap:last-child{justify-content:flex-end;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
+.ceremony{animation:cerIn .3s ease-out}
+.ceremony-foot .row.gap{flex-wrap:wrap;margin-left:auto}
+.stat-trio>div{background:linear-gradient(180deg,#19212e,#131923);border-color:#2a3446}
+.automation-summary span{border-radius:10px}
+.lost-player{border-radius:10px;background:linear-gradient(180deg,#26181d,#1d1418)}
+.alert-modal .lost-player:has(.cut-btn){background:linear-gradient(180deg,#1a212d,#151b25);border-color:#2f3a4d}
+
+/* ===== Game Day: scoreboard and live play-by-play ===== */
+.gd-board{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;margin:14px 0 6px;padding:14px 18px;border-radius:14px;border:1px solid #2c3648;background:linear-gradient(90deg,color-mix(in srgb,var(--team,var(--orange)) 22%,#141a24),#10151d 45%,#10151d 55%,#1d1a22)}
+.gd-team{display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:0}
+.gd-team.us{align-items:flex-start}
+.gd-team span{font-size:.85rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.gd-team strong{font-size:2.6rem;line-height:1;font-weight:800;font-variant-numeric:tabular-nums}
+.gd-team.us strong{color:color-mix(in srgb,var(--team,var(--orange)) 75%,#fff)}
+.gd-clock{display:flex;flex-direction:column;align-items:center;padding:6px 16px;border-radius:10px;background:#0a0d13;border:1px solid #273042;min-width:130px}
+.gd-clock small{font-size:.62rem;letter-spacing:1px;color:var(--muted)}
+.gd-clock b{font-size:1.35rem;font-variant-numeric:tabular-nums;color:#f5c542}
+.gd-feed-title{margin:14px 0 6px;font-size:.95rem}
+.gd-feed{max-height:34vh;overflow:auto;display:flex;flex-direction:column;gap:4px}
+.gd-feed .season-game{display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:center;padding:6px 12px;min-height:0;flex-shrink:0}
+.gd-feed .season-game:first-child{animation:popIn .25s ease-out}
+.gd-feed .gd-time{font-variant-numeric:tabular-nums;font-size:.8rem}
+.gd-feed .season-game.us .gd-play{color:color-mix(in srgb,var(--team,var(--orange)) 55%,#fff)}
+.gd-feed .season-game.score{border-color:#3a4558;background:#1a2130}
+.gd-feed .season-game.score .gd-play{font-weight:700}
+.ceremony-foot select{min-height:40px;width:auto}
+
+/* ===== Coaching page ===== */
+.toolbar:has(.coach-summary){display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.coach-summary{display:flex;gap:8px;flex-wrap:wrap}
+.coach-summary>span{display:flex;flex-direction:column;align-items:center;padding:4px 12px;border-radius:10px;border:1px solid var(--line);background:#141a24;min-width:74px}
+.coach-summary small{font-size:.62rem;letter-spacing:.8px;color:var(--muted)}
+.coach-summary b{font-size:1rem;font-variant-numeric:tabular-nums}
+.min-warn{padding:9px 16px;border-radius:10px;border:1px solid #8a3a44;background:#2a161b;color:#f3c2c8;font-size:.9rem}
+.min-plan{display:flex;flex-direction:column;gap:8px}
+.min-plan.panel{padding:12px 18px}
+.min-plan.compact{border-top:1px solid var(--line);padding-top:12px}
+.min-plan-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.coaching-top .panel label.min-auto,.min-auto{display:flex;flex-direction:row;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);cursor:pointer}
+.min-auto input{width:16px;height:16px;min-height:0;flex:none;accent-color:var(--team,var(--orange))}
+.min-plan small{color:var(--muted);font-size:.8rem;line-height:1.35}
+.min-plan-chips{align-self:flex-start}
+.injury-tag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;font-size:.7rem;font-weight:700;letter-spacing:.3px;color:#ffb3ba;background:#4a1b23;border:1px solid #8a3a44;vertical-align:middle;white-space:nowrap}
+.court-player .injury-tag{margin:2px 0 0}
+tr.row-injured td{background:#2a161b66}
+tr.row-injured .player-cell>img,tr.row-injured .player-cell .portrait{filter:grayscale(.8) brightness(.8)}
+.min-bar{display:block;height:4px;width:64px;margin-top:4px;border-radius:4px;background:#232b39;overflow:hidden}
+.min-bar i{display:block;height:100%;background:var(--team,var(--orange))}
+
+/* ===== My roster: injured players stand out ===== */
+.player-card.injured{border-color:#8a3a44;background:linear-gradient(180deg,#2a161b,#1a1216)}
+.player-card.injured .card-image>*:first-child{filter:grayscale(.85) brightness(.75)}
+.player-card .injury-line{color:#ffb3ba!important;font-weight:700}
+
+/* ===== stats tables: numbers sit right next to the player names ===== */
+/* the Team totals row shares the .team-row class with the history cards (display:flex), which pushed the
+   whole row into the name column and made that column ~580px wide */
+.stats-table tr.team-row{display:table-row}
+.stats-table td:first-child,.stats-table th:first-child{width:1%;white-space:nowrap;padding-right:26px}
+.team-row.rec{flex-direction:column;align-items:flex-start;gap:2px}
+.team-row.rec span{font-weight:700}
+.stats-table th:not(:first-child),.stats-table td:not(:first-child){padding-left:10px;padding-right:10px;text-align:center}
+
+.rp-grid .tend-box{grid-column:span 2}
+.tend-row{display:block;font-style:normal;font-size:.82rem;line-height:1.4;color:var(--muted)}
+.tend-row b{color:#e7ebf2;font-weight:700}
+
+/* ===== recruit and player profile fits on one screen ===== */
+/* keep the profile photo square so the face is not zoomed in */
+.profile-top .portrait.large{min-width:0!important;width:96px!important;height:96px!important;flex:none}
+@media (min-width:1000px){
+  .modal:has(.profile-top){padding:16px 22px}
+  .modal .profile-top{padding:6px 0 10px;gap:16px;min-height:0}
+  .modal .profile-top .portrait,.modal .profile-top>img,.modal .profile-top>div:first-child:not(.profile-title){width:84px!important;height:84px!important}
+  .modal .profile-title h2{font-size:1.5rem;margin:2px 0}
+  .modal .profile-title p{margin:0;font-size:.9rem}
+  .modal .profile-overall strong{font-size:2.2rem}
+  .modal .profile-tabs button{padding-top:7px;padding-bottom:7px}
+  .modal .profile-content{padding-top:10px}
+  .modal .profile-metrics{gap:10px;margin:0 0 8px;padding:0 0 8px}
+  .modal .profile-metrics strong{font-size:1.45rem}
+  .modal .profile-metrics small{font-size:.75rem}
+  .modal .recruit-profile h3{margin:4px 0}
+  .modal .profile-content .rp-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px!important}
+  .modal .profile-content .rp-grid>div{padding:8px 10px;min-height:0;gap:2px}
+  .modal .profile-content .rp-grid>div:has(.honor-tags button){grid-column:1/-1}
+  .modal .profile-content .rp-grid .honor-tags{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .modal .profile-content .rp-grid em,.modal .profile-content .rp-grid p{font-size:.8rem;line-height:1.35;margin:1px 0 0}
+  .modal .profile-content .rp-grid>div:has(small+em+em){display:flex;flex-direction:row;flex-wrap:wrap;column-gap:10px;align-content:flex-start}
+  .modal .profile-content .rp-grid>div:has(small+em+em)>small,.modal .profile-content .rp-grid>div:has(small+em+em)>strong{flex-basis:100%}
+  /* the offer box stays at the bottom of the profile, so you never scroll down to make an offer */
+  .modal .offer-footer{position:sticky;bottom:-16px;z-index:3;background:#131924;box-shadow:0 -12px 24px #000a;margin-bottom:-16px}
+  .modal .offer-footer p{font-size:.82rem;line-height:1.4;margin:4px 0}
+  .modal .profile-two{gap:16px;margin-top:8px}
+  .modal .profile-two h3{margin:0 0 4px}
+  .modal .profile-two .attribute-short{padding-top:4px;padding-bottom:4px}
+  .modal .offer-footer{padding:10px 16px;gap:8px}
+}
+
+/* ===== phones and tablets (touch screens): every button, menu and text box is big enough for a finger ===== */
+@media (pointer:coarse){
+  button,.btn,.btn.small,select,input:not([type=checkbox]):not([type=radio]):not([type=range]),a[href]{min-height:44px}
+  .icon-btn,.modal-close,button[aria-label]{min-width:44px}
+  input[type=checkbox],input[type=radio],.min-auto input{width:22px;height:22px}
+  .offline-controls .btn.small,.set-row select{min-height:44px}
+  .sidebar nav button{min-height:46px}
+  html{-webkit-text-size-adjust:100%}
+  button,a,select,input,label{touch-action:manipulation}
+}
+/* ===== phone-width screens (390 px and up): one column, nothing squeezed or cut off ===== */
+@media (max-width:760px){
+  :root{font-size:16px}
+  .setup-layout{grid-template-columns:1fr}
+  .chips{flex-wrap:wrap;max-width:100%}
+  .section-head{flex-wrap:wrap}
+  .section-head>div:first-child{flex:1 1 200px;min-width:0}
+  .profile-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .profile-metrics strong{overflow-wrap:anywhere}
+  .offline-controls .offline-label{display:none}
+  .offline-controls{justify-content:flex-end}
+  /* Game Day: a narrower scoreboard so the middle label does not touch the scores, and play-by-play rows that stay whole */
+  /* pop-up lists (contract talks, draft day, transfer portal watch): name above, buttons below, nothing cut off */
+  .lost-player{flex-direction:column;align-items:stretch}
+  .lost-player .row{flex-wrap:wrap}
+  .lost-player button{max-width:100%}
+  .draft-actions{align-items:stretch}
+  .draft-extra{justify-content:space-between}
+  .gd-board{gap:8px;padding:12px}
+  .gd-team strong{font-size:2.1rem}
+  .gd-clock{min-width:0;padding:6px 10px}
+  .gd-clock b{font-size:1.1rem}
+  .gd-feed .season-game{grid-template-columns:44px 1fr auto;gap:8px;padding:6px 10px}
+}
+/* the hint shown when you tap something that has a hover hint on a touch screen */
+#tap-hint{position:fixed;left:12px;right:12px;bottom:76px;z-index:9999;padding:12px 16px;border-radius:12px;border:1px solid #33405a;background:#151b26f5;color:#e7ebf2;font-size:.9rem;line-height:1.4;box-shadow:0 12px 40px #000c;opacity:0;transform:translateY(8px);transition:opacity .15s,transform .15s;pointer-events:none}
+#tap-hint.show{opacity:1;transform:none}
+/* Export reminder (item 21): the Export button and the Backups tab say so when no exported file is up to date */
+.offline-controls .btn.export-due{border-color:#e0a050;color:#ffd9a0;background:#3a2a14}
+.export-due-text{color:#ffd9a0!important}
+.backup-row{padding-top:10px;padding-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.backup-row>div:first-child{flex:1 1 260px;min-width:0}
+.backup-row .row{flex-wrap:wrap;justify-content:flex-end}
+.career-code{flex:1 1 240px;min-width:0;min-height:64px;padding:8px 10px;border:1px solid var(--line,#2a3140);border-radius:8px;background:rgba(255,255,255,.04);color:inherit;font:inherit;font-size:.85rem;resize:vertical}
+.move-msg{display:block;padding:0 16px 12px}
+/* Settings > About (item 32) */
+.about-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.about-row span{color:#aab3c5;text-align:right}
+.whats-new-row{padding-top:9px;padding-bottom:9px}.whats-new-row small{display:block;margin-top:2px;line-height:1.4}
+/* "swipe sideways" hint on touch screens (item 35) */
+#swipe-hint{position:fixed;left:50%;width:max-content;bottom:84px;transform:translate(-50%,8px);z-index:9998;max-width:calc(100vw - 32px);padding:10px 16px;border-radius:999px;border:1px solid #33405a;background:#151b26f5;color:#e7ebf2;font-size:.85rem;box-shadow:0 8px 28px #000a;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;text-align:center}
+#swipe-hint.show{opacity:1;transform:translate(-50%,0)}
+/* phones with a notch or a home bar: keep the bottom bar clear of it (needs viewport-fit=cover in the page) */
+.offline-controls{padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+@media (max-width:700px){.main{padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}#swipe-hint{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+/* "How this works" boxes in the draft and transfer portal pop-ups (item 36) */
+.how-it-works{margin:6px 0 10px;border:1px solid #2c3648;border-radius:10px;background:#111722;padding:0 14px}
+.how-it-works summary{cursor:pointer;padding:10px 0;font-weight:600;font-size:.9rem;color:#cdd5e4}
+.how-it-works ul{list-style:disc;margin:0 0 12px;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:.88rem;line-height:1.45;color:#aab3c5}
+/* "A new version is ready" bar (item 52) */
+#update-bar{position:fixed;left:12px;right:12px;bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:9997;display:flex;align-items:stretch;border-radius:12px;border:1px solid #e0a050;background:#3a2a14;box-shadow:0 10px 30px #000b;overflow:hidden}
+#update-bar .update-go{flex:1;min-height:44px;padding:10px 14px;border:0;background:none;color:#ffe2b8;font:inherit;font-weight:600;text-align:left;cursor:pointer}
+#update-bar .update-later{width:44px;border:0;border-left:1px solid #e0a05055;background:none;color:#ffd9a0;font-size:1.3rem;cursor:pointer}
+@media (min-width:701px){#update-bar{left:auto;right:24px;width:380px;bottom:56px}}
+
+/* ===== recruit tables: key numbers beside the name, less important parts shrink or hide ===== */
+.prospect-table td:first-child{white-space:normal;max-width:300px}
+.prospect-table td:nth-child(n+2):nth-child(-n+6){white-space:normal}
+.prospect-table td:last-child{flex-wrap:wrap;white-space:normal}
+
+/* ===== no sideways scrolling on desktop: tables may wrap their text, the tab row wraps ===== */
+.table-wrap table{white-space:normal}
+.table-wrap th,.table-wrap td{padding-left:8px;padding-right:8px}
+.chips{flex-wrap:wrap;max-width:100%}
+.stats-table th:not(:first-child),.stats-table td:not(:first-child){padding-left:6px;padding-right:6px}
+.stats-table td:first-child,.stats-table th:first-child{padding-right:14px}
+.top-scroll{margin:0}
+
+/* ===== nothing cut off at 1000 px: the reputation row and recruit cards wrap instead of overflowing ===== */
+.reputation>div:first-child{flex-wrap:wrap}
+.reputation .badge{white-space:normal}
+.board-card strong,.board-card span{overflow-wrap:anywhere}
+
+/* ===== design system (item 1): tokens first, then the shared component styles =====
+   Tokens: --ds-* variables. Components (React, src/js/0064c-DesignKit.js and 0064-group-Hy.js): Panel qe, Stat tile ca, Tabs, Table DataTable,
+   Badge he, Button X, Modal, Empty state yl, plus Sparkline and RatingBar. Each school's colour is the accent (--team); --on-team is the readable text on it. */
+:root{
+  /* colour: text on the dark surfaces is at least 4.5:1 (WCAG AA) */
+  --ds-bg:#0b0e14;--ds-surface:#121721;--ds-surface-2:#19202c;--ds-line:#252d3b;
+  --ds-text:#f1f2f5;--ds-text-2:#c9d0dc;--ds-text-muted:#a6afc1;--ds-text-faint:#8e99ae;
+  --ds-good:#6bd1a5;--ds-bad:#f48087;--ds-warn:#f5c542;--ds-info:#7fb2ff;
+  /* spacing scale (4 px steps) */
+  --ds-space-1:4px;--ds-space-2:8px;--ds-space-3:12px;--ds-space-4:16px;--ds-space-5:20px;--ds-space-6:24px;--ds-space-7:32px;--ds-space-8:40px;
+  /* type scale (rem; the root size is set by Settings > text size) */
+  --ds-text-xs:.75rem;--ds-text-sm:.875rem;--ds-text-md:1rem;--ds-text-lg:1.25rem;--ds-text-xl:1.5rem;--ds-text-2xl:2rem;
+  /* radii, shadows, motion */
+  --ds-radius-sm:6px;--ds-radius-md:8px;--ds-radius-lg:12px;--ds-radius-xl:16px;--ds-radius-pill:999px;
+  --ds-shadow-1:0 1px 2px #0006;--ds-shadow-2:0 8px 24px #0008;--ds-shadow-3:0 30px 120px #000c;
+  --ds-fast:120ms;--ds-base:200ms;--ds-slow:320ms;--ds-ease:cubic-bezier(.2,.8,.2,1);
+}
+/* faint text that was below 4.5:1 now uses the faint token */
+.nav-label,.news-date,.banner-season,.offline-controls .offline-label span{color:var(--ds-text-faint)}
+/* Tabs */
+.ds-tabs{flex-wrap:wrap;max-width:100%}
+.ds-tabs button{transition:background var(--ds-fast) var(--ds-ease),color var(--ds-fast) var(--ds-ease)}
+.ds-tabs button:hover:not(.active){background:#ffffff0d;color:var(--ds-text)}
+.ds-count{margin-left:6px;padding:0 6px;border-radius:var(--ds-radius-pill);background:#ffffff14;font-size:var(--ds-text-xs)}
+/* Sparkline */
+.ds-spark{width:100%;height:26px;display:block}
+.ds-spark polyline{stroke:var(--team,var(--orange));stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ds-spark circle{fill:var(--team,var(--orange))}
+.ds-spark.good polyline{stroke:var(--ds-good)}.ds-spark.good circle{fill:var(--ds-good)}
+.ds-spark.bad polyline{stroke:var(--ds-bad)}.ds-spark.bad circle{fill:var(--ds-bad)}
+/* RatingBar */
+.ds-bar{display:grid;grid-template-columns:minmax(64px,auto) 1fr 2.2em;align-items:center;gap:var(--ds-space-2);font-size:var(--ds-text-sm)}
+.ds-bar:not(:has(.ds-bar-label)){grid-template-columns:1fr 2.2em}
+.ds-bar-label{color:var(--ds-text-muted);white-space:nowrap}
+.ds-bar-track{display:block;height:8px;border-radius:var(--ds-radius-pill);background:#232b39;overflow:hidden}
+.ds-bar-track i{display:block;height:100%;border-radius:inherit;background:var(--ds-info);transition:width var(--ds-base) var(--ds-ease)}
+.ds-bar-track.great i{background:var(--ds-good)}.ds-bar-track.ok i{background:var(--ds-warn)}.ds-bar-track.low i{background:var(--ds-bad)}
+.ds-bar-num{text-align:right;font-variant-numeric:tabular-nums}
+.ds-modal.wide{max-width:min(1100px,calc(100vw - 32px))}
+
+/* ===== shared Table (item 2): numbers right-aligned and tabular, clear header, hover, sort arrow, filter chips, Expand ===== */
+.ds-num{text-align:right!important;font-variant-numeric:tabular-nums}
+.ds-table-box{position:relative}
+.ds-table-box>.chips{margin:var(--ds-space-3) 0 var(--ds-space-2)}
+.ds-table-wrap{margin-top:0}
+.ds-table th{background:#0f141d;color:var(--ds-text-muted);border-bottom:1px solid var(--ds-line);font-weight:700}
+.ds-table th.sorted{color:var(--ds-text)}
+.ds-table td{border-top:1px solid #1c2330}
+.ds-table tbody tr{transition:background var(--ds-fast) var(--ds-ease)}
+.ds-table tbody tr:hover{background:#ffffff0a}
+.ds-table tr.you-row td{background:color-mix(in srgb,var(--team,var(--orange)) 12%,transparent)}
+.ds-sort{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:4px;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;max-width:100%}
+.ds-num .ds-sort{flex-direction:row-reverse}
+.ds-sort:focus-visible{outline:2px solid var(--team,var(--orange));outline-offset:2px;border-radius:4px}
+.ds-arrow{font-size:.7em;opacity:.55}
+th.sorted .ds-arrow{opacity:1;color:var(--team,var(--orange))}
+.ds-empty{padding:var(--ds-space-4) var(--ds-space-2)}
+button.table-expand{position:absolute;top:-34px;right:0;width:30px;height:28px;padding:0;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--ds-line);border-radius:var(--ds-radius-md);background:var(--ds-surface-2);color:var(--ds-text-2);font-size:1rem;line-height:1;cursor:pointer}
+button.table-expand:hover{border-color:var(--team,var(--orange));color:var(--ds-text)}
+.ds-table-box:has(>button.table-expand){margin-top:34px}
+.table-overlay{position:fixed;inset:0;z-index:9000;overflow:auto;padding:56px 24px 24px;background:var(--ds-bg)}
+.table-overlay .table-close{position:fixed;top:12px;right:16px;z-index:1}
+.table-overlay .table-wrap{overflow:visible}
+.table-overlay table{font-size:.85rem}
+.table-overlay th,.table-overlay td{padding:5px 8px}
+
+/* ===== Program HQ dashboard (item 3): the "do this next" card is the loudest thing on the page ===== */
+.hq-next{display:flex;align-items:center;justify-content:space-between;gap:var(--ds-space-4);flex-wrap:wrap;padding:var(--ds-space-4) var(--ds-space-6);border-radius:var(--ds-radius-lg);border:1px solid color-mix(in srgb,var(--team,var(--orange)) 55%,var(--ds-line));background:linear-gradient(100deg,color-mix(in srgb,var(--team,var(--orange)) 22%,var(--ds-surface)),var(--ds-surface) 70%);box-shadow:var(--ds-shadow-1),inset 4px 0 0 var(--team,var(--orange))}
+.hq-next>div{flex:1 1 280px;min-width:0}
+.hq-next .eyebrow{margin:0 0 2px;color:color-mix(in srgb,var(--team,var(--orange)) 55%,#fff)}
+.hq-next h2{font-size:var(--ds-text-xl);line-height:1.2;margin:0;letter-spacing:-.02em}
+.hq-next p{margin:2px 0 0;color:var(--ds-text-2);font-size:var(--ds-text-sm)}
+.hq-next .btn{min-height:44px;padding:0 var(--ds-space-6);font-size:var(--ds-text-md)}
+.hq-next.ready{border-color:color-mix(in srgb,var(--ds-good) 50%,var(--ds-line));box-shadow:var(--ds-shadow-1),inset 4px 0 0 var(--ds-good)}
+.metrics .metric svg.ds-spark,.metric svg.ds-spark{width:100%;height:22px;margin-top:var(--ds-space-2);opacity:.9}
+.reputation svg.ds-spark{width:100%;height:24px;margin-top:var(--ds-space-2)}
+.news-icon svg{width:15px;height:15px}
+
+/* ===== My roster and player profile (item 4) ===== */
+/* player cards: a rating bar under the name, the position as a badge on the photo */
+.player-card:has(.ds-bar) .card-image .overall{display:none}.player-card .ds-bar{font-size:.76rem;margin:3px 0 1px}
+.player-card .ds-bar-num{font-size:.95rem}
+.player-card .ds-bar-track{height:6px}
+.card-image-bottom>span:first-child{padding:1px 7px;border-radius:var(--ds-radius-pill);background:#0b0e14d9;border:1px solid color-mix(in srgb,var(--team,var(--orange)) 55%,#3a4454);color:#fff;font-weight:700}
+/* one photo shape and a few fixed sizes wherever a player appears (cards 92, profile 96, lists 40, small 52) */
+.portrait.tiny,.portrait.small,.portrait.large{border-radius:var(--ds-radius-md);border:1px solid #374050}
+.portrait.tiny{width:40px;height:40px}
+.portrait.small{width:52px;height:52px}
+/* profile: attributes grouped into Shooting, Skill, Defense, Athleticism, each with its average */
+.attr-group-head{display:flex;justify-content:space-between;align-items:center}
+.attr-group-head span{font-size:var(--ds-text-sm);color:var(--ds-text-2);padding:0 8px;border-radius:var(--ds-radius-pill);background:#ffffff12}
+.attributes-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+/* growth chart: one bar per season */
+.growth-chart{margin-top:var(--ds-space-3);padding:var(--ds-space-3) var(--ds-space-4);border:1px solid var(--ds-line);border-radius:var(--ds-radius-lg);background:var(--ds-surface-2)}
+.growth-head{display:flex;justify-content:space-between;align-items:baseline;gap:var(--ds-space-3);flex-wrap:wrap}
+.growth-head h3{margin:0}
+.growth-svg{width:100%;height:56px;display:block;margin-top:var(--ds-space-2)}
+.growth-svg rect{fill:color-mix(in srgb,var(--team,var(--orange)) 45%,#5a6577)}
+.growth-svg rect.now{fill:var(--team,var(--orange))}
+.growth-labels{display:flex;gap:var(--ds-space-2);margin-top:4px;font-size:var(--ds-text-xs);color:var(--ds-text-muted)}
+.growth-labels span{flex:1;display:flex;flex-direction:column;align-items:center;min-width:0}
+.growth-labels b{color:var(--ds-text);font-weight:700}
+
+/* ===== Motion, feedback, keyboard focus (item 10) ===== */
+/* a visible ring on EVERYTHING you can reach with the keyboard (school color, plus a thin dark gap so it shows on any background) */
+:where(button,a[href],input,select,textarea,summary,[tabindex]):focus-visible{outline:2px solid var(--team,#f27935);outline-offset:2px;box-shadow:0 0 0 4px #0b0e14}
+:where(input,select,textarea):focus-visible{outline-offset:0}
+/* subtle motion: hovers and presses ease in; everything stops when the system asks for reduced motion (rule at the top of this file) */
+.btn,.icon-btn,.text-button,.chips button,.sidebar nav button,.check-row,.player-card,.board-card,.school-card,.plan-card,.metric.clickable{transition:background-color var(--ds-fast) var(--ds-ease),border-color var(--ds-fast) var(--ds-ease),color var(--ds-fast) var(--ds-ease),transform var(--ds-fast) var(--ds-ease),box-shadow var(--ds-fast) var(--ds-ease),filter var(--ds-fast) var(--ds-ease)}
+.player-card:hover,.board-card:hover,.school-card:hover,.metric.clickable:hover{transform:translateY(-1px)}
+.btn:active:not(:disabled),.icon-btn:active,.plan-card:active{transform:scale(.98)}
+.meter span,.min-bar i,.rot-bar i{transition:width var(--ds-base) var(--ds-ease)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+/* loading: the start-up screen spins, and while the game saves the bottom-bar spinner already turns */
+.boot-spin{width:34px;height:34px;margin:0 auto 14px;border-radius:50%;border:3px solid #2a3140;border-top-color:#f27935;animation:bootspin .9s linear infinite}
+@keyframes bootspin{to{transform:rotate(360deg)}}
+/* empty states: a table with nothing to show, and the shared empty box */
+.ds-empty{text-align:center;color:var(--ds-text-muted)}
+.empty{padding:var(--ds-space-7) var(--ds-space-4);text-align:center}
+.empty svg{opacity:.7}
+/* touch screens: the pop-up close button and every icon button are finger-sized */
+@media (pointer:coarse){.heading-actions .btn,.heading-actions .btn.primary{min-height:44px}.icon-btn,.modal-close,.icon-btn.close{min-width:44px;min-height:44px}.chips button,.plan-card,.text-button,summary{min-height:44px}}
+
+/* ===== Phone (390 px): no table scrolls sideways. Text wraps anywhere, type and padding shrink, every column stays. ===== */
+@media (max-width:760px){
+  .table-wrap,.ds-table-wrap{overflow-x:visible}
+  .table-wrap table,table.ds-table{width:100%;table-layout:auto;font-size:.72rem}
+  .table-wrap th,.table-wrap td{padding:5px 3px!important;overflow-wrap:anywhere;word-break:break-word;white-space:normal!important;min-width:0!important;text-align:left}
+  .table-wrap th{font-size:.58rem;letter-spacing:0!important}
+  .table-wrap .ds-num,.table-wrap td.ds-num,.table-wrap th.ds-num{text-align:right!important}
+  .table-wrap strong,.table-wrap td strong{font-size:.78rem}
+  .table-wrap .player-cell{gap:4px;min-width:0}
+  .table-wrap .player-cell>div{min-width:0}
+  .table-wrap .portrait.tiny,.table-wrap .portrait.small{width:26px;height:26px;border-radius:6px}
+  .table-wrap .table-sub,.table-wrap small{font-size:.6rem}
+  .table-wrap .btn.small{padding:3px 5px;font-size:.66rem}
+  .table-wrap select{max-width:100%;font-size:.7rem;padding:2px 14px 2px 4px}
+  .table-wrap input{max-width:100%;min-width:0;font-size:.75rem}
+  .table-wrap .badge{padding:1px 3px;font-size:.6rem}
+  .table-wrap .meter{width:100%;min-width:20px}
+  .ds-sort{flex-wrap:wrap;gap:1px}
+  .top-scroll{display:none}
+  .table-overlay{padding:52px 8px 12px}
+  .main{padding-left:8px!important;padding-right:8px!important}
+  .panel,.board-card{border-radius:10px}
+  .table-wrap th,.table-wrap td{padding-left:2px!important;padding-right:2px!important}
+  .table-wrap th{overflow-wrap:normal;word-break:normal;font-size:.54rem}
+  .table-wrap td select,.table-wrap td input{width:100%!important;max-width:100%!important;min-width:0!important}
+  .table-wrap td .btn,.table-wrap td .btn.small{white-space:normal!important;max-width:100%;overflow-wrap:anywhere}
+  .table-wrap td select{text-overflow:ellipsis}
+  .table-wrap .guarantee-option{white-space:normal;flex-direction:column;align-items:flex-start;gap:2px;font-size:.62rem}
+  .table-wrap .guarantee-option small{font-size:.55rem;padding-top:0}
+  .table-wrap .guarantee-option input{width:16px!important;height:16px}
+  .table-wrap table.stats-table th,.table-wrap table.stats-table td{font-size:.5rem;padding-left:1px!important;padding-right:1px!important}
+  .table-wrap table.stats-table th{font-size:.46rem}
+  .table-wrap table.stats-table td:first-child strong{font-size:.55rem}
+  .stats-table td:first-child .player-cell>.portrait,.stats-table td:first-child .portrait{display:none}
+  .prospect-table.ds-table{table-layout:fixed}
+  .prospect-table.ds-table th:first-child,.prospect-table.ds-table td:first-child{width:21%;max-width:none}
+  .prospect-table.ds-table th:last-child,.prospect-table.ds-table td:last-child{width:14%}
+  .prospect-table.ds-table th{overflow-wrap:anywhere;word-break:break-word}
+  .table-wrap .ds-arrow{display:none}
+  .table-wrap .portrait.tiny,.table-wrap .portrait.small{width:20px;height:20px}
+  .table-wrap{font-size:.66rem}
+  .prospect-table .meter{width:100%!important;min-width:0!important}
+  .recruit-table{padding:0}
+  .table-wrap .rt-bar{min-width:0;width:100%}
+  .table-wrap .rt-bar .meter{max-width:none;min-width:0!important;width:100%!important}
+  .rt-bar .meter{max-width:none;min-width:0}
+  .table-wrap .stars{display:flex;flex-wrap:nowrap}
+  .table-wrap .stars svg{width:8px!important;height:8px!important}
+  .table-wrap .stars span{font-size:.55rem}
+  .rt-actions{max-width:50px!important;flex-wrap:wrap}
+  .rt-actions .btn.small{min-width:0;padding:2px 3px}
+  .rival-tag{font-size:.55rem!important;max-width:44px!important;padding:1px 3px!important;border-radius:6px}
+  .prospect-table .player-cell span,.prospect-table .player-cell em{font-size:.6rem}
+  .roster-grid .card-image{overflow:hidden}
+}
+
+/* ===== Charts (item 8): revenue share bar, budget and market lines, position index bars ===== */
+.ds-chart-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--ds-space-4);padding:var(--ds-space-3) var(--ds-space-4) var(--ds-space-2)}
+.ds-chart-title{margin:0 0 var(--ds-space-2);font-size:var(--ds-text-sm);color:var(--ds-text-2);letter-spacing:.3px}
+.ds-chart{min-width:0}
+.panel>.ds-chart{padding:var(--ds-space-3) var(--ds-space-4) 0}
+.ds-share{display:flex;height:22px;border-radius:var(--ds-radius-md);overflow:hidden;gap:2px;background:#232b39}
+.ds-share i{display:block;min-width:2px}
+.ds-legend{display:flex;flex-wrap:wrap;gap:6px var(--ds-space-4);margin-top:var(--ds-space-2);font-size:var(--ds-text-xs);color:var(--ds-text-2)}
+.ds-legend span{display:inline-flex;align-items:center;gap:6px}
+.ds-legend em{font-style:normal;color:var(--ds-text-muted)}
+.ds-legend .dot{display:inline-block;width:10px;height:10px;border-radius:3px}
+.ds-line{width:100%;max-width:640px;height:auto;display:block}
+.ds-line text{fill:var(--ds-text-muted);font-size:14px}
+.ds-chart-row .ds-line text{font-size:19px}
+.ds-line .grid{stroke:#2a3342;stroke-width:1}
+.ds-bars{display:flex;flex-direction:column;gap:6px;padding:var(--ds-space-3) var(--ds-space-4) 0;max-width:560px}
+.ds-bars-row{display:grid;grid-template-columns:34px 1fr 48px;align-items:center;gap:var(--ds-space-2);font-size:var(--ds-text-sm)}
+.ds-bars-row b{text-align:right;font-variant-numeric:tabular-nums}
+.ds-bars-track{position:relative;height:12px;border-radius:var(--ds-radius-pill);background:#232b39}
+.ds-bars-track:before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--ds-text-faint)}
+.ds-bars-track i{position:absolute;top:0;bottom:0;border-radius:var(--ds-radius-pill)}
+.ds-bars-track i.up{background:var(--ds-bad)}
+.ds-bars-track i.down{background:var(--ds-good)}
+
+/* ===== Schedule and stats tables fit at 1000 px in the offseason too (item 7) ===== */
+.table-wrap td select{max-width:210px;text-overflow:ellipsis}
+.table-wrap td select[aria-label$="venue"]{max-width:104px}
+@media (max-width:1250px){
+  .table-wrap td select{padding-left:8px;font-size:.85rem}
+  .table-wrap th,.table-wrap td{padding-left:5px;padding-right:5px}
+  .table-wrap td select[aria-label$="venue"]{max-width:92px}
+  .stats-table{font-size:.8rem}
+  .stats-table th,.stats-table td{padding-left:3px!important;padding-right:3px!important}
+  .stats-table th{font-size:.66rem;letter-spacing:0}
+  .stats-table td:first-child,.stats-table th:first-child{padding-right:6px!important}
+  .stats-table td:first-child{max-width:170px;white-space:normal}
+  .stats-table .table-sub{font-size:.7rem}
+}
+
+/* ===== Game Day (item 7): bigger scoreboard, readable play-by-play, clear halftime panel ===== */
+.gd-board{padding:var(--ds-space-5) var(--ds-space-6);gap:var(--ds-space-4);margin:var(--ds-space-3) 0 var(--ds-space-2)}
+.gd-team span{font-size:1.05rem;font-weight:700;color:var(--ds-text-2)}
+.gd-team strong{font-size:4rem;letter-spacing:-.03em}
+.gd-clock{min-width:150px;padding:var(--ds-space-2) var(--ds-space-4)}
+.gd-clock small{font-size:.72rem;letter-spacing:1.4px}
+.gd-clock b{font-size:1.9rem}
+.gd-clock.pause{border-color:var(--ds-warn);background:#2a2412}
+.gd-clock.pause b{font-size:1.35rem;letter-spacing:.06em}
+.gd-feed{max-height:38vh;gap:6px}
+.gd-feed .season-game{padding:9px 14px;font-size:1rem;line-height:1.35;grid-template-columns:64px 1fr auto}
+.gd-feed .gd-time{font-size:.85rem;color:var(--ds-text-muted)}
+.gd-feed .season-game.score{border-left:3px solid var(--team,var(--orange))}
+.gd-feed .season-game.score .gd-play{font-size:1.05rem}
+.gameday .ceremony-scroll h3{display:flex;align-items:center;gap:var(--ds-space-2);margin:var(--ds-space-4) 0 var(--ds-space-2);font-size:var(--ds-text-md)}
+.gameday .ceremony-scroll h3:before{content:"";width:4px;height:1.1em;border-radius:2px;background:var(--team,var(--orange))}
+.gameday .stat-trio strong{font-size:1.15rem}
+@media (min-width:761px){.gameday .rp-grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
+@media (max-width:760px){.gd-team strong{font-size:2.6rem}.gd-clock{min-width:0}.gd-clock b{font-size:1.2rem}.gd-board{padding:var(--ds-space-3)}}
+
+/* ===== Bracket in the Season center (item 7): the Expand button sits in the corner of the bracket ===== */
+.bt-box{margin-top:34px}
+.bt-box>.bt{margin:0}
+.table-overlay .bt-scroll{overflow:hidden}
+
+/* ===== Coaching (item 6): court that never clips, readable fit tags, plan cards, rotation bar ===== */
+@media (min-width:1000px){
+  .court{height:350px!important}
+  .court-player{width:120px;transform:translate(-50%)!important}
+  .slot-3,.slot-4{top:10px!important}
+  .slot-1,.slot-2{top:122px!important}
+  .slot-0{top:226px!important}
+  .slot-1{left:15%!important}.slot-2{left:85%!important}
+}
+.court-player strong{white-space:nowrap}
+.court-player>small{white-space:nowrap;font-size:.8rem}
+.court-portrait>span{box-shadow:0 1px 4px #0008}
+.court-player .position-note,.court-player .position-warning{white-space:nowrap;font-size:.72rem}
+.fit-chips{display:flex;flex-wrap:wrap;gap:6px}
+.fit-chips span{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--ds-radius-pill);font-size:var(--ds-text-xs);font-weight:600;line-height:1.3}
+.fit-chips .good:before{content:"\2713";font-weight:800}
+.fit-chips .bad:before{content:"!";font-weight:800}
+.fit-chips .good{background:#1f3b2c;color:#9be8b6;border:1px solid #2f6a49}
+.fit-chips .bad{background:#3e2327;color:#f6b0b8;border:1px solid #8a3a44}
+/* minutes plan: five cards, each with its own one-line description */
+.plan-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:var(--ds-space-2)}
+.plan-card{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:var(--ds-space-3);border:1px solid var(--ds-line);border-radius:var(--ds-radius-lg);background:var(--ds-surface-2);color:var(--ds-text-2);cursor:pointer;transition:border-color var(--ds-fast) var(--ds-ease),background var(--ds-fast) var(--ds-ease)}
+.plan-card strong{color:var(--ds-text);font-size:var(--ds-text-md)}
+.plan-card span{font-size:var(--ds-text-xs);line-height:1.35;color:var(--ds-text-muted)}
+.plan-card:hover{border-color:color-mix(in srgb,var(--team,var(--orange)) 60%,var(--ds-line))}
+.plan-card.active{border-color:var(--team,var(--orange));background:color-mix(in srgb,var(--team,var(--orange)) 16%,var(--ds-surface-2));box-shadow:inset 0 0 0 1px var(--team,var(--orange))}
+.plan-card.active strong:after{content:" \2713";color:var(--team,var(--orange))}
+.plan-card:focus-visible{outline:2px solid var(--team,var(--orange));outline-offset:2px}
+/* rotation minutes bar */
+.rot-bar{display:flex;height:26px;border-radius:var(--ds-radius-md);overflow:hidden;background:#232b39;gap:2px}
+.rot-bar i{display:flex;align-items:center;justify-content:center;min-width:0;overflow:hidden;font-style:normal;font-size:.68rem;font-weight:700;color:#e8edf5;background:#4a5a72;white-space:nowrap}
+.rot-bar i.starter{background:var(--team,var(--orange));color:var(--on-team,#10131a)}
+.rot-legend{display:flex;flex-wrap:wrap;gap:var(--ds-space-3);margin-top:var(--ds-space-2);font-size:var(--ds-text-xs);color:var(--ds-text-muted)}
+.rot-legend .dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;background:#4a5a72}
+.rot-legend .dot.starter{background:var(--team,var(--orange))}
+/* per-player minutes bar in the table */
+.min-bar{height:8px;width:100%;max-width:90px;margin-top:6px;border-radius:var(--ds-radius-pill)}
+.min-bar i{border-radius:inherit}
+
+/* ===== Recruiting, all four tabs (item 5): shared table, bars, rival tag, chip filters ===== */
+.recruit-table{padding:0 var(--ds-space-2) var(--ds-space-2)}
+.recruit-table .ds-table-wrap{margin:0}
+.recruit-filters{gap:var(--ds-space-2) var(--ds-space-3);align-items:center}
+.recruit-filters .ds-tabs button,.toolbar .ds-tabs button{padding:5px 10px;font-size:var(--ds-text-sm)}
+.rt-bar{display:flex;flex-direction:column;gap:3px;min-width:52px}
+.rt-bar strong{font-variant-numeric:tabular-nums}
+.rt-bar .meter{width:100%;max-width:72px;margin-left:auto}
+.rival-tag{display:inline-block;padding:2px 8px;border-radius:var(--ds-radius-pill);font-size:var(--ds-text-xs);font-weight:700;line-height:1.4;border:1px solid}
+.rival-tag.you{color:var(--ds-good);background:#6bd1a514;border-color:#6bd1a555}
+.rival-tag.them{color:var(--ds-bad);background:#f4808714;border-color:#f4808755}
+.prospect-table tr.row-signed td{background:#6bd1a50d}
+.prospect-table tr.row-target td:first-child{box-shadow:inset 3px 0 0 var(--team,var(--orange))}
+.prospect-table.ds-table td:last-child{display:table-cell;white-space:nowrap}
+.prospect-table.ds-table td,.prospect-table.ds-table th{padding:7px 6px}
+.prospect-table.ds-table th{font-size:.72rem;letter-spacing:.3px;white-space:normal;vertical-align:bottom}
+.prospect-table.ds-table td{min-width:0!important}
+.prospect-table.ds-table td:first-child{max-width:240px}
+.prospect-table.ds-table .ds-arrow{flex:none}
+@media (max-width:1299px){
+  .prospect-table.ds-table .ds-sort{flex-wrap:wrap;column-gap:3px;row-gap:0}
+  .prospect-table.ds-table td,.prospect-table.ds-table th{padding:6px 4px}
+  .prospect-table.ds-table{font-size:.84rem}
+  .prospect-table.ds-table td strong{font-size:.88rem}
+  .prospect-table.ds-table .rival-tag{font-size:.66rem;max-width:84px;padding:2px 6px}
+  .prospect-table.ds-table .stars span{font-size:.68rem;letter-spacing:0}
+  .prospect-table.ds-table .stars svg{width:10px;height:10px}
+  .prospect-table.ds-table td.muted,.prospect-table.ds-table .table-sub{font-size:.74rem}
+  .prospect-table.ds-table th{font-size:.66rem;letter-spacing:0}
+}
+.rival-tag{white-space:normal;max-width:120px}
+.prospect-table.ds-table .player-cell span{font-size:.78rem}
+.rt-actions{display:flex;align-items:center;justify-content:flex-end;gap:4px;flex-wrap:wrap;max-width:112px;margin-left:auto}
+.prospect-table.ds-table td:last-child{white-space:normal}
+@media (min-width:1300px){.rt-actions{flex-wrap:nowrap;max-width:none}}
+.rt-actions .btn.small{padding:4px 8px;min-height:30px;font-size:.8rem}
+.rt-actions .icon-btn{width:30px;height:30px;min-height:30px}
+.rt-actions select{min-height:30px;padding:2px 20px 2px 6px;font-size:.78rem;width:auto}
+/* the offer box stays pinned to the bottom of the recruit profile on every screen size */
+/* touch screens: sortable headers and the row buttons are finger-sized */
+@media (pointer:coarse){
+  .ds-sort{min-height:44px}
+  .rt-actions .btn.small,.rt-actions .icon-btn,.rt-actions select{min-height:44px}
+  .rt-actions .icon-btn{width:44px}
+  .lineup-selectors select{min-height:44px}
+}
+@media (max-width:999px){.modal .offer-footer{position:sticky;bottom:0;z-index:3;background:#131924;box-shadow:0 -12px 24px #000a}}
+
+/* ===== Look-and-feel stage 1 (items 1 to 3): broadcast identity. Visual only; no game numbers. ===== */
+:root{
+  /* condensed display face from system fonts only (no downloads) for headings, scores and big numbers */
+  --ds-font-display:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Roboto Condensed","Arial Narrow","Franklin Gothic Medium",system-ui,sans-serif;
+  /* bolder type scale */
+  --ds-text-3xl:2.5rem;--ds-text-4xl:3.25rem;--ds-text-hero:4.5rem;
+  /* layering: card surfaces, inner borders, soft shadows */
+  --ds-card:linear-gradient(180deg,#171e2a 0%,#121721 100%);
+  --ds-card-hi:linear-gradient(180deg,#1d2634 0%,#151b27 100%);
+  --ds-inner:inset 0 1px 0 #ffffff12,inset 0 0 0 1px #ffffff06;
+  --ds-shadow-card:0 1px 2px #0008,0 10px 28px -12px #000c;
+  /* school accent family (all derived from --team, which each school sets) */
+  --ds-accent:var(--team,#f27935);
+  --ds-accent-text:color-mix(in srgb,var(--team,#f27935) 62%,#fff);
+  --ds-accent-soft:color-mix(in srgb,var(--team,#f27935) 16%,transparent);
+  --ds-accent-line:color-mix(in srgb,var(--team,#f27935) 45%,#2a3342);
+  --ds-accent-glow:color-mix(in srgb,var(--team,#f27935) 28%,transparent);
+}
+/* condensed display style */
+.page-heading h1,.section-head h2,.metric strong,.season-tag,.brand,.banner-copy h2,.hq-next h2,.modal h2,.ds-display{font-family:var(--ds-font-display);letter-spacing:.01em}
+.page-heading h1{font-size:2.1rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+.section-head h2{font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:1.05rem}
+.metric strong{font-size:2.4rem;font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+/* layered cards */
+.panel,.metric{background:var(--ds-card);box-shadow:var(--ds-inner),var(--ds-shadow-card);border-color:#262f3e}
+.panel>.section-head{box-shadow:inset 0 -1px 0 #ffffff08}
+.panel>.section-head h2:before{content:"";display:inline-block;width:4px;height:.95em;margin-right:.5em;border-radius:2px;vertical-align:-.1em;background:var(--ds-accent)}
+.metric.clickable:hover{border-color:var(--ds-accent-line);box-shadow:var(--ds-inner),var(--ds-shadow-card),0 0 0 1px var(--ds-accent-glow)}
+.metric>div:first-child svg{color:var(--ds-accent-text)}
+.metric>div:first-child span{font-weight:700;letter-spacing:.08em}
+/* buttons: a little lift and the school accent */
+.app-shell .btn.primary{box-shadow:var(--ds-inner),0 6px 16px -8px var(--ds-accent);font-weight:800;letter-spacing:.02em}
+.app-shell .btn:not(.primary){background:var(--ds-card-hi);box-shadow:var(--ds-inner)}
+/* badges, tabs */
+.badge{font-weight:800;letter-spacing:.06em}
+.ds-tabs button.active{background:var(--ds-accent-soft);color:var(--ds-accent-text);box-shadow:inset 0 -2px 0 var(--ds-accent)}
+/* tables */
+.ds-table th{font-family:var(--ds-font-display);letter-spacing:.06em;text-transform:uppercase;background:linear-gradient(180deg,#141a25,#0f141d)}
+/* pop-ups */
+.modal{box-shadow:0 30px 120px #000c,var(--ds-inner),0 0 0 1px var(--ds-accent-glow)}
+.modal h2{font-weight:800;text-transform:uppercase}
+/* one icon style: 1.75 px round-cap strokes */
+svg[stroke="currentColor"]{stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:760px){.page-heading h1{font-size:1.6rem}.metric strong{font-size:1.9rem}}
+.section-head{flex-wrap:wrap}.section-head>div:first-child{min-width:0}.section-head h2{overflow-wrap:anywhere}
+/* END of stage 1 item 1 styles */
+
+/* ===== item 2: sidebar and score-bug header ===== */
+.sidebar{background:linear-gradient(180deg,color-mix(in srgb,var(--team) 9%,#0e1219) 0,#0e1219 260px);box-shadow:inset -1px 0 0 #ffffff0a}
+.sidebar .brand{font-size:1rem;gap:8px;opacity:.9}
+.sidebar .brand-mark{width:26px;height:26px}
+.sidebar .brand span{font-size:.62rem;letter-spacing:.14em}
+.program-mini.crest-hero{margin-top:12px;padding:14px 10px 12px;flex-direction:column;align-items:center;gap:8px;text-align:center;border-radius:14px;background:radial-gradient(120% 90% at 50% 0%,var(--ds-accent-glow),transparent 70%),var(--ds-card);border-color:var(--ds-accent-line);box-shadow:var(--ds-inner),var(--ds-shadow-card)}
+.crest-big{width:84px;height:84px;filter:drop-shadow(0 6px 14px #000a)}
+.crest-name strong{font-family:var(--ds-font-display);font-size:1.2rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;line-height:1.1}
+.crest-name span{font-size:.72rem!important;letter-spacing:.14em;text-transform:uppercase;color:var(--ds-accent-text)!important}
+.sidebar nav button.active{background:linear-gradient(90deg,var(--ds-accent-soft),transparent);box-shadow:inset 4px 0 0 var(--team);font-weight:800}
+.sidebar nav button.active>svg{color:var(--ds-accent-text)}
+.sidebar nav button:not(.active):hover{box-shadow:inset 2px 0 0 var(--ds-accent-line)}
+.coach-block{margin:auto 0 0;padding:10px;border-radius:12px;border:1px solid #262f3e;background:var(--ds-card);box-shadow:var(--ds-inner);gap:10px}
+.coach-block:hover{border-color:var(--ds-accent-line)}
+.coach-initial{background:var(--team);color:var(--on-team,#10131a);font-family:var(--ds-font-display);font-weight:800;font-size:1.15rem;width:38px;height:38px;flex:none}
+.coach-block em{display:block;font-style:normal;font-size:.62rem;letter-spacing:.14em;font-weight:800;color:var(--ds-text-faint)}
+.coach-block strong{font-size:.95rem;line-height:1.15}
+.coach-block span{font-size:.78rem}
+.topbar{height:58px;background:linear-gradient(180deg,#0f141d,#0b0e14);box-shadow:0 1px 0 var(--ds-accent-line),0 8px 20px -14px #000}
+.score-bug{display:inline-flex;align-items:stretch;border-radius:8px;overflow:hidden;border:1px solid var(--ds-accent-line);background:var(--ds-card);box-shadow:var(--ds-inner),0 4px 14px -6px #000;min-width:0;max-width:100%}
+.score-bug>span{display:flex;align-items:center;padding:5px 12px;white-space:nowrap}
+.score-bug .season-tag{background:var(--team);color:var(--on-team,#10131a);font-size:1.05rem;font-weight:800;letter-spacing:.06em}
+.score-bug .bug-phase{font-family:var(--ds-font-display);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ds-text);font-size:.95rem}
+.score-bug .bug-record{gap:8px;font-family:var(--ds-font-display);font-weight:800;font-size:1.15rem;color:var(--ds-accent-text);background:#ffffff0a;font-variant-numeric:tabular-nums}
+.score-bug .bug-record small{font-size:.6rem;letter-spacing:.14em;color:var(--ds-text-faint);font-weight:800}
+@media (max-width:760px){.score-bug>span{padding:4px 7px}.score-bug .season-tag{font-size:.85rem}.score-bug .bug-phase{font-size:.75rem}.score-bug .bug-record{font-size:.95rem}.score-bug .bug-record small{display:none}.crest-big{width:64px;height:64px}}
+@media (max-height:900px){
+  .crest-big{width:52px;height:52px}
+  .program-mini.crest-hero{margin-top:8px;padding:8px;gap:4px}
+  .crest-name strong{font-size:1rem}
+  .sidebar .brand{margin-bottom:0}
+  .nav-label{margin:10px 12px 4px}
+  .coach-block{padding:6px 8px}
+  .coach-initial{width:30px;height:30px}
+}
+@media (max-height:900px) and (pointer:fine){.sidebar nav button{min-height:34px;padding-top:5px;padding-bottom:5px}}
+@media (max-height:760px){.crest-big{width:40px;height:40px}.program-mini.crest-hero{padding:6px}.crest-name span{display:none}}
+
+/* ===== item 3: Program HQ hero, matchup card, season timeline, stats strip ===== */
+.hq-banner{background:radial-gradient(60% 140% at 92% 40%,var(--ds-accent-glow),transparent 70%),linear-gradient(120deg,#1b2230 0%,#141923 62%,color-mix(in srgb,var(--team) 22%,#141923) 100%);box-shadow:var(--ds-inner),var(--ds-shadow-card);border-color:var(--ds-accent-line)}
+.banner-copy h2{font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1}
+.banner-emblem>div.emblem-logo{width:8.5rem;height:8.5rem;filter:drop-shadow(0 10px 24px #000b)}
+.hq-bigrecord{display:flex;align-items:baseline;gap:12px;margin:6px 0 2px}
+.hq-bigrecord b{font-family:var(--ds-font-display);font-size:var(--ds-text-4xl);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:var(--ds-text)}
+.hq-bigrecord span{font-size:.7rem;font-weight:800;letter-spacing:.16em;color:var(--ds-accent-text)}
+.hq-next{box-shadow:var(--ds-inner),var(--ds-shadow-card),inset 4px 0 0 var(--team,var(--orange))}
+.hq-next.ready{box-shadow:var(--ds-inner),var(--ds-shadow-card),inset 4px 0 0 var(--ds-good)}
+.hq-next h2{font-weight:800;text-transform:uppercase}
+/* matchup card */
+.hq-matchup{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--ds-space-3);width:100%}
+.hq-side{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;text-align:center}
+.hq-side strong{font-family:var(--ds-font-display);font-size:1.1rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.1;overflow-wrap:anywhere}
+.hq-side span{font-size:.8rem;color:var(--ds-text-muted);font-variant-numeric:tabular-nums}
+.hq-logo{width:72px;height:72px;filter:drop-shadow(0 6px 12px #000a)}
+.hq-vs{font-family:var(--ds-font-display);font-weight:800;font-size:1.4rem;letter-spacing:.08em;color:var(--ds-text-faint)}
+.hq-chance{grid-column:1/-1;margin-top:var(--ds-space-2)}
+.hq-chance-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.hq-chance-top b{font-family:var(--ds-font-display);font-size:1.6rem;font-weight:800;color:var(--ds-accent-text);font-variant-numeric:tabular-nums}
+.hq-chance-top b.opp{color:var(--ds-text-muted)}
+.hq-chance-top span{font-size:.62rem;font-weight:800;letter-spacing:.14em;color:var(--ds-text-faint);text-align:center}
+.hq-chance-bar{height:10px;border-radius:var(--ds-radius-pill);background:#2a3342;overflow:hidden}
+.hq-chance-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,color-mix(in srgb,var(--team) 70%,#000),var(--team))}
+.hq-kind{grid-column:1/-1;margin:0;text-align:center;font-size:.8rem;color:var(--ds-text-muted)}
+/* season timeline: one chip per game */
+.hq-timeline{display:flex;align-items:center;gap:var(--ds-space-4);flex-wrap:wrap;padding:var(--ds-space-3) var(--ds-space-4);border-radius:var(--ds-radius-lg);border:1px solid #262f3e;background:var(--ds-card);box-shadow:var(--ds-inner),var(--ds-shadow-card)}
+.hq-strip-title{font-size:.68rem;font-weight:800;letter-spacing:.16em;color:var(--ds-text-faint)}
+.hq-chips{display:flex;flex-wrap:wrap;gap:4px;flex:1 1 300px;min-width:0}
+.hq-chip{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;padding:0 4px;border-radius:6px;font-family:var(--ds-font-display);font-weight:800;font-size:.8rem;border:1px solid transparent}
+.hq-chip.w{background:color-mix(in srgb,var(--ds-good) 22%,#121721);color:var(--ds-good);border-color:color-mix(in srgb,var(--ds-good) 55%,transparent)}
+.hq-chip.l{background:color-mix(in srgb,var(--ds-bad) 22%,#121721);color:var(--ds-bad);border-color:color-mix(in srgb,var(--ds-bad) 55%,transparent)}
+.hq-chip.todo{color:var(--ds-text-faint);border-color:#2f3a4c;font-weight:600}
+.hq-chip.conf{box-shadow:inset 0 -3px 0 var(--ds-accent-line)}
+button.hq-chip{cursor:pointer}
+button.hq-chip:hover{filter:brightness(1.25)}
+/* stats strip */
+.hq-stats{display:grid;grid-template-columns:repeat(5,1fr);border-radius:var(--ds-radius-lg);border:1px solid #262f3e;background:var(--ds-card);box-shadow:var(--ds-inner),var(--ds-shadow-card);overflow:hidden}
+.hq-stat{display:flex;flex-direction:column;align-items:center;padding:var(--ds-space-3) var(--ds-space-2);min-width:0}
+.hq-stat+.hq-stat{border-left:1px solid #ffffff0d}
+.hq-stat b{font-family:var(--ds-font-display);font-size:var(--ds-text-3xl);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+.hq-stat span{font-size:.62rem;font-weight:800;letter-spacing:.14em;color:var(--ds-text-faint);text-align:center}
+@media (max-width:760px){.hq-bigrecord b{font-size:2.4rem}.hq-stat b{font-size:1.6rem}.hq-stat span{font-size:.5rem;letter-spacing:.06em}.hq-logo{width:52px;height:52px}.hq-side strong{font-size:.9rem}.hq-stats{grid-template-columns:repeat(5,1fr)}}
+@media (max-height:760px){.banner-emblem>div.emblem-logo{width:5.5rem;height:5.5rem}.hq-bigrecord b{font-size:2.4rem}.hq-stat b{font-size:1.7rem}}
+
+/* ===== item 4: roster cards and the trading-card profile ===== */
+/* rating ring */
+.ds-ring{position:relative;display:inline-grid;place-items:center;width:46px;height:46px;flex:none}
+.ds-ring svg{position:absolute;inset:0;width:100%;height:100%}
+.ds-ring-track{fill:#0b0e14d9;stroke:#2a3342;stroke-width:9}
+.ds-ring-fill{fill:none;stroke:var(--ds-info);stroke-width:9;stroke-linecap:round;transition:stroke-dasharray var(--ds-slow) var(--ds-ease)}
+.ds-ring.great .ds-ring-fill{stroke:var(--ds-good)}.ds-ring.ok .ds-ring-fill{stroke:var(--ds-warn)}.ds-ring.low .ds-ring-fill{stroke:var(--ds-bad)}
+.ds-ring.range .ds-ring-fill{stroke-dasharray:6 6!important;opacity:.8}
+.ds-ring b{position:relative;display:flex;flex-direction:column;align-items:center;font-family:var(--ds-font-display);font-weight:800;font-size:1.05rem;line-height:1;color:var(--ds-text);font-variant-numeric:tabular-nums}
+.ds-ring b small{font-size:.42rem;letter-spacing:.12em;color:var(--ds-text-muted);margin-top:1px}
+.ds-ring.range b{font-size:.62rem}
+.ds-ring.big{width:92px;height:92px}
+.ds-ring.big b{font-size:2rem}.ds-ring.big b small{font-size:.55rem}.ds-ring.big.range b{font-size:1rem}
+/* roster cards: bigger photo, the ring sits on it */
+.player-card{background:var(--ds-card);border-color:#2b3445;box-shadow:var(--ds-inner),var(--ds-shadow-card)}
+.player-card:hover{border-color:var(--ds-accent-line)}
+.card-image .overall.ring-holder,.player-card:has(.ds-bar) .card-image .overall.ring-holder{display:block;padding:0;background:none;top:6px;right:6px;bottom:auto;transform:none;line-height:0}
+.card-image{background:radial-gradient(90% 90% at 50% 100%,var(--ds-accent-soft),transparent 75%),#1c2330}
+.player-card .card-body>.ds-bar{display:none}
+.player-card .card-body h3{font-family:var(--ds-font-display);font-weight:800;letter-spacing:.02em;text-transform:uppercase}
+.arch-tag{align-self:flex-start;display:inline-block;max-width:100%;margin:2px 0;padding:0 7px;border-radius:var(--ds-radius-pill);font-size:.68rem;font-weight:700;letter-spacing:.04em;color:var(--ds-info);background:color-mix(in srgb,var(--ds-info) 14%,transparent);border:1px solid color-mix(in srgb,var(--ds-info) 35%,transparent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (min-width:761px){
+  .roster-grid .card-image,.core-grid .card-image{width:112px;height:auto;min-height:112px;aspect-ratio:auto}
+  .roster-grid .card-image .portrait,.core-grid .card-image .portrait{width:100%;height:100%}
+  .roster-grid .overall.ring-holder,.core-grid .overall.ring-holder{top:auto;bottom:4px;right:4px}
+  .roster-grid .ds-ring,.core-grid .ds-ring{width:40px;height:40px}
+  .roster-grid .ds-ring b,.core-grid .ds-ring b{font-size:.95rem}
+  .roster-grid .ds-ring b small,.core-grid .ds-ring b small{display:none}
+}
+/* trading-card profile header */
+.profile-top.trading-card{position:relative;border-radius:var(--ds-radius-xl);border:1px solid var(--ds-accent-line);background:radial-gradient(70% 120% at 0% 0%,var(--ds-accent-glow),transparent 65%),linear-gradient(115deg,#232c3b,#151b26);box-shadow:var(--ds-inner),var(--ds-shadow-card)}
+.modal .profile-top.trading-card .portrait.large,.profile-top.trading-card .portrait.large{width:128px!important;height:128px!important;border:2px solid var(--ds-accent-line);border-radius:var(--ds-radius-lg);box-shadow:0 10px 24px -8px #000}
+.profile-top.trading-card .profile-title h2{font-family:var(--ds-font-display);font-weight:800;text-transform:uppercase;letter-spacing:.02em;font-size:2rem;line-height:1.05}
+.profile-top.trading-card .profile-title .row{flex-wrap:wrap}
+.profile-top.trading-card .profile-overall{display:block;margin-left:auto;margin-right:36px}
+@media (max-height:820px){.modal .profile-top.trading-card .portrait.large{width:108px!important;height:108px!important}}
+.attributes-grid>div{padding:var(--ds-space-3);border-radius:var(--ds-radius-lg);border:1px solid #262f3e;background:var(--ds-card);box-shadow:var(--ds-inner)}
+.attr-group-head{font-family:var(--ds-font-display);font-weight:800;letter-spacing:.1em;color:var(--ds-accent-text)}
+.attributes-grid .attribute{margin-bottom:9px}
+.attributes-grid .meter{height:7px;border-radius:var(--ds-radius-pill)}
+@media (max-width:760px){
+  .profile-top.trading-card{gap:10px}
+  .modal .profile-top.trading-card .portrait.large,.profile-top.trading-card .portrait.large{width:84px!important;height:84px!important}
+  .profile-top.trading-card .profile-title h2{font-size:1.35rem}
+  .profile-top.trading-card .profile-overall{display:block;margin-right:0}
+  .ds-ring.big{width:60px;height:60px}.ds-ring.big b{font-size:1.3rem}.ds-ring.big.range b{font-size:.7rem}
+  .roster-grid .overall.ring-holder{top:auto;bottom:2px;right:2px}
+  .roster-grid .ds-ring{width:34px;height:34px}.roster-grid .ds-ring b{font-size:.8rem}.roster-grid .ds-ring b small{display:none}
+}
+
+/* ===== item 5: recruiting tables and the recruit profile ===== */
+/* star badges: gold pill that reads at a glance, richer the more stars */
+.stars{color:#f5c542}
+.stars .dim{color:#5a6577}
+.prospect-table .stars{display:inline-flex;align-items:center;gap:1px;padding:2px 6px;border-radius:var(--ds-radius-pill);background:#f5c54214;border:1px solid #f5c54233}
+.prospect-table .stars.star-5{background:linear-gradient(90deg,#f5c54238,#f5c54218);border-color:#f5c542aa;box-shadow:0 0 10px -2px #f5c54288}
+.prospect-table .stars.star-4{border-color:#f5c54277}
+.prospect-table .stars.star-0{color:var(--ds-text-faint);background:#ffffff0d;border-color:#ffffff1f}
+/* bigger photos and ring in the table */
+@media (min-width:761px){
+  .prospect-table .portrait.tiny{width:54px;height:54px}
+  .prospect-table .rating-inline .ds-ring{width:42px;height:42px}
+  .prospect-table .rating-inline .ds-ring b{font-size:.95rem}
+  .prospect-table .rating-inline .ds-ring b small{display:none}
+  .prospect-table .player-cell strong{font-family:var(--ds-font-display);font-weight:800;letter-spacing:.02em;text-transform:uppercase;font-size:1.02rem}
+}
+@media (min-width:761px) and (max-width:1250px){
+  .prospect-table .portrait.tiny{width:42px;height:42px}
+  .prospect-table .rating-inline .ds-ring{width:36px;height:36px}
+  .prospect-table .player-cell strong{font-size:.9rem}
+  .prospect-table .stars{padding:1px 3px}
+  .prospect-table .pitch-tag{font-size:.6rem;padding:0 4px}
+  .prospect-table .stars svg{width:9px;height:9px}
+  .prospect-table td:first-child,.prospect-table td:first-child .player-cell span{white-space:normal}
+  .prospect-table .player-cell{gap:6px}
+}
+@media (min-width:761px) and (max-width:1100px){
+  .prospect-table .portrait.tiny{width:36px;height:36px}
+  .prospect-table .rating-inline .ds-ring{width:32px;height:32px}
+  .prospect-table .rating-inline .ds-ring b{font-size:.8rem}
+  .prospect-table .stars{padding:1px 2px;gap:0}
+  .prospect-table .stars svg{width:8px;height:8px}
+}
+@media (max-width:760px){.prospect-table .rating-inline .ds-ring{width:26px;height:26px}.prospect-table .rating-inline .ds-ring b{font-size:.55rem}.prospect-table .rating-inline .ds-ring b small{display:none}}
+.prospect-table tr.row-target{box-shadow:inset 3px 0 0 var(--ds-accent)}
+/* rival and pitch indicators */
+.rival-tag{font-weight:800;letter-spacing:.02em}
+.rival-tag.you:before{content:"\25B2\00a0"}
+.rival-tag.them:before{content:"\25BC\00a0"}
+.pitch-tag{display:inline-block;margin-top:3px;padding:0 6px;border-radius:var(--ds-radius-pill);font-size:.68rem;font-weight:800;letter-spacing:.04em;color:var(--ds-accent-text);background:var(--ds-accent-soft);border:1px solid var(--ds-accent-line);white-space:nowrap}
+/* recruit profile summary strip */
+.rp-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:1px;margin:var(--ds-space-3) 0;border-radius:var(--ds-radius-lg);overflow:hidden;border:1px solid #262f3e;background:#262f3e;box-shadow:var(--ds-inner)}
+.rp-strip-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:var(--ds-space-3) var(--ds-space-2);background:var(--ds-card);min-width:0;text-align:center}
+.rp-strip-item b{font-family:var(--ds-font-display);font-size:1.7rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.rp-strip-item span{font-size:.6rem;font-weight:800;letter-spacing:.14em;color:var(--ds-text-faint)}
+.rp-strip-item.chance .ds-ring{width:64px;height:64px}
+.rp-strip-item.chance .ds-ring b{font-size:1.15rem;flex-direction:row;align-items:baseline}
+.rp-strip-item.chance .ds-ring b small{display:none}
+.ds-ring.range b{white-space:nowrap;font-size:.6rem!important;letter-spacing:-.02em}
+.ds-ring.range.big b{font-size:.95rem!important}
+.ds-ring.range b small{display:none}
+.recruit-profile{border-radius:var(--ds-radius-lg);border:1px solid #262f3e;background:var(--ds-card);box-shadow:var(--ds-inner)}
+.recruit-profile>h3{font-family:var(--ds-font-display);text-transform:uppercase;letter-spacing:.08em;color:var(--ds-accent-text)}
+
+/* ===== item 6: Game Day broadcast scoreboard, momentum, feed icons, halftime panel ===== */
+.gd-board{position:relative;row-gap:var(--ds-space-3);background:linear-gradient(90deg,color-mix(in srgb,var(--team,var(--orange)) 30%,#121721) 0%,#0f141d 38%,#0f141d 62%,color-mix(in srgb,var(--opp,#9aa3b5) 26%,#121721) 100%);box-shadow:var(--ds-inner),var(--ds-shadow-card);border-color:#2c3648;overflow:hidden}
+.gd-board:before,.gd-board:after{content:"";position:absolute;top:0;bottom:0;width:5px}
+.gd-board:before{left:0;background:var(--team,var(--orange))}
+.gd-board:after{right:0;background:var(--opp,#9aa3b5)}
+.gd-team{flex-direction:row;align-items:center;gap:var(--ds-space-3)}
+.gd-team.us{justify-content:flex-start}
+.gd-team.them{justify-content:flex-end}
+.gd-team-txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.gd-team.us .gd-team-txt{align-items:flex-start}
+.gd-team.them .gd-team-txt{align-items:flex-end}
+.gd-team-txt span{font-family:var(--ds-font-display);text-transform:uppercase;letter-spacing:.04em;font-weight:800;max-width:100%;overflow-wrap:anywhere;white-space:normal}
+.gd-team strong{font-family:var(--ds-font-display)}
+.gd-team.them strong{color:color-mix(in srgb,var(--opp,#9aa3b5) 70%,#fff)}
+.gd-logo{width:64px;height:64px;flex:none;filter:drop-shadow(0 6px 12px #000a)}
+.gd-clock{gap:2px}
+.gd-clock b{font-family:var(--ds-font-display);font-weight:800}
+.gd-shot{display:inline-flex;align-items:center;gap:6px;margin-top:2px;padding:1px 8px;border-radius:6px;background:#1b0f0f;border:1px solid #f4808755;color:#ff6b6b;font-family:var(--ds-font-display);font-weight:800;font-size:1.05rem;font-variant-numeric:tabular-nums}
+.gd-shot i{font-style:normal;font-size:.55rem;letter-spacing:.14em;color:var(--ds-text-muted)}
+.gd-mom{grid-column:1/-1;display:flex;align-items:center;gap:var(--ds-space-3)}
+.gd-mom span{font-size:.6rem;font-weight:800;letter-spacing:.16em;color:var(--ds-text-faint)}
+.gd-mom-bar{position:relative;flex:1;height:8px;border-radius:var(--ds-radius-pill);background:var(--opp,#9aa3b5);overflow:hidden}
+.gd-mom-bar:after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;background:#0b0e14}
+.gd-mom-bar i{display:block;height:100%;background:var(--team,var(--orange));transition:width var(--ds-base) var(--ds-ease)}
+/* feed icons */
+.gd-feed .gd-play{display:flex;align-items:center;gap:8px;min-width:0}
+.gd-ico{flex:none;display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:20px;padding:0 4px;border-radius:5px;font-style:normal;font-size:.68rem;font-weight:800;font-family:var(--ds-font-display);background:#ffffff0f;color:var(--ds-text-muted);border:1px solid #ffffff1a}
+.gd-ico.make{background:color-mix(in srgb,var(--ds-good) 20%,transparent);color:var(--ds-good);border-color:color-mix(in srgb,var(--ds-good) 50%,transparent)}
+.gd-ico.miss{color:var(--ds-bad);border-color:color-mix(in srgb,var(--ds-bad) 45%,transparent)}
+.gd-ico.foul{background:color-mix(in srgb,var(--ds-warn) 16%,transparent);color:var(--ds-warn);border-color:color-mix(in srgb,var(--ds-warn) 45%,transparent)}
+.gd-ico.tmo{background:color-mix(in srgb,var(--ds-info) 18%,transparent);color:var(--ds-info);border-color:color-mix(in srgb,var(--ds-info) 45%,transparent)}
+.gd-ico.tov{color:#f0a36b;border-color:#f0a36b66}
+/* halftime / timeout panel */
+.gd-half-panel{margin-top:var(--ds-space-3);padding:var(--ds-space-2) var(--ds-space-4) var(--ds-space-4);border-radius:var(--ds-radius-lg);border:1px solid color-mix(in srgb,var(--ds-warn) 45%,#2c3648);background:linear-gradient(180deg,#2a241226,transparent 70%),var(--ds-card);box-shadow:var(--ds-inner),inset 0 3px 0 var(--ds-warn)}
+.gd-half-panel.timeout{border-color:color-mix(in srgb,var(--ds-info) 45%,#2c3648);box-shadow:var(--ds-inner),inset 0 3px 0 var(--ds-info)}
+.gd-half-panel>h3{font-family:var(--ds-font-display);font-weight:800;font-size:1.15rem;letter-spacing:.02em}
+@media (max-width:760px){
+  .gd-logo{width:34px;height:34px}
+  .gd-team{gap:6px}
+  .gd-team-txt span{font-size:.7rem}
+  .gd-shot{font-size:.85rem;padding:0 5px}
+  .gd-ico{min-width:20px;height:18px;font-size:.6rem}
+}
+@media (max-width:1100px) and (min-width:761px){.gd-logo{width:48px;height:48px}}
+
+/* ===== item 7: bracket logos and seeds, ranking rows, bubble watch ===== */
+.bt-game{width:172px;box-shadow:var(--ds-inner),var(--ds-shadow-1);background:var(--ds-card)}
+.bt-compact .bt-game{width:122px}
+.bt-team span{display:flex;align-items:center;gap:4px;min-width:0}
+.bt-logo{flex:none;display:inline-block;width:14px;height:14px}
+.bt-compact .bt-logo{width:11px;height:11px}
+.bt-team .seed{flex:none;font-style:normal;font-weight:800;font-size:.9em;min-width:1.3em;text-align:center;border-radius:4px;background:#ffffff14;color:var(--ds-text-2);padding:0 2px}
+.bt-team.win{background:color-mix(in srgb,var(--ds-good) 10%,transparent);color:var(--ds-text)}
+.bt-team.me{background:var(--ds-accent-soft);color:var(--ds-accent-text)}
+.bt-col h4{font-family:var(--ds-font-display);text-transform:uppercase;letter-spacing:.1em;color:var(--ds-accent-text)}
+.champ-line{font-family:var(--ds-font-display);text-transform:uppercase;letter-spacing:.06em}
+.champ-line strong{color:var(--ds-accent-text)}
+/* ranking rows: logo beside the team, colored move arrows */
+.team-cell{display:inline-flex;align-items:center;gap:8px;min-width:0}
+.team-logo{flex:none;display:inline-block;width:26px;height:26px;filter:drop-shadow(0 2px 4px #0009)}
+.move-arrow{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.move-arrow.up{color:var(--ds-good)}.move-arrow.down{color:var(--ds-bad)}
+@media (max-width:760px){.team-logo{width:16px;height:16px}.team-cell{gap:4px}}
+/* bubble watch */
+.team-card h4{font-family:var(--ds-font-display);text-transform:uppercase;letter-spacing:.1em;font-size:.85rem;margin-bottom:6px}
+.team-card{background:var(--ds-card);box-shadow:var(--ds-inner)}
+.team-card.bubble-in{box-shadow:var(--ds-inner),inset 0 3px 0 var(--ds-good)}
+.team-card.bubble-out{box-shadow:var(--ds-inner),inset 0 3px 0 var(--ds-bad)}
+.team-row{align-items:center}
+.team-row .team-logo{width:20px;height:20px}
+.team-row.you{background:var(--ds-accent-soft);border-radius:6px;padding-left:6px;padding-right:6px}
+.team-row small{font-family:var(--ds-font-display);font-weight:800;font-size:.9rem;font-variant-numeric:tabular-nums}
+
+/* ===== item 8: NIL budget, League news, Coaching, Career history, Settings: the same look everywhere ===== */
+/* every tab row (Tabs, Settings, NIL budget, League news, History): school-colored active tab, wraps onto a second row */
+.chips{flex-wrap:wrap;max-width:100%;border-color:#262f3e;background:var(--ds-card);box-shadow:var(--ds-inner)}
+.chips button.active{background:var(--ds-accent-soft);color:var(--ds-accent-text);box-shadow:inset 0 -2px 0 var(--ds-accent);font-weight:800}
+.chips button{font-family:var(--ds-font-display);letter-spacing:.04em;font-size:1rem}
+/* big numbers: stat boxes, summary tiles, revenue and history figures */
+.stat-trio>div{border-radius:var(--ds-radius-lg);border:1px solid #262f3e;background:var(--ds-card);box-shadow:var(--ds-inner)}
+.stat-trio small{font-weight:800;letter-spacing:.14em;color:var(--ds-text-faint)}
+.stat-trio strong{font-family:var(--ds-font-display);font-weight:800;font-size:1.7rem;font-variant-numeric:tabular-nums}
+.stat-trio .bar>div,.meter span{background:linear-gradient(90deg,color-mix(in srgb,var(--team) 70%,#000),var(--team))}
+/* settings rows and callouts */
+.setting-row,.callout{border-radius:var(--ds-radius-md)}
+.callout{background:var(--ds-card);border-color:var(--ds-accent-line);box-shadow:var(--ds-inner)}
+/* tables inside panels get the broadcast header on every page */
+.table-wrap th{font-family:var(--ds-font-display);letter-spacing:.08em;text-transform:uppercase}
+.table-wrap td strong{font-variant-numeric:tabular-nums}
+.panel .section-head p{color:var(--ds-text-muted)}
+@media (max-width:760px){.chips button{font-size:.9rem}.stat-trio strong{font-size:1.3rem}}
+
+/* ===== item 9: motion, loading and empty states, pop-ups ===== */
+/* pages and cards slide up a few pixels when they open (movement only, never hides content) */
+@keyframes dsRise{from{transform:translateY(6px)}to{transform:none}}
+.main>*{animation:dsRise var(--ds-slow) var(--ds-ease) backwards}
+.hq-chip,.hq-stat,.ds-ring-fill,.gd-mom-bar i,.hq-chance-bar i{transition:all var(--ds-base) var(--ds-ease)}
+.hq-chip.todo{animation:none}
+/* empty states: a framed card with a soft glow, not a bare line of text */
+.empty{border-radius:var(--ds-radius-lg);border:1px dashed var(--ds-accent-line);background:radial-gradient(70% 100% at 50% 0%,var(--ds-accent-glow),transparent 70%),var(--ds-card)}
+.empty h3{font-family:var(--ds-font-display);text-transform:uppercase;letter-spacing:.08em;margin:8px 0 4px}
+.empty svg{color:var(--ds-accent-text)}
+/* loading: the start-up spinner uses the accent and a pulsing logo */
+.boot-spin{border-top-color:var(--ds-accent,#f27935)}
+@keyframes dsPulse{50%{opacity:.55}}
+.boot-spin+h1{animation:dsPulse 1.6s ease-in-out infinite}
+.saving,.save-status svg.spin{color:var(--ds-accent-text)}
+/* pop-ups: same card look, a header rule in the school color, close button that shows on hover */
+.modal-backdrop{backdrop-filter:blur(3px)}
+.modal .section-head,.modal .ceremony-head{box-shadow:inset 0 -1px 0 #ffffff0d}
+.modal .icon-btn.close:hover{background:var(--ds-accent-soft);color:var(--ds-accent-text)}
+.ceremony-foot,.offer-footer{background:linear-gradient(180deg,transparent,#0b0e1466)}
+/* finger-sized targets stay 44 px (the timeline chips are buttons; selects in panel headers) */
+@media (pointer:coarse){button.hq-chip{min-height:44px;min-width:44px}.main select,.panel select{min-height:44px}}
+@media (prefers-reduced-motion:reduce){
+  .main>*,.boot-spin+h1{animation:none!important}
+  .hq-chip,.hq-stat,.ds-ring-fill,.gd-mom-bar i,.hq-chance-bar i{transition:none!important}
+}
+
+/* Favorite former players */
+.fav-star{background:none;border:0;padding:0 6px;font-size:1.25rem;line-height:1;cursor:pointer;color:var(--ds-text-muted);min-width:32px}
+.fav-star.on{color:var(--ds-warn)}
+.fav-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 18px}
+.fav-search{display:block;width:100%;max-width:360px;margin:8px 0 12px}
+@media (pointer:coarse){.fav-star{min-width:44px;min-height:44px}}
+
+/* ===== Sidebar always fits: sizes follow the window height (no scroll bar, nothing hidden) ===== */
+@media (min-width:1000px){
+  .app-shell .sidebar{overflow:visible;padding:clamp(6px,1.6vh,18px) 12px clamp(6px,1.4vh,14px)}
+  .app-shell .sidebar nav{overflow:visible;flex:none;min-height:0;gap:clamp(1px,.3vh,3px)}
+  .app-shell .sidebar nav button{min-height:clamp(26px,4.1vh,38px);height:clamp(26px,4.1vh,38px);padding-top:0;padding-bottom:0;gap:clamp(7px,1.2vh,10px);font-size:clamp(.78rem,1.75vh,.95rem)}
+  .app-shell .sidebar nav button>svg{width:clamp(13px,2.1vh,17px);height:clamp(13px,2.1vh,17px);flex:none}
+  .app-shell .sidebar .brand{font-size:clamp(.8rem,1.9vh,1rem)}
+  .app-shell .sidebar .brand-mark{width:clamp(18px,3.2vh,26px);height:clamp(18px,3.2vh,26px)}
+  .app-shell .sidebar .brand span{font-size:clamp(.5rem,.9vh,.62rem);margin-top:1px}
+  .app-shell .program-mini.crest-hero{margin-top:clamp(4px,1.2vh,12px);padding:clamp(4px,1.1vh,12px) 10px;gap:clamp(2px,.6vh,8px)}
+  .app-shell .crest-big{width:clamp(30px,7.5vh,84px);height:clamp(30px,7.5vh,84px)}
+  .app-shell .crest-name strong{font-size:clamp(.8rem,1.9vh,1.2rem)}
+  .app-shell .nav-label{margin:clamp(4px,1.1vh,14px) 12px clamp(2px,.6vh,6px);font-size:clamp(.58rem,1.2vh,.8rem)}
+  .app-shell .coach-block{padding:clamp(4px,1vh,10px) 8px;gap:clamp(6px,1vh,10px);margin-top:clamp(4px,1vh,10px)}
+  .app-shell .coach-initial{width:clamp(24px,4.2vh,38px);height:clamp(24px,4.2vh,38px);font-size:clamp(.8rem,1.8vh,1.15rem)}
+  .app-shell .coach-block em{font-size:clamp(.5rem,.9vh,.62rem)}
+  .app-shell .coach-block strong{font-size:clamp(.78rem,1.7vh,.95rem);line-height:1.1}
+  .app-shell .coach-block span{font-size:clamp(.64rem,1.4vh,.78rem)}
+  .app-shell .sidebar .help-link{padding:clamp(1px,.5vh,6px) 8px;font-size:clamp(.72rem,1.6vh,.95rem);line-height:1.15}
+  .app-shell .sidebar .help-link.muted{font-size:clamp(.68rem,1.4vh,.85rem)}
+}
+@media (min-width:1000px) and (max-height:640px){
+  .app-shell .crest-name span{display:none}
+  .app-shell .program-mini.crest-hero{flex-direction:row;text-align:left;justify-content:center}
+  .app-shell .coach-block em{display:none}
+}
+
+/* Full-window playable game; no host page or nested vertical scrolling. */
+.courtside-host{position:fixed;inset:0;z-index:10000;background:var(--ds-bg,#101722);color:var(--ds-text,#eef2f7);display:flex;flex-direction:column;overflow:hidden;isolation:isolate}
+.courtside-header{display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--ds-surface,#182333);border-bottom:1px solid var(--ds-border,#344458);flex:none;flex-wrap:wrap}
+.courtside-match{display:flex;flex-direction:column;flex:1;min-width:0}.courtside-match strong{overflow-wrap:anywhere;font-size:15px}.courtside-match small{font-size:11px;opacity:.7}
+.courtside-host iframe{display:block;border:0;width:100%;min-height:0;flex:1;background:#101722}.courtside-loading{display:grid;place-items:center;flex:1}
+.courtside-setup{margin:auto;width:min(580px,100%);padding:clamp(12px,3vw,32px);box-sizing:border-box;overflow:auto}.courtside-setup h2{font-size:clamp(24px,5vw,42px);margin:12px 0}.courtside-setup p{line-height:1.5}.courtside-setup select{margin-left:10px}.courtside-setup button{margin:8px 8px 8px 0}
+.courtside-error{background:#602733;color:#fff;padding:8px 14px;overflow-wrap:anywhere;font-size:13px;flex:none}.courtside-result{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:10px 14px;background:var(--ds-surface,#182333);flex:none}.courtside-result span{font-size:12px}
+.courtside-confirm{position:absolute;inset:0;display:grid;place-items:center;padding:16px;background:#000a;z-index:2}.courtside-confirm>div{width:min(440px,100%);padding:24px;background:var(--ds-surface,#182333);border-radius:12px;box-sizing:border-box}.courtside-confirm button{margin:8px 8px 0 0}.courtside-host .muted{color:inherit;opacity:.7}
+@media(max-width:760px){.courtside-header{gap:6px;padding:6px 8px}.courtside-header .btn{padding:8px;font-size:12px}.courtside-result{padding:7px}.courtside-match strong{font-size:12px}}
+
+/* Page header buttons (for example Play Game and Sim next game) wrap onto a second line on a phone instead of running off the right edge. */
+.heading-actions{flex-wrap:wrap;max-width:100%;justify-content:flex-end}
+@media (max-width:760px){.heading-actions{width:100%;justify-content:flex-start}.heading-actions .btn{flex:1 1 auto;min-width:0}}
+
+/* Roster and core cards: the overall ring sits on the empty right side of the card, not on the photo. */
+.player-card{position:relative}
+.player-card>.overall.ring-holder{position:absolute;display:block;padding:0;background:none;line-height:0;transform:none;top:10px;right:12px;bottom:auto;left:auto;z-index:2}
+.roster-grid .player-card>.overall.ring-holder .ds-ring,.core-grid .player-card>.overall.ring-holder .ds-ring{width:42px;height:42px}
+.roster-grid .player-card>.overall.ring-holder .ds-ring b,.core-grid .player-card>.overall.ring-holder .ds-ring b{font-size:1rem}
+.player-card:has(>.overall.ring-holder) .card-body h3{padding-right:48px;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.08}
+@media (max-width:760px){
+  .player-card>.overall.ring-holder{top:8px;right:8px}
+  .roster-grid .player-card>.overall.ring-holder .ds-ring,.core-grid .player-card>.overall.ring-holder .ds-ring{width:36px;height:36px}
+  .roster-grid .player-card>.overall.ring-holder .ds-ring b,.core-grid .player-card>.overall.ring-holder .ds-ring b{font-size:.85rem}
+  .player-card:has(>.overall.ring-holder) .card-body h3{padding-right:42px}
+}
+
+/* NIT tiles: four summary tiles on Team history and Career history. */
+.metrics.three.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:760px){.metrics.three.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Career highs: stat columns sit evenly after the player name (no lone 3PM column stuck on the far right edge). A top scroll bar appears only if a stat would be cut off. */
+.career-highs-table th:first-child,.career-highs-table td:first-child{width:26%}
+.career-highs-table th:not(:first-child),.career-highs-table td:not(:first-child){text-align:center}
+.top-scroll{overflow-x:auto;overflow-y:hidden;height:14px;margin:0 0 4px}
+.top-scroll>div{height:1px}
+.table-wrap .career-highs-table{width:100%!important}
+.table-wrap .career-highs-table th:last-child,.table-wrap .career-highs-table td:last-child{text-align:center!important;padding-right:10px!important}
+
+/* My roster: compact player cards so all 15 players fit on one screen without scrolling at a normal laptop window. */
+@media (min-width:761px){
+  .roster-grid{grid-template-columns:repeat(auto-fill,minmax(236px,1fr));row-gap:6px;column-gap:8px;margin-bottom:0}
+  .roster-grid .card-image{width:90px;min-height:90px}
+  .roster-grid .card-body{padding:5px 10px;gap:0}
+  .roster-grid .card-body h3{font-size:.9rem;line-height:1.05}
+  .roster-grid .card-body p{line-height:1.15}
+  .roster-grid .arch-tag{margin:1px 0;line-height:1.3}
+  .roster-grid .mood{line-height:1.15}
+  .roster-grid .card-detail{padding-top:1px;margin-top:1px;line-height:1.15}
+}
+
+/* Other schools' names and players are links (team view, read-only player card). */
+.lk-team,.lk-player{cursor:pointer;text-decoration:underline dotted rgba(255,255,255,.38);text-underline-offset:3px}
+.lk-team:hover,.lk-player:hover{color:var(--ds-accent-text,#ffd486);text-decoration-style:solid}
+.lk-btn{background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;text-decoration:underline dotted rgba(255,255,255,.38);text-underline-offset:3px;text-align:left}
+.lk-btn:hover{color:var(--ds-accent-text,#ffd486);text-decoration-style:solid}
+.tv-head h2{font-family:var(--ds-font-display);text-transform:uppercase;letter-spacing:.02em}
+
+/* Favorite star on player boxes. */
+.card-star{position:absolute;top:4px;right:4px;z-index:3;padding:0 6px;min-width:0;font-size:1.05rem;line-height:1.5;border-radius:999px;background:rgba(10,14,22,.58);text-shadow:0 1px 3px #000a;color:#e8edf5}
+.card-star.on{color:var(--ds-warn,#f6c177)}
+.card-star.prospect{right:52px}
+.card-star:hover{background:rgba(10,14,22,.8)}
+@media (pointer:coarse){.card-star{min-width:32px;min-height:32px;display:inline-flex;align-items:center;justify-content:center}}
+.stats-table .fav-star{min-width:0;padding:0 4px;font-size:1.05rem}
+
+/* Coaching > Assistant coaches */
+.asst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:12px}
+.asst-card{display:flex;flex-direction:column;gap:6px;padding:14px;border:1px solid var(--ds-border,#ffffff1c);border-radius:12px;background:var(--ds-surface-2,#141b27)}
+.asst-card.vacant{border-style:dashed;opacity:.85}
+.asst-head small{font-size:.68rem;letter-spacing:.14em;color:var(--ds-text-muted,#8fa3b8)}
+.asst-head h3{margin:2px 0 6px;font-family:var(--ds-font-display);text-transform:uppercase;font-size:1.35rem}
+.asst-head p{margin:6px 0 0}
+.asst-card h4{margin:10px 0 2px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ds-accent-text,#ffd486)}
+.asst-card ul{margin:0;padding-left:18px;display:grid;gap:3px;font-size:.92rem}
+.asst-news{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+
+.lk-team:focus-visible,.lk-player:focus-visible{outline:2px solid var(--ds-accent,#ffd486);outline-offset:2px;border-radius:3px}
+
+/* Coaching > Minutes: the Star button, and the history scope switch */
+.star-minutes{margin:4px 0 0;font-size:.72rem;padding:2px 8px;border-radius:999px;border:1px solid var(--ds-border,#ffffff2e);background:transparent;color:var(--ds-text-muted,#9fb3c8);cursor:pointer}
+.star-minutes.on{background:#ffb34726;border-color:#ffb347;color:#ffd486;font-weight:700}
+.star-minutes:hover{border-color:#ffb347;color:#ffd486}
+.scope-chips{margin-right:12px}
+
+/* offense / defense / pace: kept as set by hand or automatic */
+.tactic-mode { display: block; margin-top: 2px; }
+.tactic-auto { background: none; border: 0; padding: 0; margin-left: 8px; font: inherit; text-decoration: underline; cursor: pointer; color: inherit; opacity: 0.85; }
+.tactic-auto:hover { opacity: 1; }
+
+/* 3D court switch on the court setup screen */
+
+/* Choose a School: drop-downs by NIL budget tier */
+.school-search{width:100%;margin:0 0 12px;padding:10px 12px;border-radius:10px;border:1px solid var(--line,#2a3140);background:var(--panel,#141a24);color:inherit;font:inherit}
+.tier-list{display:flex;flex-direction:column;gap:10px}
+.tier-group{border:1px solid var(--line,#2a3140);border-radius:12px;background:var(--panel,#141a24);overflow:hidden}
+.tier-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;width:100%;padding:12px 14px;background:transparent;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.tier-head:hover{background:rgba(255,255,255,.04)}
+.tier-num{font-size:11px;font-weight:800;letter-spacing:.08em;opacity:.7}
+.tier-range{opacity:.7;font-size:13px}
+.tier-share{margin-left:auto;font-size:13px;opacity:.85}
+.tier-chev{font-size:11px;opacity:.6}
+.tier-group .school-grid{padding:0 12px 12px}
+.school-conf{margin:0;font-size:12px;font-weight:700;letter-spacing:.03em;opacity:.85}
+
+/* REAL-PHONE-SCROLL: on phones / small windows let the page itself scroll */
+@media (max-width:999px),(max-height:639px){
+  html:has(.app-shell),html:has(.app-shell) body,html:has(body.roomy),body.roomy{height:auto!important;min-height:100%;overflow:auto!important;-webkit-overflow-scrolling:touch}
+  .workspace{height:auto!important;overflow:visible!important}
+  .main{height:auto!important;overflow:visible!important}
+}

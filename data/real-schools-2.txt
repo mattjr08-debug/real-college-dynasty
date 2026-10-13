@@ -1,0 +1,131 @@
+# Missouri Valley|74|56
+Drake|Bulldogs|Des Moines, IA|#004477
+Bradley|Braves|Peoria, IL|#B50000
+Belmont|Bruins|Nashville, TN|#C8102E
+Murray State|Racers|Murray, KY|#002144
+Northern Iowa|Panthers|Cedar Falls, IA|#4B116F
+Illinois State|Redbirds|Normal, IL|#CE1126
+Indiana State|Sycamores|Terre Haute, IN|#00669A
+Southern Illinois|Salukis|Carbondale, IL|#720000
+UIC|Flames|Chicago, IL|#D50032
+Evansville|Purple Aces|Evansville, IN|#492F92
+Valparaiso|Beacons|Valparaiso, IN|#613318
+# Conference USA|70|54
+Liberty|Flames|Lynchburg, VA|#002D62
+Western Kentucky|Hilltoppers|Bowling Green, KY|#C60C30
+Middle Tennessee|Blue Raiders|Murfreesboro, TN|#0066CC
+Jacksonville State|Gamecocks|Jacksonville, AL|#CC0000
+Sam Houston|Bearkats|Huntsville, TX|#F47B20
+New Mexico State|Aggies|Las Cruces, NM|#891216
+Louisiana Tech|Bulldogs|Ruston, LA|#002F8B
+UTEP|Miners|El Paso, TX|#FF8200
+FIU|Panthers|Miami, FL|#081E3F
+Kennesaw State|Owls|Kennesaw, GA|#FDBB30
+Missouri State|Bears|Springfield, MO|#5E0009
+Delaware|Fightin' Blue Hens|Newark, DE|#00539F
+# Sun Belt|70|54
+James Madison|Dukes|Harrisonburg, VA|#450084
+Arkansas State|Red Wolves|Jonesboro, AR|#CC092F
+Appalachian State|Mountaineers|Boone, NC|#222222
+Coastal Carolina|Chanticleers|Conway, SC|#006F71
+Georgia Southern|Eagles|Statesboro, GA|#011E41
+Georgia State|Panthers|Atlanta, GA|#0039A6
+Louisiana|Ragin' Cajuns|Lafayette, LA|#CE181E
+Marshall|Thundering Herd|Huntington, WV|#00B140
+Old Dominion|Monarchs|Norfolk, VA|#003057
+South Alabama|Jaguars|Mobile, AL|#00205B
+Southern Miss|Golden Eagles|Hattiesburg, MS|#FFAA3C
+Texas State|Bobcats|San Marcos, TX|#501214
+Troy|Trojans|Troy, AL|#8A2432
+UL Monroe|Warhawks|Monroe, LA|#800029
+# Mid-American|68|54
+Akron|Zips|Akron, OH|#041E42
+Ohio|Bobcats|Athens, OH|#00694E
+Kent State|Golden Flashes|Kent, OH|#002664
+Toledo|Rockets|Toledo, OH|#15397F
+Miami (OH)|RedHawks|Oxford, OH|#B61E2E
+Ball State|Cardinals|Muncie, IN|#BA0C2F
+Bowling Green|Falcons|Bowling Green, OH|#FE5000
+Buffalo|Bulls|Buffalo, NY|#005BBB
+Central Michigan|Chippewas|Mount Pleasant, MI|#6A0032
+Eastern Michigan|Eagles|Ypsilanti, MI|#006633
+Northern Illinois|Huskies|DeKalb, IL|#BA0C2F
+Western Michigan|Broncos|Kalamazoo, MI|#6C4023
+# Coastal Athletic|68|52
+Charleston|Cougars|Charleston, SC|#800000
+Hofstra|Pride|Hempstead, NY|#003591
+Drexel|Dragons|Philadelphia, PA|#07294D
+Towson|Tigers|Towson, MD|#FFBB00
+UNC Wilmington|Seahawks|Wilmington, NC|#006666
+Northeastern|Huskies|Boston, MA|#CC0000
+Stony Brook|Seawolves|Stony Brook, NY|#990000
+William & Mary|Tribe|Williamsburg, VA|#115740
+Elon|Phoenix|Elon, NC|#73000A
+Hampton|Pirates|Hampton, VA|#0050A0
+Monmouth|Hawks|West Long Branch, NJ|#002F6C
+North Carolina A&T|Aggies|Greensboro, NC|#004684
+# Horizon League|62|50
+Wright State|Raiders|Dayton, OH|#006341
+Youngstown State|Penguins|Youngstown, OH|#CC0000
+Milwaukee|Panthers|Milwaukee, WI|#000000
+Green Bay|Phoenix|Green Bay, WI|#006A4D
+Northern Kentucky|Norse|Highland Heights, KY|#FFC72C
+Robert Morris|Colonials|Moon Township, PA|#14234B
+Oakland|Golden Grizzlies|Rochester, MI|#B59A57
+Cleveland State|Vikings|Cleveland, OH|#006633
+Purdue Fort Wayne|Mastodons|Fort Wayne, IN|#CFB991
+IU Indianapolis|Jaguars|Indianapolis, IN|#990000
+# MAAC|62|48
+Fairfield|Stags|Fairfield, CT|#CC0033
+Iona|Gaels|New Rochelle, NY|#6A1E3B
+Saint Peter's|Peacocks|Jersey City, NJ|#0057B8
+Quinnipiac|Bobcats|Hamden, CT|#0C2340
+Siena|Saints|Loudonville, NY|#00703C
+Marist|Red Foxes|Poughkeepsie, NY|#C8102E
+Manhattan|Jaspers|Riverdale, NY|#00693C
+Rider|Broncs|Lawrenceville, NJ|#8F2D2D
+Canisius|Golden Griffins|Buffalo, NY|#004A98
+Niagara|Purple Eagles|Lewiston, NY|#4B2682
+Mount St. Mary's|Mountaineers|Emmitsburg, MD|#002F6C
+Sacred Heart|Pioneers|Fairfield, CT|#C8102E
+# Northeast|56|46
+Merrimack|Warriors|North Andover, MA|#003DA5
+Central Connecticut|Blue Devils|New Britain, CT|#0033A0
+Fairleigh Dickinson|Knights|Teaneck, NJ|#6F263D
+LIU|Sharks|Brooklyn, NY|#69B3E7
+Wagner|Seahawks|Staten Island, NY|#00483A
+Saint Francis (PA)|Red Flash|Loretto, PA|#C8102E
+Chicago State|Cougars|Chicago, IL|#006F51
+Le Moyne|Dolphins|Syracuse, NY|#003DA5
+Mercyhurst|Lakers|Erie, PA|#00553D
+Stonehill|Skyhawks|Easton, MA|#4B2E83
+# Patriot League|60|48
+Colgate|Raiders|Hamilton, NY|#821019
+Bucknell|Bison|Lewisburg, PA|#003087
+Lehigh|Mountain Hawks|Bethlehem, PA|#653600
+Boston University|Terriers|Boston, MA|#CC0000
+Navy|Midshipmen|Annapolis, MD|#00205B
+Army|Black Knights|West Point, NY|#D3BC8D
+American|Eagles|Washington, DC|#C8102E
+Holy Cross|Crusaders|Worcester, MA|#602D89
+Lafayette|Leopards|Easton, PA|#98002E
+Loyola Maryland|Greyhounds|Baltimore, MD|#006747
+# Ivy League|66|52
+Yale|Bulldogs|New Haven, CT|#00356B
+Princeton|Tigers|Princeton, NJ|#E87722
+Cornell|Big Red|Ithaca, NY|#B31B1B
+Penn|Quakers|Philadelphia, PA|#011F5B
+Harvard|Crimson|Cambridge, MA|#A51C30
+Brown|Bears|Providence, RI|#4E3629
+Columbia|Lions|New York, NY|#9BDDFF
+Dartmouth|Big Green|Hanover, NH|#00693E
+# America East|58|46
+Vermont|Catamounts|Burlington, VT|#154734
+UMBC|Retrievers|Catonsville, MD|#FDB515
+Bryant|Bulldogs|Smithfield, RI|#000000
+Albany|Great Danes|Albany, NY|#461660
+Maine|Black Bears|Orono, ME|#0D2D6B
+New Hampshire|Wildcats|Durham, NH|#003591
+UMass Lowell|River Hawks|Lowell, MA|#0067B1
+NJIT|Highlanders|Newark, NJ|#CC0000
+Binghamton|Bearcats|Binghamton, NY|#005A43

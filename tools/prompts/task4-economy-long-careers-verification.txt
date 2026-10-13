@@ -1,0 +1,26 @@
+Read CLAUDE.md first (especially "Known issues" and the new tests). Run every command in the FOREGROUND (no background jobs); `npm run test:ui` can take several minutes, so give it a long timeout but never more than 9 minutes per command.
+Keep working until all four parts are done. Commit once at the end. Do not run git push.
+
+PART A: asking-price inconsistency (a real bug).
+At career start and for new recruits the asking price doubles for players rated 64 or higher (see the ask formula in Gf and W_ask). The yearly offseason update of roster players' `ask` (in wS) does not,
+so average asks collapse after the first offseason (Metro Atlantic: 252k to 171k in tests/nil.js). Make the offseason update use the same formula as W_ask (origin "Roster" multiplier 1, same 2.1 factor for 64+, plus the market index and awardBump as today).
+Then run tests/nil.js and confirm average asking prices no longer collapse after the first offseason. Watch for side effects: asks above NIL can lower morale and create transfer risk. Run `TRIALS=2 SEASONS=3 node tests/balance.js`;
+wins-minus-goal per tier must stay within 1.5 wins of the numbers recorded in CLAUDE.md. If a side effect appears, fix it in the least invasive way and explain.
+
+PART B: long careers get fired too often.
+tests/nil.js showed 5 of 6 careers fired in seasons 5 to 7 because the win goal (function _s) climbs with reputation faster than auto-play wins rise. First MEASURE: write tests/longcareer.js that auto-plays 8 seasons for all 30 schools
+(parallelised like tests/balance.js, one trial) and prints, per tier, the win goal and average wins by season 1 to 8 and the fired share by season 8. Then adjust the goal growth (for example slow or cap the reputation term after season 4,
+or cap it by tier) so that over 8 auto-played seasons at most about 40% of careers are fired in tiers 0 to 3 and at most about 55% in tier 4, WITHOUT changing seasons 1 to 4 by more than 1 win. Explain the formula change in CLAUDE.md. Add npm script "test:long".
+
+PART C: verify what was never checked.
+Add tests/ui-season.js (playwright-core, system Chrome, same style as tests/ui.js) that: (1) starts a career, auto-recruits, starts the season, sims the full regular season using the Sim regular season button and its confirmation pop-up,
+handles every tournament pop-up until "Next offseason" appears, opens the season viewer from Program HQ and visits its tabs including Games, Recap, Highlights, Conference tournament, National tournament, Awards, and confirms Highlights shows a "BIGGEST WIN" tile;
+(2) reloads the page mid-season and confirms the record and the next opponent are unchanged (save and reload works); (3) injects `vac:["tide"]` into the saved game in localStorage (key "college-dynasty-offline-v6", object path game or top level, inspect how it is stored), reloads, opens League news then Coaching carousel,
+confirms Tide Water (Tidewater University) appears with an Apply button, clicks it during the Season review or Offseason phase, and confirms either a job offer or a "hired someone else" news item results. Save screenshots to tests/screens/. Add npm script "test:season".
+Fix any real bug these find (small, careful changes). Do not change tuning.
+
+PART D: wrap up.
+Rebuild, then run `npm test`, `npm run test:realism` (all rows PASS), `npm run test:ui` (all steps PASS), `npm run test:nil`, `npm run test:season`. Update CLAUDE.md: remove fixed items from "Known issues", record the new measured numbers and what is still unverified.
+Commit with `git add -A` and a clear message.
+
+End with a short report: every code change (file, old behavior, new behavior), every test result, every bug found, and what you could not verify.

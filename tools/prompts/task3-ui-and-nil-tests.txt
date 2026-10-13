@@ -1,0 +1,27 @@
+Read CLAUDE.md first. Run every command in the FOREGROUND (no background jobs). The realism and balance tests already pass; do not retune the sim in this task.
+
+Task: add two more kinds of tests, run them, and fix any real bugs they reveal in src/js (small, careful fixes only; rebuild with `npm run build` after each).
+
+1) tests/ui.js: a click-through test with playwright-core and system Chrome (see tests/smoke.js for setup). Use a fresh page, pick "Lone Star Union", click "Take the job",
+   skip the tutorial pop-up ("Skip tutorial"), then:
+   - Visit every sidebar page (Program HQ, My roster, Recruiting, Coaching, Schedule, Season center, NIL budget, League news, Career history, Settings) and every tab
+     inside each one (the tabs are buttons inside `.chips`). After each click confirm no JavaScript error was thrown (page.on('pageerror')) and that the page still shows a heading.
+   - Recruiting: the High school, Transfer portal, My recruits and Walk-on pool tabs. Open one recruit's profile and close it.
+   - Use the Begin season button: pop-up "Before the season" appears; click "Start the season" (auto-set coaching is on by default). Then "Season started" pop-up; close it.
+   - Season center tabs after a few games: sim 8 games with "Sim next game"; visit Standings & leaders, Tournament résumé, Bubble watch, Conference tournaments, Top 25, Around the nation, Team schedules, Game results.
+   - Game Day: on Season center click "Game day (live)", click "Tip off", confirm a halftime score and play-by-play rows appear, change the Offense select at halftime,
+     click "Play the second half", confirm a FINAL score and shooting summary appear, then close.
+   - Settings tabs: Audio & saves, Pop-ups, Game, Diagnostics (confirm the Diagnostics table has at least 12 rows).
+   - NIL budget tabs: Budget, Revenue (5 stream rows), Market rates.
+   - League news tabs: Headlines, Coaching carousel, Draft results, Mock draft (confirm Mock draft has 40 or more rows and a freshman-share sentence).
+   - Save a screenshot of each page and tab into tests/screens/ (add tests/screens/ to .gitignore) and print a PASS/FAIL line per step.
+   Handle blocking pop-ups with a helper that closes them (Escape, or buttons named Close/Dismiss/Keep going/Not yet/Let's go/Cancel).
+2) tests/nil.js: using window.__dbg only, auto-play 8 seasons for 6 schools (two each from tiers 0, 2 and 4). Record each season's baseBudget, rev (the five streams), mkt (market index) and the
+   average asking price of roster players. Print a table per school. Flag as CHECK: a budget below 60% or above 300% of its start value, a negative or NaN stream, or a market index growing
+   faster than 6% per year on average or falling below 0.9. Exit code 0 always.
+3) Add npm scripts "test:ui" and "test:nil". Run both. For every failure or CHECK, find the cause in src/js and fix it only if it is a clear bug (not a tuning opinion).
+   Re-run `npm test` and `npm run test:realism` afterward; realism rows must still be PASS.
+4) Update CLAUDE.md: describe the new tests, and under "Known issues" mark what was verified now (Game Day, Diagnostics, tabs, NIL model) and list anything still open with evidence.
+5) Commit with git: `git add -A` and a clear message. Do not run git push.
+
+End with a short report: what each test covers, every failure found, every code fix (file, old and new behavior), and what you could not verify.

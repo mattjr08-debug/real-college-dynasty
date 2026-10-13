@@ -1,0 +1,4 @@
+STAGE 2 of 6: do ONLY these items now, one at a time, in this order, following the same rules as before (cheap checks only, no baseline; one commit per item with the item number first; never push): 4.
+
+Their text:
+4. Roster and player profile. Photo-forward player rows and a trading-card style profile: large photo, a circular rating ring, position badge, class and archetype tags, attribute bars in groups, and a growth chart. Keep all tables fitting with no hidden columns.

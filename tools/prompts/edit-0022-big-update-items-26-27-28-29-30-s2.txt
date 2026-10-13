@@ -1,0 +1,8 @@
+STAGE 2 of 3: do ONLY these items now, one at a time, in this order, following the same rules as before (compare with the baseline after each item; one commit per item with the item number first; never push): 26, 27, 28, 29, 30.
+
+Their text:
+26. Fouling out. The game lets a player play until his 6th foul, which is the NBA rule. College players foul out on the 5th foul. Change the limit to 5 and check how it changes late-game minutes.
+27. Free throw rules. The game has no team-foul bonus. In men's college basketball, team fouls are counted per half and reset at halftime. The other team shoots a one-and-one starting with the 7th team foul, and two shots starting with the 10th. Add this, and confirm the current rule before building it, because college rules change from year to year.
+28. Timeouts and substitutions. The game uses fixed minutes for each player and has no timeouts. Real coaches call timeouts after opponent runs and late in close games, and they sub in waves. Add automatic timeouts and substitution patterns to the game engine itself (item 22 covers the Game Day screen).
+29. Shot clock and game clock. The game has no clock. Add a 30-second shot clock effect on possession length and shot quality, and two 20-minute halves so foul counts and the late-game rules work.
+30. Streaks and momentum. Shooting is too even from possession to possession. Add hot and cold streaks and scoring runs.

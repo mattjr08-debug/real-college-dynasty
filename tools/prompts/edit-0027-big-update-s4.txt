@@ -1,0 +1,5 @@
+STAGE 4 of 6: do ONLY these items now, one at a time, in this order, following the same rules as before (compare with the baseline after each item; one commit per item with the item number first; never push): 28, 48.
+
+Their text:
+28. More realistic timeouts. Teams use about 1.7 timeouts a game, against 3 to 4 in real games. Raise the number used in the game engine without changing scoring or pace, and check that fouls and free throws are unaffected.
+48. Find the real cause of the "could not be opened" desktop save. Look for the set-aside career or the pre-load copy the game saved, work out what in its save schema or an old migration fails to load, and fix that cause.

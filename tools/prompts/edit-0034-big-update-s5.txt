@@ -1,0 +1,6 @@
+STAGE 5 of 6: do ONLY these items now, one at a time, in this order, following the same rules as before (cheap checks only, no baseline; one commit per item with the item number first; never push): 7, 8, 9.
+
+Their text:
+7. Season center, standings, Top 25 and the bracket. Modern bracket visuals with logos and seed numbers that scale to the window width (with an Expand view), ranking rows with logos and move arrows, and a cleaner bubble watch.
+8. NIL budget, League news, Coaching, Career history and Settings. Apply the new look and charts consistently, with larger numbers, clear section headers and tidy tabs that wrap onto a second row.
+9. Motion, polish and proof. Subtle transitions (respect reduced motion), animated number counters on key stats, loading and empty states, and pop-ups with the same new style. Take before and after screenshots of every page and tab at 1000, 1280 and 1440 wide plus a phone width, run npm test, the quick and full screen tests, the strict overflow test, the phone test and the saves test, and report what changed on each screen in plain language.

@@ -1,0 +1,5 @@
+STAGE 3 of 6: do ONLY these items now, one at a time, in this order, following the same rules as before (cheap checks only, no baseline; one commit per item with the item number first; never push): 6, 7.
+
+Their text:
+6. Coaching. Polish the court view and lineup fit tags, make the minutes plan cards easier to read, and show the rotation minutes bar clearly. No inner scroll boxes.
+7. Schedule, Season center and Game Day. The Schedule fits without cutting off the guarantee-games side. Standings, Top 25, bracket and bubble views fit the window: scale a bracket to the window width, with an Expand view for the full-size bracket. Game Day gets a larger scoreboard, a readable play-by-play and a clear halftime panel.

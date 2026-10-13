@@ -1,0 +1,4 @@
+STAGE 4 of 6: do ONLY these items now, one at a time, in this order, following the same rules as before (cheap checks only, no baseline; one commit per item with the item number first; never push): 8.
+
+Their text:
+8. NIL budget, League news, Career history and Settings. Tabs wrap onto a second row. Panels grow to their content. Revenue streams and the market get simple SVG charts.

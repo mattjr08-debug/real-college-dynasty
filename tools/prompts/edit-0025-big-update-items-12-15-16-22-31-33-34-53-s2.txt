@@ -1,0 +1,14 @@
+STAGE 2 of 4: do ONLY these items now, one at a time, in this order, following the same rules as before (compare with the baseline after each item; one commit per item with the item number first; never push): 12, 15, 16, 22, 31.
+
+Their text:
+12. Archetypes. Real players are labeled by style, such as stretch big, rim protector, lead guard or 3-and-D wing. They affect lineup fit more than raw rating does.
+15. Tournament rate by level. Mid-level schools rarely reach the tournament (about 6 to 19% in my last measurement). The "45% and 62%" targets in the test were never real; they were a straight line drawn between my two end points. Use these targets for a team that meets its win goal in a typical season:
+   - Easy: about 10%
+   - Moderate: about 20%
+   - Challenging: about 30%
+   - Hard: about 45%
+   - Brutal: about 80%
+   Reach them by changing how the tournament field is picked, not by making teams win more: give extra credit for winning in a strong conference, for a hard schedule and for quality wins. Then re-run the balance test with at least 6 trials per level (it must be within about 8 points of each target) and confirm the win-minus-goal numbers do not move by more than 1.5 wins.
+16. Year 5 dip. In auto-play, wins fall in every difficulty level in season 5, because the big recruiting class graduates together. It feels unfair when a good team collapses. Staggering classes or having more transfers fill the gap would smooth it.
+22. Opponent scouting in Game Day. Strengths, weaknesses and a suggested approach, plus mid-game substitutions and timeouts.
+31. Off-court life. Academic eligibility, discipline problems, and personal reasons for transferring (item 3 only covers suspensions).

@@ -1,0 +1,140 @@
+# ACC|91|66
+Duke|Blue Devils|Durham, NC|#003087|27.5|93
+North Carolina|Tar Heels|Chapel Hill, NC|#7BAFD4|25.8|90
+Louisville|Cardinals|Louisville, KY|#AD0000|16.5
+Virginia|Cavaliers|Charlottesville, VA|#232D4B|14
+NC State|Wolfpack|Raleigh, NC|#CC0000|13
+Clemson|Tigers|Clemson, SC|#F56600|13
+Wake Forest|Demon Deacons|Winston-Salem, NC|#9E7E38|11
+Miami|Hurricanes|Coral Gables, FL|#F47321|12.5
+Notre Dame|Fighting Irish|Notre Dame, IN|#0C2340|12
+Stanford|Cardinal|Stanford, CA|#8C1515|11
+Florida State|Seminoles|Tallahassee, FL|#782F40|11.5
+Pittsburgh|Panthers|Pittsburgh, PA|#003594
+SMU|Mustangs|Dallas, TX|#C8102E
+Syracuse|Orange|Syracuse, NY|#F76900|12.5
+Virginia Tech|Hokies|Blacksburg, VA|#630031
+Georgia Tech|Yellow Jackets|Atlanta, GA|#B3A369
+Boston College|Eagles|Chestnut Hill, MA|#8C2232
+California|Golden Bears|Berkeley, CA|#003262
+# Big Ten|91|65
+Purdue|Boilermakers|West Lafayette, IN|#CEB888|22.2|90
+Michigan State|Spartans|East Lansing, MI|#18453B|20.8|89
+Michigan|Wolverines|Ann Arbor, MI|#00274C|19
+Illinois|Fighting Illini|Champaign, IL|#E84A27|18.5
+Wisconsin|Badgers|Madison, WI|#C5050C|15.5
+UCLA|Bruins|Los Angeles, CA|#2D68C4|18
+Maryland|Terrapins|College Park, MD|#E03A3E|14.5
+Indiana|Hoosiers|Bloomington, IN|#990000|17
+Ohio State|Buckeyes|Columbus, OH|#BB0000|16
+Iowa|Hawkeyes|Iowa City, IA|#FFCD00|12
+Oregon|Ducks|Eugene, OR|#154733|16
+USC|Trojans|Los Angeles, CA|#990000|13.5
+Washington|Huskies|Seattle, WA|#4B2E83|12
+Nebraska|Cornhuskers|Lincoln, NE|#E41C38|11
+Northwestern|Wildcats|Evanston, IL|#4E2A84|10
+Penn State|Nittany Lions|University Park, PA|#041E42|10.5
+Minnesota|Golden Gophers|Minneapolis, MN|#7A0019|10
+Rutgers|Scarlet Knights|Piscataway, NJ|#CC0033|10
+# SEC|92|66
+Auburn|Tigers|Auburn, AL|#0C2340|26.8|92
+Kentucky|Wildcats|Lexington, KY|#0033A0|24.6|90
+Alabama|Crimson Tide|Tuscaloosa, AL|#9E1B32|25.2|90
+Tennessee|Volunteers|Knoxville, TN|#FF8200|23.8|90
+Florida|Gators|Gainesville, FL|#0021A5|19.5|89
+Texas A&M|Aggies|College Station, TX|#500000|17
+Arkansas|Razorbacks|Fayetteville, AR|#9D2235|16
+Texas|Longhorns|Austin, TX|#BF5700|23.4|87
+Missouri|Tigers|Columbia, MO|#F1B82D|14
+Ole Miss|Rebels|Oxford, MS|#CE1126|13
+Georgia|Bulldogs|Athens, GA|#BA0C2F|11.5
+Vanderbilt|Commodores|Nashville, TN|#866D4B|11.5
+Mississippi State|Bulldogs|Starkville, MS|#660000|13
+Oklahoma|Sooners|Norman, OK|#841617|13.5
+LSU|Tigers|Baton Rouge, LA|#461D7C|13
+South Carolina|Gamecocks|Columbia, SC|#73000A|11
+# Big 12|90|66
+Kansas|Jayhawks|Lawrence, KS|#0051BA|26.2|91
+Houston|Cougars|Houston, TX|#C8102E|21.5|91
+Arizona|Wildcats|Tucson, AZ|#CC0033|20.3|89
+Iowa State|Cyclones|Ames, IA|#C8102E|15.5
+Baylor|Bears|Waco, TX|#154734|17.5
+BYU|Cougars|Provo, UT|#002E5D|14.5
+Texas Tech|Red Raiders|Lubbock, TX|#CC0000|15.5
+Cincinnati|Bearcats|Cincinnati, OH|#E00122|12.5
+Kansas State|Wildcats|Manhattan, KS|#512888|11.5
+TCU|Horned Frogs|Fort Worth, TX|#4D1979|11
+West Virginia|Mountaineers|Morgantown, WV|#002855|11
+UCF|Knights|Orlando, FL|#BA9B37|10.5
+Arizona State|Sun Devils|Tempe, AZ|#8C1D40|11
+Utah|Utes|Salt Lake City, UT|#CC0000|10.5
+Oklahoma State|Cowboys|Stillwater, OK|#FF7300|10.5
+Colorado|Buffaloes|Boulder, CO|#CFB87C|10.5
+# Big East|88|64
+UConn|Huskies|Storrs, CT|#000E2F|22.9|91
+Marquette|Golden Eagles|Milwaukee, WI|#003366|16.5
+St. John's|Red Storm|Queens, NY|#BA0C2F|15
+Creighton|Bluejays|Omaha, NE|#005CA9|15.5
+Xavier|Musketeers|Cincinnati, OH|#0C2340|10
+Villanova|Wildcats|Villanova, PA|#00205B|14
+Butler|Bulldogs|Indianapolis, IN|#13294B|8
+Providence|Friars|Providence, RI|#000000|7.5
+Seton Hall|Pirates|South Orange, NJ|#004488|8
+Georgetown|Hoyas|Washington, DC|#041E42|9
+DePaul|Blue Demons|Chicago, IL|#005EB8|6
+Dayton|Flyers|Dayton, OH|#CE1126|6
+# Atlantic 10|77|58
+VCU|Rams|Richmond, VA|#F8B800
+Saint Louis|Billikens|St. Louis, MO|#003DA5
+George Mason|Patriots|Fairfax, VA|#006633
+Saint Joseph's|Hawks|Philadelphia, PA|#9E1B32
+Loyola Chicago|Ramblers|Chicago, IL|#7A0019
+Davidson|Wildcats|Davidson, NC|#AC1A2F
+Richmond|Spiders|Richmond, VA|#990000
+St. Bonaventure|Bonnies|St. Bonaventure, NY|#5C2D1D
+Rhode Island|Rams|Kingston, RI|#68ABE8
+George Washington|Revolutionaries|Washington, DC|#033C5A
+Fordham|Rams|Bronx, NY|#860038
+Duquesne|Dukes|Pittsburgh, PA|#041E42
+La Salle|Explorers|Philadelphia, PA|#003D7C
+UMass|Minutemen|Amherst, MA|#881C1C
+# Mountain West|79|60
+San Diego State|Aztecs|San Diego, CA|#A6192E
+Utah State|Aggies|Logan, UT|#0F2439
+Boise State|Broncos|Boise, ID|#0033A0
+New Mexico|Lobos|Albuquerque, NM|#BA0C2F
+Colorado State|Rams|Fort Collins, CO|#1E4D2B
+Nevada|Wolf Pack|Reno, NV|#003366
+UNLV|Rebels|Las Vegas, NV|#CF0A2C
+Grand Canyon|Antelopes|Phoenix, AZ|#522398
+Fresno State|Bulldogs|Fresno, CA|#DB0032
+Wyoming|Cowboys|Laramie, WY|#492F24
+San Jose State|Spartans|San Jose, CA|#0055A2
+Air Force|Falcons|Colorado Springs, CO|#003087
+# American|75|57
+Memphis|Tigers|Memphis, TN|#003087
+Wichita State|Shockers|Wichita, KS|#FFCD00
+UAB|Blazers|Birmingham, AL|#1E6B52
+Florida Atlantic|Owls|Boca Raton, FL|#003366
+North Texas|Mean Green|Denton, TX|#00853E
+Temple|Owls|Philadelphia, PA|#9D2235
+Tulane|Green Wave|New Orleans, LA|#006747
+South Florida|Bulls|Tampa, FL|#006747
+Charlotte|49ers|Charlotte, NC|#046A38
+East Carolina|Pirates|Greenville, NC|#592A8A
+UTSA|Roadrunners|San Antonio, TX|#0C2340
+Rice|Owls|Houston, TX|#00205B
+Tulsa|Golden Hurricane|Tulsa, OK|#003DA5
+# West Coast|84|56
+Gonzaga|Bulldogs|Spokane, WA|#041E42|15|88
+Saint Mary's|Gaels|Moraga, CA|#D6001C
+San Francisco|Dons|San Francisco, CA|#006633
+Santa Clara|Broncos|Santa Clara, CA|#862633
+Oregon State|Beavers|Corvallis, OR|#DC4405
+Washington State|Cougars|Pullman, WA|#981E32
+Loyola Marymount|Lions|Los Angeles, CA|#00205B
+Pepperdine|Waves|Malibu, CA|#00205B
+San Diego|Toreros|San Diego, CA|#002B5C
+Portland|Pilots|Portland, OR|#4F2D7F
+Pacific|Tigers|Stockton, CA|#F47321
+Seattle U|Redhawks|Seattle, WA|#AA0000

@@ -1,0 +1,23 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: The game plays differently.
+Request: so,jr,sr players have no previous season stats even if they never played it should have school name ,year ,0 gp etc and no stats or if they did they should have stats
+
+
+Cant add walkons during the season with open roster spots for some reason fix that
+
+strength of conference and oppents weighed in national rankings for teams,players,awards
+
+stars for recruits/players should be based on possible potential, size, athleticism, and production
+
+team name with previous seasons on player tabs
+
+add blocks and steals in stats
+
+extra nil if he stays button not working in year two
+
+showing negative nil to spend  fix
+
+Rules: make the smallest change that does the job and do not change unrelated things. After changing, rebuild (npm run build) and run npm test. Also run the test that matches the change (npm run test:realism for anything that changes game numbers, npm run test:ui for screens, npm run test:balance for difficulty). If a check fails, fix it or say so clearly. Commit with a clear message (git add -A, git commit). Do not run git push.
+
+End your report with three short parts: (1) What I changed, in plain words. (2) What I tested and the results. (3) Anything I am unsure about, or that the owner should look at while playing.

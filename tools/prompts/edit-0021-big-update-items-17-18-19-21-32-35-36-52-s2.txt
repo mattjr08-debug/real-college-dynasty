@@ -1,0 +1,6 @@
+STAGE 2 of 3: do ONLY these items now, one at a time, in this order, following the same rules as before (cheap checks only, no baseline; one commit per item with the item number first; never push): 35, 36, 52.
+
+Their text:
+35. Phone polish. Add a hint that wide tables can be swiped sideways. Also check the install icon, the top bar and starting offline on a real phone.
+36. A short in-game explanation of how the draft and the transfer portal work, since there are several pop-ups.
+52. An "update available" message for the phone and installed web app. Phones keep an old copy of the game until it is refreshed. Show a banner saying "A new version is ready, tap to update" when the website has been updated.

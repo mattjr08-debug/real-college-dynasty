@@ -1,0 +1,8 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: The game plays differently.
+Request: Reverse the difficuly things and put the teams in order on the start page good teams with high budgets should be easier then bad teams with low budgets
+
+Rules: make the smallest change that does the job and do not change unrelated things. After changing, rebuild (npm run build) and run npm test. Also run the test that matches the change (npm run test:realism for anything that changes game numbers, npm run test:ui for screens, npm run test:balance for difficulty). If a check fails, fix it or say so clearly. Commit with a clear message (git add -A, git commit). Do not run git push.
+
+End your report with three short parts: (1) What I changed, in plain words. (2) What I tested and the results. (3) Anything I am unsure about, or that the owner should look at while playing.

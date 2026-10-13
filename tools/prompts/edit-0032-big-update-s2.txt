@@ -1,0 +1,4 @@
+STAGE 2 of 6: do ONLY these items now, one at a time, in this order, following the same rules as before (cheap checks only, no baseline; one commit per item with the item number first; never push): 5.
+
+Their text:
+5. Recruiting, all four tabs. The key numbers (rating, interest, signing chance, NIL ask) sit beside the player name on the left. Clear bars for interest and signing chance, a visible rival indicator, filters as chips, a pinned offer box, and no hidden columns. High school, Transfer portal, My recruits and Walk-on pool all share the new Table.

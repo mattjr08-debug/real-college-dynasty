@@ -1,0 +1,6 @@
+STAGE 5 of 6: do ONLY these items now, one at a time, in this order, following the same rules as before (cheap checks only, no baseline; one commit per item with the item number first; never push): 9, 10, 11.
+
+Their text:
+9. Pop-ups. One consistent modal style and sizes, the same close and Esc behavior, proper keyboard focus, and the existing ceremony style kept for awards and championships. Every pop-up fits at 390 and 1000 wide.
+10. Motion, feedback, accessibility and phone. Subtle transitions (respect reduced motion), loading and empty states, visible keyboard focus, labels for icon buttons, tap targets of at least 44 pixels on touch, and a layout that works at 390 wide with no sideways scroll.
+11. Prove it. Take before and after screenshots of every page and tab at 1000, 1280 and 1440 wide, plus a phone width, and list anything you could not make fit. Make sure tests/overflow.js also checks 390 wide for the phone layout. Run npm test, the quick and full screen tests, the phone test and the saves test. Report exactly what you changed on each screen, in plain language.

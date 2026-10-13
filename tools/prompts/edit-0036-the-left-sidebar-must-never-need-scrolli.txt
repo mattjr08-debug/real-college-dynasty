@@ -1,0 +1,18 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: Change how it looks.
+Request: The left sidebar must never need scrolling. Every item must be visible at once: the school crest and name, the coach card, all ten navigation items (Program HQ, My roster, Recruiting, Coaching, Schedule, Season center, NIL budget, League news, Career history, Settings), and the "How to play" and "New career" links at the bottom.
+
+What I measured on the current build: the navigation list is 368 pixels tall. In a window 720 pixels tall it only has 295 pixels, so it gets its own scroll bar; at 650 it has 225, and at 600 the Settings item falls below the bottom edge. The desktop game window is 1408 by 774, where it is also a little too short.
+
+What I want:
+1. At every window height from 520 pixels up, and at every width from 1000 up, the whole sidebar fits with no scroll bar and nothing cut off. This is a nested scroll and the owner does not want it.
+2. Make it fit by scaling, never by hiding items: tie the spacing, row height, icon size, text size and the size of the crest and coach card to the window height (for example with clamp() and vh units) so they shrink smoothly on short windows and stay roomy on tall ones. At very short heights it is fine to put the coach card on one line, shrink the crest, and tighten the rows, but every item and every icon must still be visible and clickable (keep tap targets usable).
+3. Keep the sidebar's current look, labels, counts and active highlight. Do not add a scroll bar or a collapse button.
+4. Add a test (add it to tests/overflow.js) that opens the app at 1000x520, 1000x600, 1100x700, 1280x650, 1280x720, 1408x774 and 1440x900 and fails if the sidebar has any inner scroll bar or if any sidebar item is below the window edge.
+
+Rules (the owner's rules, no exceptions): no sideways scrolling or cut-off at 390, 1000, 1100, 1280 and 1440 wide, no hidden columns, no nested scrolling, nothing slower. Run npm run test:overflow, npm test and the quick screen test. This changes no game numbers, so no baseline is needed. Wait for your own tests to finish and commit before you end.
+
+Rules: make the smallest change that does the job and do not change unrelated things. After changing, rebuild (npm run build) and run npm test. Also run the test that matches the change (npm run test:realism for anything that changes game numbers, npm run test:balance for difficulty). For anything that changes a screen, use the quick screen test while you work (npm run test:ui:quick, about 45 seconds) and run the full one (npm run test:ui, about 2 minutes) only once, at the very end. If a check fails, fix it or say so clearly. Commit with a clear message (git add -A, git commit). Do not run git push. Never end your turn while a test or other command is still running in the background. Run long checks in the foreground (no trailing &), or wait for them with a sleep loop, read the result, and only then continue. If you ever start something in the background, wait for it and read its result before you finish. Always commit your finished work before you end.
+
+End your report with three short parts: (1) What I changed, in plain words. (2) What I tested and the results. (3) Anything I am unsure about, or that the owner should look at while playing.

@@ -1,0 +1,4 @@
+STAGE 3 of 6: do ONLY these items now, one at a time, in this order, following the same rules as before (cheap checks only, no baseline; one commit per item with the item number first; never push): 5.
+
+Their text:
+5. Recruiting. Bigger photos, star badges that read at a glance, rating, interest, signing chance and NIL ask kept beside the name, clearer rival and pitch indicators, and a richer recruit profile pop-up. Keep every column and no sideways scroll.

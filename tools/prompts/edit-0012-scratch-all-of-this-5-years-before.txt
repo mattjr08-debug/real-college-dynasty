@@ -1,0 +1,11 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: The game plays differently.
+Request: scratch all of this  5 years before you can be fired for .
+Brutal, with only 2 years.
+17 wins in its first season, and an Easy school expects about 12. The same goals show on the job-offer and news screens.
+ change the way it works so its more balanced all around ,bad schools  with low nil are harder to turn into national champions obvouisly but they are the ones with less expectations and pressure while good schools with high nil are easier to tunn into nantional contendors but with much more expectations and pressure and dont name them by easy hard etc just do it by budget but have something telling them the info above
+
+Rules: make the smallest change that does the job and do not change unrelated things. After changing, rebuild (npm run build) and run npm test. Also run the test that matches the change (npm run test:realism for anything that changes game numbers, npm run test:ui for screens, npm run test:balance for difficulty). If a check fails, fix it or say so clearly. Commit with a clear message (git add -A, git commit). Do not run git push.
+
+End your report with three short parts: (1) What I changed, in plain words. (2) What I tested and the results. (3) Anything I am unsure about, or that the owner should look at while playing.

@@ -1,0 +1,8 @@
+STAGE 2 of 4: do ONLY these items now, one at a time, in this order, following the same rules as before (compare with the baseline after each item; one commit per item with the item number first; never push): 8, 9, 10, 11, 47.
+
+Their text:
+8. Field of 68 with First Four games. The game uses 64.
+9. Selection. The real committee uses a ranking system (NET) with quality-win groups called quadrants. It also reveals seeds on Selection Sunday and puts regions in different cities.
+10. Polls. Real polls carry preseason bias and inertia. A team that loses once doesn't fall ten spots, and the game's rankings are purely computed.
+11. Awards. The real All-America lists have three teams of five, and the game has two.
+47. A second postseason tournament (an NIT-style event of about 32 teams). Teams that miss the national tournament now just stop playing, which is why mid-level seasons feel empty. Add a 32-team event for the best teams left out, with a bracket and a result in the season history. It would also give mid-level schools something to play for while item 15 is tuned.

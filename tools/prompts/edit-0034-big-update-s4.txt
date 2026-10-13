@@ -1,0 +1,4 @@
+STAGE 4 of 6: do ONLY these items now, one at a time, in this order, following the same rules as before (cheap checks only, no baseline; one commit per item with the item number first; never push): 6.
+
+Their text:
+6. Game Day. A broadcast scoreboard with both logos, team colors, large score, game clock and shot clock, a momentum bar, a readable play-by-play feed with small icons for makes, misses, fouls and timeouts, and a clear halftime panel.

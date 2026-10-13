@@ -1,0 +1,6 @@
+STAGE 3 of 4: do ONLY these items now, one at a time, in this order, following the same rules as before (compare with the baseline after each item; one commit per item with the item number first; never push): 50, 51, 54.
+
+Their text:
+50. Recruiting class rankings. Rank every school's incoming class (like the recruiting services do) and show it on a League news tab, with your class's national and conference rank and a history of your own class ranks.
+51. Advanced stats. Show efficiency and tempo for every team and player (points per 100 possessions, usage, a single rating like PER or BPM). Use team efficiency in the Top 25 and in tournament selection, as the real ranking systems do.
+54. Conference structure. All 20 conferences have 10 teams. Real conferences range from about 10 to 18, and only a few "power" leagues send many teams to the tournament. Make the sizes uneven, make a few leagues strong and the rest weaker, give one-bid leagues, and let the top seeds in a conference tournament get byes. Check the schedule length (30 games) still works for every size.

@@ -1,0 +1,4 @@
+STAGE 3 of 6: do ONLY these items now, one at a time, in this order, following the same rules as before (compare with the baseline after each item; one commit per item with the item number first; never push): 23.
+
+Their text:
+23. Named assistant coaches. Assistants should have names and ratings, can leave for other jobs or be poached by other schools, and have to be replaced by hiring.

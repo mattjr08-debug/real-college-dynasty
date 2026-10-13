@@ -1,0 +1,122 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: A big update. You will be given a numbered list of changes and you will do them in stages across several messages. This is STAGE 1 of 3: the baseline.
+
+Rules for a big update (the checks are tiered so the run stays fast):
+1. BASELINE FIRST. Record two baselines and write both in CLAUDE.md under "Baselines" with the date and the commit (never delete an old baseline). The FULL baseline: npm test, npm run test:realism, TRIALS=6 SEASONS=4 npm run test:balance, npm run test:long, the draft check (freshmen 55 to 80% of the lottery, 40 to 60% of the first round) and the save size after one season. The QUICK baseline: TRIALS=2 SEASONS=3 npm run test:balance.
+2. After EACH item run only the cheap checks. npm test (it already builds, so do not run npm run build first). If the item changes a screen, also npm run test:ui:quick (about 45 seconds). If the item can move game numbers, also npm run test:realism and TRIALS=2 SEASONS=3 npm run test:balance, and compare with the QUICK baseline. Do NOT run the full balance check (6 or more trials), npm run test:long or the full npm run test:ui after each item, and do not write extra measuring scripts when an existing test already measures it.
+3. After the last item of a stage, if any item in that stage could move game numbers, run the full balance check once (TRIALS=6 SEASONS=4) and compare with the FULL baseline. Run npm run test:long and the full npm run test:ui once, in the final stage only.
+4. Commit each item separately with a message that starts with the item number (git add -A, git commit). Do not run git push.
+5. Fix or explain any of these: a realism row that was PASS and is now NEAR or FAR; wins minus goal moving by more than 1.5 wins in any level; a tournament rate moving by more than 8 points (unless the item is meant to change it); the draft shares leaving their ranges; save size growing by more than 25%. If you cannot fix it, undo that item with git revert and report it as Not done.
+6. Make the smallest change that does each item. Do not change unrelated things. If an item is unclear or unsafe, skip it and say why. If a sample is too small to tell, say so.
+
+Do only this now: record the baseline described in rule 1, write it in CLAUDE.md under "Baselines", and commit it with the message "Baseline". Do not change any game code yet. The items for the next stages are: 26, 27, 28, 29, 30. Here is the whole list for reference:
+NOTES THAT GO WITH THIS LIST (these are not numbered items)
+- Work one item (or one small group) at a time and commit after each. Never run git push.
+- Item 13 (re-measure balance) comes first, before everything else, because it records the baseline the other items are compared with.
+- Items that do NOT change game numbers only need npm test and the matching screen test: items 14, 17, 18, 19, 20, 21, 32, 34, 35, 36, 48, 49, 52 and 53. Item 22 needs the full check only if it changes the game engine, not just the Game Day screen.
+- Items that change the same system must be done in separate steps with a baseline between them, so you can tell which one moved a number:
+  - items 4, 5, 23 and 50 (recruiting and staff)
+  - items 26, 27, 28, 29 and 30 (the game engine rules)
+  - items 1, 2 and 37 to 45 (all change roster turnover). Item 37 is the target rate for item 1: do not apply both.
+  - items 9, 15, 47, 51 and 54 (all change how the tournament field is picked or who plays in it)
+  - items 6, 7, 24, 25 and 56 (all change money)
+- A tournament rate may move on purpose for items 15, 47, 51 and 54. For every other item, a rate that moves by more than 8 points is a problem to fix or explain.
+- Suggested first batch: items 13, 14, 48 and 49.
+
+THE LIST
+1. Too little turnover. Right now AI players leave for the portal at about 2.5% each year, and your own roster loses a handful. Real programs replace a third to half of their roster each year, which makes continuity and chemistry matter.
+2. No "testing the waters". In real life, players enter the draft, work out, and can return to school.
+3. Eligibility. There are no hardship waivers or medical redshirts, and no suspensions.
+
+Recruiting
+4. Class shape (HIGH SCHOOL RECRUITS ONLY). Do not change the transfer portal pool, walk-ons, or the players on other teams' rosters; leave their star mix and ratings as they are. The high school class is upside down: right now it has 90 recruits with about 20 five-stars, 22 four-stars, 20 three-stars, 16 two-stars, 8 one-stars and 4 unranked, so there are almost as many elite recruits as ordinary ones. In real recruiting the stars form a pyramid: a small number of five-stars, several times as many four-stars, and the most players at three stars. Rebuild the high school class so it has about 300 prospects with this shape:
+   - 5 stars: about 20 (7%)
+   - 4 stars: about 80 (27%)
+   - 3 stars: about 110 (37%)
+   - 2 stars: about 60 (20%)
+   - 1 star: about 20 (7%)
+   - unranked: about 10 (3%)
+   The five-star to four-star ratio should stay near 1 to 4. Keep the rating ranges tied to each star level as they are now. Because the pool grows from 90 to about 300, also: raise the cap on how many prospects can be saved so the high school class and the transfer pool both fit, make sure the recruiting tables still load quickly, make sure saves stay small and fast, and keep transfers better on average than high school recruits. If 300 is too slow or too large, drop to 250 and keep the same ratios, not to 200. Then re-run the draft check (freshmen 55 to 80% of the lottery, 40 to 60% of the first round), the realism test and the balance test, because more mid-level recruits changes team strength and costs.
+5. Official visits and coaching staff. Visits are limited (about five) and matter a lot. Assistant coaches, who do most of the recruiting, don't exist in the game.
+
+Money
+6. Scale. NIL budgets run from about $250K to $2.5M. Real programs spend roughly $1M for small schools and $10M or more for the top programs. The relative sizes work, the dollar amounts don't.
+7. Revenue. The media-rights payout and the conference share barely change, and a real conference payout depends on the league.
+
+Tournament and rankings
+8. Field of 68 with First Four games. The game uses 64.
+9. Selection. The real committee uses a ranking system (NET) with quality-win groups called quadrants. It also reveals seeds on Selection Sunday and puts regions in different cities.
+10. Polls. Real polls carry preseason bias and inertia. A team that loses once doesn't fall ten spots, and the game's rankings are purely computed.
+11. Awards. The real All-America lists have three teams of five, and the game has two.
+
+Players
+12. Archetypes. Real players are labeled by style, such as stretch big, rim protector, lead guard or 3-and-D wing. They affect lineup fit more than raw rating does.
+
+Checks and fixes
+13. Re-measure balance. The numbers in CLAUDE.md are from before your last eight edits. Edit 0018 (conference and schedule ranking boost) changed the numbers, and Claude Code said it had no clean before-and-after comparison. One run of the balance, realism and long-career tests would tell us where things stand.
+14. Undo's safety check. It's the bug from earlier, and it will block Undo any time you saved work just before an edit. The rule should check that nothing the edit added has been pushed (everything on GitHub is already inside the version before the edit), not that the version before the edit is on GitHub.
+15. Tournament rate by level. Mid-level schools rarely reach the tournament (about 6 to 19% in my last measurement). The "45% and 62%" targets in the test were never real; they were a straight line drawn between my two end points. Use these targets for a team that meets its win goal in a typical season:
+   - Easy: about 10%
+   - Moderate: about 20%
+   - Challenging: about 30%
+   - Hard: about 45%
+   - Brutal: about 80%
+   Reach them by changing how the tournament field is picked, not by making teams win more: give extra credit for winning in a strong conference, for a hard schedule and for quality wins. Then re-run the balance test with at least 6 trials per level (it must be within about 8 points of each target) and confirm the win-minus-goal numbers do not move by more than 1.5 wins.
+16. Year 5 dip. In auto-play, wins fall in every difficulty level in season 5, because the big recruiting class graduates together. It feels unfair when a good team collapses. Staggering classes or having more transfers fill the gap would smooth it.
+17. Things nobody has checked in the screens:
+      - taking a job offer
+      - the draft and transfer decisions in the offseason
+      - a second season through the UI
+      - the "hired someone else" result when you apply for a job
+18. Layouts never looked at. Claude Code twice noted that the school cards and recruit cards got taller and only checked for errors, not looks. The Game Day screen and end-of-season pop-ups also haven't been looked at on a phone-sized screen.
+19. Portal and draft "try to keep" buttons. They run without errors, but nobody has seen a player actually come back.
+20. Tutorial text. It still says the Top 25 is on Season center. It moved to League news.
+
+More features
+21. Career backups. Saves live in one browser, one device. A rolling backup (the last few seasons) and an Export reminder would protect you. A tablet or phone can't see your Mac's saves.
+22. Opponent scouting in Game Day. Strengths, weaknesses and a suggested approach, plus mid-game substitutions and timeouts.
+23. Assistant coaches and facilities. Hiring staff, spending budget on facilities, and recruiting and development perks. They'd give the money more places to go.
+24. A per-position NIL market.
+25. A conference revenue share that changes.
+
+Game rules
+26. Fouling out. The game lets a player play until his 6th foul, which is the NBA rule. College players foul out on the 5th foul. Change the limit to 5 and check how it changes late-game minutes.
+27. Free throw rules. The game has no team-foul bonus. In men's college basketball, team fouls are counted per half and reset at halftime. The other team shoots a one-and-one starting with the 7th team foul, and two shots starting with the 10th. Add this, and confirm the current rule before building it, because college rules change from year to year.
+28. Timeouts and substitutions. The game uses fixed minutes for each player and has no timeouts. Real coaches call timeouts after opponent runs and late in close games, and they sub in waves. Add automatic timeouts and substitution patterns to the game engine itself (item 22 covers the Game Day screen).
+29. Shot clock and game clock. The game has no clock. Add a 30-second shot clock effect on possession length and shot quality, and two 20-minute halves so foul counts and the late-game rules work.
+30. Streaks and momentum. Shooting is too even from possession to possession. Add hot and cold streaks and scoring runs.
+
+Players
+31. Off-court life. Academic eligibility, discipline problems, and personal reasons for transferring (item 3 only covers suspensions).
+
+Other ideas and polish
+32. A version label that means something. The title always says V13, so you can't tell which build you have. Show the build date or commit in Settings, and add a "What's new" page built from the instruction log.
+33. International prospects who develop differently from US high school recruits.
+34. Real logo artwork. The current logos are generated (a shield shape, a mascot symbol and initials).
+35. Phone polish. Add a hint that wide tables can be swiped sideways. Also check the install icon, the top bar and starting offline on a real phone.
+36. A short in-game explanation of how the draft and the transfer portal work, since there are several pop-ups.
+
+Transfer portal (Division I men's basketball)
+37. Portal volume. Right now about 2.5% of AI players enter the portal each year, which is roughly 0.3 per team. In Division I men's basketball, 2,320 players entered the portal in 2025, more than 40% of the 5,607 players on rosters before the season, and in 2024 it was a little more than 5 per team on average. Raise the average to about 5 entrants per team a year, with a spread of about 2 to 10, and make the number depend on the reasons in item 40. Simulate the whole portal behind the scenes, and show the user only the top 150 to 250 entrants, ordered by rating, so the recruiting tables stay fast. Check save size and speed.
+38. Portal window. Real portals are a short, busy window. In Division I men's basketball it was 30 days in 2025 (March 24 to April 22) and about 15 days in 2026 (April 7 to April 21). Add a dedicated portal phase early in the offseason: players enter in waves, the best ones commit within a few rounds, and other schools with deeper budgets take the top players first. Keep the high school recruiting rounds separate. Confirm the current window before building.
+39. Entering is not leaving. A player who enters can return to his school if that school is open to it. Extend the existing "try to keep" pop-up for the user's own players, and give AI players the same behavior: they withdraw if no school offers what they want. I found no Division I basketball withdrawal rate, so treat a rate of about 5% as an estimate and make it easy to change.
+40. Reasons to enter. Drive entries by cause: the coach was fired or left (in Division I men's basketball, many of the moves in 2025 followed coaching changes, so a school with a new coach should lose several players), a new signee at the same position, too little playing time, a bigger NIL offer elsewhere, a bigger program (ambitious players), personal reasons. Show the reason on each entrant.
+41. Not everyone lands. In Division I men's basketball, about 67 to 70% of entrants transfer within the NCAA and about 23 to 27% leave it. Among power-conference and Big East entrants, about 70% were unable to find a new school or transferred down. Entrants who find no offer at their level should drop down a tier or leave the game, with the rates above as the target.
+42. Bidding and visits. Make the portal a market: each entrant picks the best fit among the offers he gets (money, role, program strength, distance, coach), and AI schools bid within their own budgets. Limit the user to about 3 campus visits per portal window (this number is an estimate).
+43. Eligibility. Show years of eligibility left, whether he is immediately eligible, and class (first-year transfer, graduate transfer), because a player with one year left is worth less.
+44. Coach-initiated moves. Let the user release a player into the portal, as AI coaches do when they need roster spots. Releasing many players should hurt reputation and the morale of the rest of the roster.
+45. Portal tracker and news. A list of everyone who has entered and where they signed, a ranking of the top transfers, each AI school's biggest needs, and a League news summary of the biggest commitments.
+46. Keep the checks. After each portal change re-run the roster-limit rules (15), the NIL budget rules, the draft interplay (players who tested the waters and then entered the portal), and the baseline tests that the Big update rules describe.
+
+More recommendations
+47. A second postseason tournament (an NIT-style event of about 32 teams). Teams that miss the national tournament now just stop playing, which is why mid-level seasons feel empty. Add a 32-team event for the best teams left out, with a bracket and a result in the season history. It would also give mid-level schools something to play for while item 15 is tuned.
+48. Find out why a career couldn't open. A desktop career once showed "could not be opened". I built a Start a new career button, but the cause was never found, and tests could not reproduce it. Add a save-version number to every save, a "repair" step that tries to fix a save before giving up, and an automatic copy of the save before it is loaded. Test with saves from every earlier version.
+49. A performance log. You once reported a long delay and I could not reproduce it. Record the time each action takes and show the slowest recent ones in Settings under Diagnostics, so next time we can see exactly what was slow and when.
+50. Recruiting class rankings. Rank every school's incoming class (like the recruiting services do) and show it on a League news tab, with your class's national and conference rank and a history of your own class ranks.
+51. Advanced stats. Show efficiency and tempo for every team and player (points per 100 possessions, usage, a single rating like PER or BPM). Use team efficiency in the Top 25 and in tournament selection, as the real ranking systems do.
+52. An "update available" message for the phone and installed web app. Phones keep an old copy of the game until it is refreshed. Show a banner saying "A new version is ready, tap to update" when the website has been updated.
+53. Move a career between devices more easily. Export and Import work, but they need files. Add a way to send a career from your Mac to your phone in two taps (for example share-sheet export, or a short code), and a note on when the phone and Mac copies differ.
+54. Conference structure. All 20 conferences have 10 teams. Real conferences range from about 10 to 18, and only a few "power" leagues send many teams to the tournament. Make the sizes uneven, make a few leagues strong and the rest weaker, give one-bid leagues, and let the top seeds in a conference tournament get byes. Check the schedule length (30 games) still works for every size.
+55. Non-conference events and neutral sites. Add early-season multi-team events played at neutral sites, rivalry games, and a calendar where conference play starts in January. Home-court advantage should not apply at a neutral site.
+56. Coach attributes and contracts. The coach has only a level and a specialty. Give the coach skills (recruiting, development, tactics, culture) that grow with experience and success, and a contract with length, salary and a buyout, so firing and job offers have real stakes.

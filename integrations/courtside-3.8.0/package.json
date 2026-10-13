@@ -1,0 +1,11 @@
+{
+  "name": "college-dynasty-basketball-handoff",
+  "version": "3.8.0",
+  "private": true,
+  "scripts": {
+    "test": "node tests/game.js"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.63.0"
+  }
+}

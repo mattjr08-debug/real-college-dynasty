@@ -1,0 +1,5 @@
+STAGE 3 of 18: do ONLY these items now, one at a time, in this order, following the same rules as before (compare with the baseline after each item; one commit per item with the item number first; never push): 5, 6.
+
+Their text:
+5. Official visits and coaching staff. Visits are limited (about five) and matter a lot. Assistant coaches, who do most of the recruiting, don't exist in the game.
+6. Scale. NIL budgets run from about $250K to $2.5M. Real programs spend roughly $1M for small schools and $10M or more for the top programs. The relative sizes work, the dollar amounts don't.

@@ -1,0 +1,37 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: A big update. You will be given a numbered list of changes and you will do them in stages across several messages. This is STAGE 1 of 6.
+
+Rules for this batch: none of these items should change game numbers, so no baseline is needed. After each item run npm test (it already builds, so do not run npm run build first); if the item changes a screen also run npm run test:ui:quick (about 45 seconds). Commit each item separately with a message that starts with the item number (git add -A, git commit). Do not run git push. Make the smallest change that does each item and do not change unrelated things. If an item is unclear or unsafe, skip it and say why. If a check you run shows that game numbers moved (a realism row, wins or the draft shares), stop that item and report it. Never end your turn while a test or other command is still running in the background. Run long checks in the foreground (no trailing &), or wait for them with a sleep loop, read the result, and only then continue. If you ever start something in the background, wait for it and read its result before you finish. Always commit your finished work before you end.
+
+Do ONLY these items now, one at a time, in this order: 1, 2, 3.
+
+Their text:
+1. Visual identity. Rework the design tokens: a richer color system built around each school's team colors (a school accent used on the sidebar, headers, buttons and key numbers), a bolder type scale with a condensed display style for headings, scores and big stats, deeper card layering (subtle gradients, inner borders, soft shadows), and a consistent icon style. Update the shared components (Panel, Stat tile, Tabs, Table, Badge, Button, Modal) so every screen picks it up. Keep contrast at WCAG AA.
+2. Sidebar and header. A broadcast-style header bar with the season, phase and record as a score bug, a refined sidebar with the school crest large at the top, clearer active state, and the coach card tidied up.
+3. Program HQ. A hero banner with the large school logo and a big record, a matchup card for the next game with both logos, records and a win-chance bar, a season timeline strip showing wins and losses as colored game chips, and a stats strip with large numbers. Keep the "Do this next" card.
+
+The whole list, for reference only (do not do the other items):
+NOTES THAT GO WITH THIS LIST (these are not numbered items)
+- Items that do NOT change game numbers only need npm test and the matching screen test: items 1, 2, 3, 4, 5, 6, 7, 8 and 9.
+- Never change game rules, simulation, balance, saves or any number in the game. This is a visual redesign only.
+
+DIRECTION: make the game look and feel like a premium sports broadcast app: dark, bold, photo-forward and confident. Strong team-color identity, big clear numbers, large logos and player photos, sharp typography with a condensed display style for headings and scores (system fonts only, no downloads), layered cards with depth, and crisp motion. It should feel like the studio graphics of a college basketball broadcast, not a spreadsheet. Keep the dark theme.
+
+RULES THAT APPLY TO EVERY ITEM (the owner's rules, no exceptions)
+- No horizontal overflow, ever. At window widths of 1000, 1100, 1280 and 1440, and at a 390 phone width, nothing scrolls sideways and nothing is cut off, on any page, tab, table, bracket or pop-up.
+- Never hide a column or leave out information to make something fit. A wide table must shrink (smaller type, tighter padding, narrower columns, shorter headers) or wrap long text. If it still cannot fit comfortably, give it an Expand button that opens it full screen in an overlay with a Close button and Esc to close. No stacked cards or expandable rows as a substitute for fitting a table.
+- No nested scrolling unless it is absolutely necessary. Panels grow to fit their content so only the page scrolls.
+- Nothing may become slower and no heavy libraries. Keep it one self-contained file when built. Keep every feature, button, setting and shortcut working, and keep the Fit to screen, text size and pop-up toggles in Settings.
+- Run npm run test:overflow after every item. It must keep passing at 390, 1000, 1100, 1280 and 1440 wide.
+
+THE LIST
+1. Visual identity. Rework the design tokens: a richer color system built around each school's team colors (a school accent used on the sidebar, headers, buttons and key numbers), a bolder type scale with a condensed display style for headings, scores and big stats, deeper card layering (subtle gradients, inner borders, soft shadows), and a consistent icon style. Update the shared components (Panel, Stat tile, Tabs, Table, Badge, Button, Modal) so every screen picks it up. Keep contrast at WCAG AA.
+2. Sidebar and header. A broadcast-style header bar with the season, phase and record as a score bug, a refined sidebar with the school crest large at the top, clearer active state, and the coach card tidied up.
+3. Program HQ. A hero banner with the large school logo and a big record, a matchup card for the next game with both logos, records and a win-chance bar, a season timeline strip showing wins and losses as colored game chips, and a stats strip with large numbers. Keep the "Do this next" card.
+4. Roster and player profile. Photo-forward player rows and a trading-card style profile: large photo, a circular rating ring, position badge, class and archetype tags, attribute bars in groups, and a growth chart. Keep all tables fitting with no hidden columns.
+5. Recruiting. Bigger photos, star badges that read at a glance, rating, interest, signing chance and NIL ask kept beside the name, clearer rival and pitch indicators, and a richer recruit profile pop-up. Keep every column and no sideways scroll.
+6. Game Day. A broadcast scoreboard with both logos, team colors, large score, game clock and shot clock, a momentum bar, a readable play-by-play feed with small icons for makes, misses, fouls and timeouts, and a clear halftime panel.
+7. Season center, standings, Top 25 and the bracket. Modern bracket visuals with logos and seed numbers that scale to the window width (with an Expand view), ranking rows with logos and move arrows, and a cleaner bubble watch.
+8. NIL budget, League news, Coaching, Career history and Settings. Apply the new look and charts consistently, with larger numbers, clear section headers and tidy tabs that wrap onto a second row.
+9. Motion, polish and proof. Subtle transitions (respect reduced motion), animated number counters on key stats, loading and empty states, and pop-ups with the same new style. Take before and after screenshots of every page and tab at 1000, 1280 and 1440 wide plus a phone width, run npm test, the quick and full screen tests, the strict overflow test, the phone test and the saves test, and report what changed on each screen in plain language.

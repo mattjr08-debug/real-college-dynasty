@@ -1,0 +1,14 @@
+STAGE 2 of 18: do ONLY these items now, one at a time, in this order, following the same rules as before (compare with the baseline after each item; one commit per item with the item number first; never push): 1, 2, 3, 4.
+
+Their text:
+1. Too little turnover. Right now AI players leave for the portal at about 2.5% each year, and your own roster loses a handful. Real programs replace a third to half of their roster each year, which makes continuity and chemistry matter.
+2. No "testing the waters". In real life, players enter the draft, work out, and can return to school.
+3. Eligibility. There are no hardship waivers or medical redshirts, and no suspensions.
+4. Class shape (HIGH SCHOOL RECRUITS ONLY). Do not change the transfer portal pool, walk-ons, or the players on other teams' rosters; leave their star mix and ratings as they are. The high school class is upside down: right now it has 90 recruits with about 20 five-stars, 22 four-stars, 20 three-stars, 16 two-stars, 8 one-stars and 4 unranked, so there are almost as many elite recruits as ordinary ones. In real recruiting the stars form a pyramid: a small number of five-stars, several times as many four-stars, and the most players at three stars. Rebuild the high school class so it has about 300 prospects with this shape:
+   - 5 stars: about 20 (7%)
+   - 4 stars: about 80 (27%)
+   - 3 stars: about 110 (37%)
+   - 2 stars: about 60 (20%)
+   - 1 star: about 20 (7%)
+   - unranked: about 10 (3%)
+   The five-star to four-star ratio should stay near 1 to 4. Keep the rating ranges tied to each star level as they are now. Because the pool grows from 90 to about 300, also: raise the cap on how many prospects can be saved so the high school class and the transfer pool both fit, make sure the recruiting tables still load quickly, make sure saves stay small and fast, and keep transfers better on average than high school recruits. If 300 is too slow or too large, drop to 250 and keep the same ratios, not to 200. Then re-run the draft check (freshmen 55 to 80% of the lottery, 40 to 60% of the first round), the realism test and the balance test, because more mid-level recruits changes team strength and costs.

@@ -1,0 +1,53 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: A big update. You will be given a numbered list of changes and you will do them in stages across several messages. This is STAGE 1 of 4.
+
+Rules for this batch: none of these items should change game numbers, so no baseline is needed. After each item run npm test (it already builds, so do not run npm run build first); if the item changes a screen also run npm run test:ui:quick (about 45 seconds). Commit each item separately with a message that starts with the item number (git add -A, git commit). Do not run git push. Make the smallest change that does each item and do not change unrelated things. If an item is unclear or unsafe, skip it and say why. If a check you run shows that game numbers moved (a realism row, wins or the draft shares), stop that item and report it. Never end your turn while a test or other command is still running in the background. Run long checks in the foreground (no trailing &), or wait for them with a sleep loop, read the result, and only then continue. If you ever start something in the background, wait for it and read its result before you finish. Always commit your finished work before you end.
+
+Do ONLY these items now, one at a time, in this order: 1, 2, 3, 4, 5.
+
+Their text:
+1. Add "Play Game" for the currently scheduled game. Keep the existing simulation options available.
+2. Use the included adapter to supply our actual starting five, eligible bench players, and the scheduled opponent's roster. Preserve career player IDs, attributes, tendencies, heights, and any supplied appearance colors. Ratings must continue affecting gameplay for both teams, and tendencies must guide AI choices.
+3. Keep team 0 as the user-controlled team and team 1 as the opponent. Use homeTeam 0 for home games, 1 for away games, and null for neutral games. Supply the actual home school's logo and colors so center court belongs to the home team. Use College Dynasty's logoFor and hqOppSchool helpers as documented.
+4. Open the playable game in a large, polished view that uses most of the window. Keep it offline-compatible and working in both the browser build and Electron desktop app. Choose packaging that remains compatible with College Dynasty's single-file build.
+5. Connect the documented version-1 match/result messaging interface. Validate message sources and returned results against the active scheduled game. Prevent duplicate results, results from the wrong game, and accidental career changes when a game is abandoned.
+
+The whole list, for reference only (do not do the other items):
+NOTES THAT GO WITH THIS LIST (these are not numbered items)
+- Items that do NOT change game numbers only need npm test and the matching screen test: items 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 and 11.
+- The package has been copied into the project at integrations/courtside-3.8.0/ so you can read it there (it is version 3.8.0, with README.md, RULES.md, CHANGELOG.md, ASSET-CREDITS.md, college-dynasty-adapter.js, example-match.json, embedding-demo.html, basketball-game.html and the reference and tests folders). The full original is at /Users/mattjack/Documents/Courtside-Basketball/ (read-only reference). College Dynasty's notes files are AGENTS.md and CLAUDE.md in the project folder: read both.
+- The owner's UI rules also apply to anything new on screen: no sideways scrolling or cut-off at 390, 1000, 1100, 1280 and 1440 wide, no hidden table columns, no nested up-and-down scrolling, nothing slower. Keep npm run test:overflow passing. The playable game view itself should fill the window (a large overlay) and not scroll the page.
+- Never change how already-simulated games work or any balance number. Do not change anything in the basketball game's gameplay.
+
+THE REQUEST (the owner's own words follow exactly)
+
+Integrate the standalone basketball game into College Dynasty as a "Play Game" option alongside the existing simulation options.
+
+The basketball project is:
+/Users/mattjack/Documents/Courtside-Basketball/
+
+The integration package is:
+/Users/mattjack/Documents/Courtside-Basketball/basketball-handoff.zip
+
+College Dynasty is:
+/Users/mattjack/Documents/College-Dynasty/
+
+Read College Dynasty's AGENTS.md and the basketball package's README.md, RULES.md, CHANGELOG.md, ASSET-CREDITS.md, college-dynasty-adapter.js, example-match.json, and embedding-demo.html before editing.
+
+Use the latest packaged game, version 3.8.0. Preserve its existing gameplay, controls, models, animations, rules, and perfect-release shooting behavior.
+
+Implement the integration end to end:
+
+THE LIST
+1. Add "Play Game" for the currently scheduled game. Keep the existing simulation options available.
+2. Use the included adapter to supply our actual starting five, eligible bench players, and the scheduled opponent's roster. Preserve career player IDs, attributes, tendencies, heights, and any supplied appearance colors. Ratings must continue affecting gameplay for both teams, and tendencies must guide AI choices.
+3. Keep team 0 as the user-controlled team and team 1 as the opponent. Use homeTeam 0 for home games, 1 for away games, and null for neutral games. Supply the actual home school's logo and colors so center court belongs to the home team. Use College Dynasty's logoFor and hqOppSchool helpers as documented.
+4. Open the playable game in a large, polished view that uses most of the window. Keep it offline-compatible and working in both the browser build and Electron desktop app. Choose packaging that remains compatible with College Dynasty's single-file build.
+5. Connect the documented version-1 match/result messaging interface. Validate message sources and returned results against the active scheduled game. Prevent duplicate results, results from the wrong game, and accidental career changes when a game is abandoned.
+6. Save completed games through College Dynasty's normal season bookkeeping. Update the schedule, records, standings, player/team statistics, history, and applicable tournament progression exactly once. Reuse or refactor the existing bookkeeping rather than simulating an additional game to obtain these updates.
+7. Support 20-, 15-, 10-, and 5-minute halves. For shortened games, the exported normalized 40-minute score and player statistics are the OFFICIAL season results. Preserve actual played statistics separately where supported. Personal fouls remain unscaled. Do not normalize already-normalized results again.
+8. Preserve mandatory inbounds, timeout limits, substitutions, player lock, coaching options, fouls/free throws, and the other rules already implemented. Use College Dynasty's timeout configuration through the adapter.
+9. Preserve the Human model attribution to Real_jseals under CC BY 4.0, including the model/license links and notice of modifications. Keep the credits accessible in the integrated game.
+10. Add any new persisted fields to College Dynasty's Zod save schema so they survive reloads. Keep existing save keys and backward compatibility. Use the career's seeded randomness; do not introduce Math.random() into game logic.
+11. Test a home game, away game, neutral game, shortened game, substitutions, abandoning a game, saving/reloading, duplicate-result protection, and relevant tournament progression. Run the applicable existing tests and build the final College Dynasty HTML. Work directly in the source files and complete the implementation. Do not replace the playable game with a simulation or a mockup. Do not claim full NCAA compliance beyond the supported rules documented in RULES.md. When finished, report what changed, what passed testing, any remaining limitations, and exactly which built file I should open to play.

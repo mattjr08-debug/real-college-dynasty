@@ -1,0 +1,11 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: Fix a problem.
+Request: The Auto-recruit pop-up once showed NIL available as $-361K on a new Lone Star Union career. That bug was already there before these edits. Worth fixing.
+Too many Brutal coaches get fired: 33%, against a target of about 20%. Claude Code thinks it's sampling noise, since it measured the same without the new tendencies.
+Too few Challenging and Hard teams make the tournament. That also predates these edits.
+A Game Day replay disappears if you reload the game right after it. The final score and stats are kept.
+
+Rules: make the smallest change that does the job and do not change unrelated things. After changing, rebuild (npm run build) and run npm test. Also run the test that matches the change (npm run test:realism for anything that changes game numbers, npm run test:ui for screens, npm run test:balance for difficulty). If a check fails, fix it or say so clearly. Commit with a clear message (git add -A, git commit). Do not run git push.
+
+End your report with three short parts: (1) What I changed, in plain words. (2) What I tested and the results. (3) Anything I am unsure about, or that the owner should look at while playing.

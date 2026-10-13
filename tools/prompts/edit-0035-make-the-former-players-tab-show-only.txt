@@ -1,0 +1,19 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: Add something new.
+Request: Make the Former players tab show only my favorites, and let me favorite players.
+
+Where it is: Career history, then the "Former players" tab (src/js/0107-AlumniPanel.js, shown with part "former"). Today it lists every former player (graduates, draft picks and transfers) in a table with PLAYER, POS, LEFT, CAREER WITH YOU, WHAT HAPPENED, NOW and AVERAGING NOW.
+
+What I want:
+1. The Former players tab shows ONLY the players I have favorited. Every row has a star button at the left to unfavorite (clicking again removes the favorite, with the row staying until I leave the tab or refresh it, so I can undo a mis-click).
+2. A clear way to favorite players: an "Add favorites" button at the top of the tab opens a full-screen overlay listing ALL former players with the same columns, a star button on each row, a search box that filters by name, and a Close button (Esc also closes). Starred players are marked, and the overlay counts how many are favorited. The overlay must fit the window with no sideways scrolling and no hidden columns (shrink or wrap).
+3. When there are no favorites yet, show a friendly empty state that says so and has the Add favorites button. When there are former players but none favorited, say "You have N former players. Add the ones you want to follow."
+4. Also let me favorite a player straight from where I see them: add the same star to a former player's row anywhere else a former player is listed in Career history (for example Program honors lists, if they show names), but only if it is simple.
+5. Favorites are saved with the career. Store them in the save (a list of keys for the former players, built from the name and the year they left), add the field to the save schema so it is not dropped, keep old saves loading (a missing field means no favorites), and add it to the save tests. Favorites must survive closing and reopening the game, export and import of a career, the career backups, and the career code. Add a test that favorites a player, saves, reloads and checks the star is still there, and that unfavoriting works.
+
+Rules (the owner's rules, no exceptions): no sideways scrolling or cut-off at 390, 1000, 1100, 1280 and 1440 wide, no hidden columns, no nested up-and-down scrolling, nothing slower, every other feature keeps working. Run npm run test:overflow, npm test, the quick screen test and the saves test. This changes no game numbers, so no baseline is needed. Wait for your own tests to finish and commit before you end.
+
+Rules: make the smallest change that does the job and do not change unrelated things. After changing, rebuild (npm run build) and run npm test. Also run the test that matches the change (npm run test:realism for anything that changes game numbers, npm run test:balance for difficulty). For anything that changes a screen, use the quick screen test while you work (npm run test:ui:quick, about 45 seconds) and run the full one (npm run test:ui, about 2 minutes) only once, at the very end. If a check fails, fix it or say so clearly. Commit with a clear message (git add -A, git commit). Do not run git push. Never end your turn while a test or other command is still running in the background. Run long checks in the foreground (no trailing &), or wait for them with a sleep loop, read the result, and only then continue. If you ever start something in the background, wait for it and read its result before you finish. Always commit your finished work before you end.
+
+End your report with three short parts: (1) What I changed, in plain words. (2) What I tested and the results. (3) Anything I am unsure about, or that the owner should look at while playing.

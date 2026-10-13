@@ -1,0 +1,53 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: The game plays differently.
+Request: minute allocation presets in coaching tab
+
+example
+
+starters(give more minutes to starters
+star players(give more minutes to star players)
+Balanced(the normal setting)
+etc
+
+
+In the live game day thing it should scow the core for both teams and it should be a play by play not start at the second half
+
+deep runs in tournament should make good players on that team get higher draft odds
+
+on contract talks after broke out this season it says /u00B7 fix that
+
+for some reason cut player not working duting the season
+
+seperate page for best single seasons
+
+let you see what former players are averaging now as well
+
+on minutes and development page injured is displayed next to injured players and a better way to display it inmy roster tab
+
+on minutes and devolepment tab it tells you you cant leave until you balance minutes to 200 if chnaging and its over 200
+
+how many tendencies are in the game if just threes or not a lot add more player tendicies
+
+decline all button on contract talk buttons
+
+
+add most amount of x stat in a game to career history
+
+make it so you dont have to scroll down a lot when you click on a player to recruit /make everything fit on the screen
+
+auto scout option favorited recruit option
+
+auto recruit tries to get favorited players first if possible then next best options
+
+moce stats closer to  player names on lasst season stats page to fill empty space
+
+overall just improve the coaching tab
+
+option to always have auto set coaching
+
+redo pop ups and make them better
+
+Rules: make the smallest change that does the job and do not change unrelated things. After changing, rebuild (npm run build) and run npm test. Also run the test that matches the change (npm run test:realism for anything that changes game numbers, npm run test:ui for screens, npm run test:balance for difficulty). If a check fails, fix it or say so clearly. Commit with a clear message (git add -A, git commit). Do not run git push.
+
+End your report with three short parts: (1) What I changed, in plain words. (2) What I tested and the results. (3) Anything I am unsure about, or that the owner should look at while playing.

@@ -1,0 +1,13 @@
+{
+  "name": "real-college-dynasty",
+  "productName": "Real College Dynasty",
+  "version": "1.0.0",
+  "description": "College Dynasty: an offline college basketball coaching game",
+  "main": "main.js",
+  "private": true,
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "^44.5.1"
+  }
+}

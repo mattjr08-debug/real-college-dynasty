@@ -1,0 +1,7 @@
+STAGE 3 of 4: do ONLY these items now, one at a time, in this order, following the same rules as before (compare with the baseline after each item; one commit per item with the item number first; never push): 33, 34, 53, 55.
+
+Their text:
+33. International prospects who develop differently from US high school recruits.
+34. Real logo artwork. The current logos are generated (a shield shape, a mascot symbol and initials).
+53. Move a career between devices more easily. Export and Import work, but they need files. Add a way to send a career from your Mac to your phone in two taps (for example share-sheet export, or a short code), and a note on when the phone and Mac copies differ.
+55. Non-conference events and neutral sites. Add early-season multi-team events played at neutral sites, rivalry games, and a calendar where conference play starts in January. Home-court advantage should not apply at a neutral site.

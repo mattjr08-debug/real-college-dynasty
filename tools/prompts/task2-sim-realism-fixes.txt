@@ -1,0 +1,28 @@
+Read CLAUDE.md first. The tests/realism.js and tests/balance.js measurement tests exist; run them from the project folder.
+
+Task: fix the known simulation realism problems, proving each change with the tests. Edit files under src/js/ (the game's code), rebuild with `npm run build`, and re-measure.
+Run every command in the FOREGROUND (realism takes about 5 seconds, balance about 15 seconds). Do not start background jobs.
+
+Problems measured on the current build (npm run test:realism):
+- Rebounds per game are 30.7 for your games and 30.9 for other teams; the target is 35 (need within 8%: 32.2 to 37.8).
+- Blocks per game are 4.0; the target is 3.5 (need within 8%: 3.2 to 3.8).
+- Other teams' margin standard deviation from W_game is 16.8; the target is 12 (need 11 to 13.8). W_game is too noisy.
+- The home win % row in tests/realism.js is a bad test: it compares to 60% even though the user's team does not win 50% overall.
+  Change that measurement to home minus away win percentage points (target about +20 points) and also average home margin minus
+  average away margin (target about +7 points). Keep the old rows out.
+
+How to work:
+1. Find the code: `ny` (your games) and `W_game` and `W_at` (other teams) live in src/js files (search with Grep for "function ny(" and "function W_game(").
+   Rebound shares, block chances and noise are plain numbers inside those functions. The TUNE object holds some knobs.
+2. Make small changes. After each change run `npm run build && node tests/realism.js` and watch ALL rows. Do not let rows that were PASS fall to NEAR or FAR.
+   Raising rebounds must not push points per game, FG% or steals out of PASS.
+3. For W_game noise, reduce randomness (for example fewer possessions with extreme shot-weight variance, or smoothing the player-weight
+   distribution) rather than changing average rates; re-check that other teams' points, assists and steals stay PASS.
+4. When realism looks good, run `TRIALS=2 SEASONS=3 node tests/balance.js`. Wins minus goal per tier must stay within 1.5 wins of where it
+   was (Easy +2.7, Moderate +2.1, Challenging -0.2, Hard +0.6, Brutal +0.3 on one trial; expect noise). If a tier shifts by more than 1.5 wins,
+   adjust TUNE.u (the your-team strength offset) by small steps and re-run until it is back in range. Report what you changed.
+5. Run `npm test` (the smoke test) at the end; it must pass.
+6. Commit with git: `git add -A` then a clear message such as "Fix rebound, block and other-team noise realism". Do not run git push.
+7. Update the "Known issues" section of CLAUDE.md: remove the items you fixed, and write the new measured numbers.
+
+End with a short report: every number you changed (old value, new value, file), the before and after tables for realism, the balance summary, and anything you could not verify.

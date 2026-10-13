@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+dist/
+dist-app/
+desktop/node_modules/
+desktop/game/
+_to_delete/
+realdata/test/
+realdata/phone-pub/
+realdata/phone-build.html
+*.bak

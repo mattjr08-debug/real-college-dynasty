@@ -1,0 +1,5 @@
+STAGE 2 of 6: do ONLY these items now, one at a time, in this order, following the same rules as before (compare with the baseline after each item; one commit per item with the item number first; never push): 15, 22.
+
+Their text:
+15. Finish the tournament rate for small-budget schools. The tournament check is now based on each school's NIL budget, anchored on the real 2025 tournament (68 of 364 teams; low-budget leagues about 9%, upper mid-majors about 29%, the five power leagues 48%, top programs about 85%). The expected rates by level are 10, 20, 30, 48 and 83%. Four levels are within 8 points. Only the Small-budget level (Moderate) misses, at about 10% against 20%. Tune it, without moving wins above goal by more than 1.5 in any level.
+22. Game Day changes at timeouts. Right now substitutions and timeout-style changes can only be made at halftime. Let the player pause at their own timeouts to make substitutions and tactic changes. This changes the live game engine, so check that the scores of a played game do not shift.

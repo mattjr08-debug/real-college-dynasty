@@ -1,0 +1,39 @@
+Read CLAUDE.md first. This request comes from the game's owner, who is not a programmer. Write your final report in plain, non-technical language.
+
+Type of change: A big update. You will be given a numbered list of changes and you will do them in stages across several messages. This is STAGE 1 of 6.
+
+Rules for this batch: none of these items should change game numbers, so no baseline is needed. After each item run npm test (it already builds, so do not run npm run build first); if the item changes a screen also run npm run test:ui:quick (about 45 seconds). Commit each item separately with a message that starts with the item number (git add -A, git commit). Do not run git push. Make the smallest change that does each item and do not change unrelated things. If an item is unclear or unsafe, skip it and say why. If a check you run shows that game numbers moved (a realism row, wins or the draft shares), stop that item and report it.
+
+Do ONLY these items now, one at a time, in this order: 1, 2, 3, 4.
+
+Their text:
+1. Design system first. Create one set of design tokens (colors, a spacing scale, a type scale, radii, shadows, motion timings) and a small set of shared components: Panel, Stat tile, Tabs (they wrap onto a second row, never overflow), Table, Badge, Button, Modal, Empty state. Keep each school's team colors as accents. Make text contrast meet WCAG AA. Write the system down in CLAUDE.md. Then move the existing screens onto these components as you go through the next items.
+2. A better Table component. One shared table that fits its space with no sideways scroll: tabular numbers, right-aligned numbers, clear header, row hover, a visible sort arrow, filter chips above it, and the Expand-to-full-screen button for wide tables as described in the rules. Use it for every table in the game (roster, stats, recruiting, schedule, standings, rankings, NIL, diagnostics, history).
+3. Program HQ. Turn it into a clear dashboard: a "what to do next" card at the top, key metric tiles with small trend sparklines (SVG, no library), the next game, the news feed with icons, and the roster's top players. Strong hierarchy so the most important thing is obvious in two seconds.
+4. My roster and player profile. Better player cards (photo, position badge, rating bar, class, minutes, injury state), a cleaner profile with attribute bars grouped (shooting, athleticism, defense, skill) and a simple chart of growth by season. Consistent photos and sizes everywhere a player appears.
+
+The whole list, for reference only (do not do the other items):
+NOTES THAT GO WITH THIS LIST (these are not numbered items)
+- Items that do NOT change game numbers only need npm test and the matching screen test: items 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 and 11.
+- Never change game rules, simulation, balance, saves or any number in the game. This is a look-and-feel overhaul only.
+
+RULES THAT APPLY TO EVERY ITEM (the owner's rules, no exceptions)
+- No horizontal overflow, ever. At window widths of 1000, 1100, 1280 and 1440, and at a 390 phone width, nothing scrolls sideways and nothing is cut off, on any page, tab, table, bracket or pop-up.
+- Never hide a column or leave out information to make something fit. A wide table must shrink (smaller type, tighter padding, narrower columns, shorter headers) or wrap long text. If it still cannot fit comfortably, give it an Expand button (a small icon in the corner, or clicking the title) that opens it full screen in an overlay with a Close button and Esc to close. The full-screen view shows every column and must not scroll sideways either. No stacked cards and no expandable rows as a substitute.
+- No nested scrolling unless it is absolutely necessary. Panels grow to fit their content so only the page scrolls. Keep an inner scroll box only for a truly very long list, and name each one you keep and why.
+- Nothing may become slower. Do not add heavy libraries. Keep it one self-contained file when built.
+- Keep every feature, button, setting and shortcut working. Keep the Fit to screen, text size and pop-up toggles in Settings.
+- Run npm run test:overflow after every item. It must keep passing at 1000, 1100, 1280 and 1440 wide.
+
+THE LIST
+1. Design system first. Create one set of design tokens (colors, a spacing scale, a type scale, radii, shadows, motion timings) and a small set of shared components: Panel, Stat tile, Tabs (they wrap onto a second row, never overflow), Table, Badge, Button, Modal, Empty state. Keep each school's team colors as accents. Make text contrast meet WCAG AA. Write the system down in CLAUDE.md. Then move the existing screens onto these components as you go through the next items.
+2. A better Table component. One shared table that fits its space with no sideways scroll: tabular numbers, right-aligned numbers, clear header, row hover, a visible sort arrow, filter chips above it, and the Expand-to-full-screen button for wide tables as described in the rules. Use it for every table in the game (roster, stats, recruiting, schedule, standings, rankings, NIL, diagnostics, history).
+3. Program HQ. Turn it into a clear dashboard: a "what to do next" card at the top, key metric tiles with small trend sparklines (SVG, no library), the next game, the news feed with icons, and the roster's top players. Strong hierarchy so the most important thing is obvious in two seconds.
+4. My roster and player profile. Better player cards (photo, position badge, rating bar, class, minutes, injury state), a cleaner profile with attribute bars grouped (shooting, athleticism, defense, skill) and a simple chart of growth by season. Consistent photos and sizes everywhere a player appears.
+5. Recruiting, all four tabs. The key numbers (rating, interest, signing chance, NIL ask) sit beside the player name on the left. Clear bars for interest and signing chance, a visible rival indicator, filters as chips, a pinned offer box, and no hidden columns. High school, Transfer portal, My recruits and Walk-on pool all share the new Table.
+6. Coaching. Polish the court view and lineup fit tags, make the minutes plan cards easier to read, and show the rotation minutes bar clearly. No inner scroll boxes.
+7. Schedule, Season center and Game Day. The Schedule fits without cutting off the guarantee-games side. Standings, Top 25, bracket and bubble views fit the window: scale a bracket to the window width, with an Expand view for the full-size bracket. Game Day gets a larger scoreboard, a readable play-by-play and a clear halftime panel.
+8. NIL budget, League news, Career history and Settings. Tabs wrap onto a second row. Panels grow to their content. Revenue streams and the market get simple SVG charts.
+9. Pop-ups. One consistent modal style and sizes, the same close and Esc behavior, proper keyboard focus, and the existing ceremony style kept for awards and championships. Every pop-up fits at 390 and 1000 wide.
+10. Motion, feedback, accessibility and phone. Subtle transitions (respect reduced motion), loading and empty states, visible keyboard focus, labels for icon buttons, tap targets of at least 44 pixels on touch, and a layout that works at 390 wide with no sideways scroll.
+11. Prove it. Take before and after screenshots of every page and tab at 1000, 1280 and 1440 wide, plus a phone width, and list anything you could not make fit. Make sure tests/overflow.js also checks 390 wide for the phone layout. Run npm test, the quick and full screen tests, the phone test and the saves test. Report exactly what you changed on each screen, in plain language.

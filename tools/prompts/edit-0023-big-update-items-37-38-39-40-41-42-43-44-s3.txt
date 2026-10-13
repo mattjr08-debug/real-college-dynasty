@@ -1,0 +1,7 @@
+STAGE 3 of 4: do ONLY these items now, one at a time, in this order, following the same rules as before (compare with the baseline after each item; one commit per item with the item number first; never push): 42, 43, 44, 45.
+
+Their text:
+42. Bidding and visits. Make the portal a market: each entrant picks the best fit among the offers he gets (money, role, program strength, distance, coach), and AI schools bid within their own budgets. Limit the user to about 3 campus visits per portal window (this number is an estimate).
+43. Eligibility. Show years of eligibility left, whether he is immediately eligible, and class (first-year transfer, graduate transfer), because a player with one year left is worth less.
+44. Coach-initiated moves. Let the user release a player into the portal, as AI coaches do when they need roster spots. Releasing many players should hurt reputation and the morale of the rest of the roster.
+45. Portal tracker and news. A list of everyone who has entered and where they signed, a ranking of the top transfers, each AI school's biggest needs, and a League news summary of the biggest commitments.
