@@ -11,7 +11,7 @@ ACC,Miami,Christopher Birden Jr.,F,Freshman,FOUND
 ACC,Miami,Caleb Gaskins,F,Freshman,FOUND
 ACC,Miami,Egor Ryzhov,C,Senior,FOUND
 ACC,Duke,Nick Arnold,G,Freshman,FOUND
-ACC,Duke,Joaquim Boumtje Boumtje,C,Freshman,STILL MISSING
+ACC,Duke,Joaquim Boumtje Boumtje,C,Freshman,FOUND
 ACC,Duke,Brock Davis,G,Senior,FOUND
 ACC,Duke,Bryson Howard,G,Freshman,FOUND
 ACC,Duke,Maxime Meyer,C,Freshman,FOUND
@@ -40,12 +40,12 @@ ACC,Syracuse,Ryan Moesch,G,Freshman,FOUND
 ACC,Syracuse,Mark Morano,F,Freshman,FOUND
 ACC,Syracuse,Calvin Russell III,G,Sophomore,FOUND
 ACC,Syracuse,Abdramane Siby,C,Freshman,FOUND
-ACC,Georgia Tech,Kayden Allen,G,Freshman,STILL MISSING
-ACC,Georgia Tech,Kaiden Bailey,G,Freshman,STILL MISSING
-ACC,Georgia Tech,Cody Cross,G,Freshman,STILL MISSING
-ACC,Georgia Tech,Moustapha Diop,F,Freshman,STILL MISSING
-ACC,Georgia Tech,Haiden Harper,G,Freshman,STILL MISSING
-ACC,Georgia Tech,Ilja Kurucs,F,Freshman,STILL MISSING
+ACC,Georgia Tech,Kayden Allen,G,Freshman,FOUND
+ACC,Georgia Tech,Kaiden Bailey,G,Freshman,FOUND
+ACC,Georgia Tech,Cody Cross,G,Freshman,FOUND
+ACC,Georgia Tech,Moustapha Diop,F,Freshman,FOUND
+ACC,Georgia Tech,Haiden Harper,G,Freshman,FOUND
+ACC,Georgia Tech,Ilja Kurucs,F,Freshman,FOUND
 ACC,Georgia Tech,Vctor Valds,F,Senior,STILL MISSING
 ACC,Notre Dame,Jake Burow,G,Freshman,FOUND
 ACC,Notre Dame,Jonathan Sanderson,G,Freshman,FOUND
@@ -58,7 +58,7 @@ Big Ten,Michigan,Joseph Hartman,G,Freshman,FOUND
 Big Ten,Michigan,Brandon McCoy Jr.,G,Freshman,FOUND
 Big Ten,Michigan,Marcus Moller,C,Freshman,FOUND
 ACC,Boston College,Jordan Ghee,G,Freshman,FOUND
-ACC,Boston College,ak Smrekar,G,Freshman,STILL MISSING
+ACC,Boston College,ak Smrekar,G,Freshman,FOUND
 Big Ten,Michigan State,Julius Avent,F,Freshman,FOUND
 Big Ten,Michigan State,Jasiah Jervis,G,Freshman,FOUND
 Big Ten,Michigan State,Carlos Medlock Jr.,G,Freshman,FOUND
@@ -149,12 +149,12 @@ SEC,Ole Miss,Jaron Saulsberry,G,Freshman,FOUND
 SEC,Missouri,Toni Bryant,F,Freshman,FOUND
 SEC,Missouri,Aidan Chronister,G,Freshman,FOUND
 SEC,Missouri,Jason Crowe Jr.,G,Freshman,FOUND
-SEC,South Carolina,Mathias Alessanco,F,Freshman,STILL MISSING
-SEC,South Carolina,Juan Fernandez,F,Senior,STILL MISSING
-SEC,South Carolina,Nasir Hines,F,Sophomore,STILL MISSING
-SEC,South Carolina,Marcus Johnson,G,Freshman,STILL MISSING
-SEC,South Carolina,Hugo Lopez,F,Senior,STILL MISSING
-SEC,South Carolina,Ford Wilder,G,Freshman,STILL MISSING
+SEC,South Carolina,Mathias Alessanco,F,Freshman,FOUND
+SEC,South Carolina,Juan Fernandez,F,Senior,FOUND
+SEC,South Carolina,Nasir Hines,F,Sophomore,FOUND
+SEC,South Carolina,Marcus Johnson,G,Freshman,FOUND
+SEC,South Carolina,Hugo Lopez,F,Senior,FOUND
+SEC,South Carolina,Ford Wilder,G,Freshman,FOUND
 SEC,Georgia,David Ugonna Ike,F,Freshman,FOUND
 SEC,Georgia,Mading Kuany,F,Freshman,FOUND
 SEC,Georgia,Kemauri Millender,G,Senior,FOUND
@@ -268,7 +268,7 @@ Mid-American,Bowling Green,KJ Torbert,G,Freshman,FOUND
 Mid-American,Kent State,Dezmon Briscoe,F,Freshman,FOUND
 Mid-American,Kent State,Omer Hamama,G,Freshman,STILL MISSING
 Mid-American,Kent State,Dylan Lakatos,G,Freshman,FOUND
-Mid-American,Kent State,Jaymen Townsend,F,Freshman,STILL MISSING
+Mid-American,Kent State,Jaymen Townsend,F,Freshman,FOUND
 Mid-American,Kent State,Landon Vanderwarker,F,Freshman,FOUND
 Mid-American,Kent State,Quinn Woidke,G,Freshman,FOUND
 Mid-American,Buffalo,Boluwasefe John,F,Junior,FOUND
@@ -291,13 +291,13 @@ Mid-American,Central Michigan,Brock Mendoza,C,Senior,FOUND
 Mid-American,Central Michigan,Jacob Wrencher,G,Freshman,FOUND
 Mid-American,Ball State,Kamden McGilveary,G,Freshman,FOUND
 Mid-American,Ball State,Kai McGrew,F,Freshman,FOUND
-Coastal Athletic,Hofstra,Trey Boyd III,G,Junior,STILL MISSING
+Coastal Athletic,Hofstra,Trey Boyd III,G,Junior,FOUND
 Coastal Athletic,Hofstra,Preston Edmead,G,Freshman,STILL MISSING
 Mid-American,Western Michigan,Camden Thompson,G,Freshman,STILL MISSING
 Horizon League,Wright State,PJ Douglas,G,Freshman,FOUND
 Horizon League,Wright State,Kellen Pickett,F,Freshman,FOUND
-Horizon League,Oakland,William Kassi,G,Junior,STILL MISSING
-Horizon League,Robert Morris,Samuel Obenjo,F,Freshman,STILL MISSING
+Horizon League,Oakland,William Kassi,G,Junior,FOUND
+Horizon League,Robert Morris,Samuel Obenjo,F,Freshman,FOUND
 Horizon League,Milwaukee,Ned Renfree,G,Freshman,STILL MISSING
 Horizon League,Cleveland State,Chevalier Emery,G,Junior,STILL MISSING
 Horizon League,Cleveland State,Ivan Spirov,F,Junior,STILL MISSING
@@ -320,12 +320,12 @@ MAAC,Marist,Edward Onyia,F,Sophomore,FOUND
 MAAC,Marist,Logan Rodriguez,F,Freshman,FOUND
 MAAC,Marist,Cameron Sweeney,G,Freshman,FOUND
 MAAC,Marist,Josh Williams,G,Junior,FOUND
-MAAC,Quinnipiac,Nedas Cholevinskas,F,Freshman,STILL MISSING
-MAAC,Quinnipiac,Tayeshawn Cunningham-Pemberton,G,Senior,STILL MISSING
-MAAC,Quinnipiac,Ali Diouf,F,Freshman,STILL MISSING
-MAAC,Quinnipiac,Malik Fields,G,Freshman,STILL MISSING
-MAAC,Quinnipiac,Mike Parrotta,G,Senior,STILL MISSING
-MAAC,Quinnipiac,Lucas Sekasi,G,Junior,STILL MISSING
+MAAC,Quinnipiac,Nedas Cholevinskas,F,Freshman,FOUND
+MAAC,Quinnipiac,Tayeshawn Cunningham-Pemberton,G,Senior,FOUND
+MAAC,Quinnipiac,Ali Diouf,F,Freshman,FOUND
+MAAC,Quinnipiac,Malik Fields,G,Freshman,FOUND
+MAAC,Quinnipiac,Mike Parrotta,G,Senior,FOUND
+MAAC,Quinnipiac,Lucas Sekasi,G,Junior,FOUND
 MAAC,Saint Peter's,Mason Santiago,G,Freshman,STILL MISSING
 MAAC,Saint Peter's,Ken Walker,G,Senior,STILL MISSING
 MAAC,Saint Peter's,Robert Wilmote,G,Junior,STILL MISSING
@@ -341,22 +341,22 @@ MAAC,Iona,Max Moshinski,G,Freshman,FOUND
 MAAC,Iona,Oliver Sassella,G,Freshman,FOUND
 MAAC,Iona,Micah Tannenbaum,G,Freshman,FOUND
 MAAC,Iona,Abram Williams,G,Freshman,FOUND
-MAAC,Merrimack,Jeremiah Anderson,G,Senior,STILL MISSING
-MAAC,Merrimack,Amare Guerra,G,Freshman,STILL MISSING
-MAAC,Merrimack,Ayden Johnson,G,Freshman,STILL MISSING
-MAAC,Merrimack,JP Skoric,F,Freshman,STILL MISSING
-MAAC,Merrimack,Rocco Westfield,G,Freshman,STILL MISSING
-MAAC,Mount St. Mary's,Ryan Brzezanski,F,Freshman,STILL MISSING
-MAAC,Mount St. Mary's,Crue Gard,F,Freshman,STILL MISSING
-MAAC,Mount St. Mary's,Liam Joyce,F,Senior,STILL MISSING
-MAAC,Mount St. Mary's,Noah Limol,F,Freshman,STILL MISSING
-MAAC,Mount St. Mary's,Miquel Llompart,G,Junior,STILL MISSING
-MAAC,Mount St. Mary's,Julien Smith,G,Freshman,STILL MISSING
-MAAC,Mount St. Mary's,Redd Thompson Jr.,G,Junior,STILL MISSING
+MAAC,Merrimack,Jeremiah Anderson,G,Senior,FOUND
+MAAC,Merrimack,Amare Guerra,G,Freshman,FOUND
+MAAC,Merrimack,Ayden Johnson,G,Freshman,FOUND
+MAAC,Merrimack,JP Skoric,F,Freshman,FOUND
+MAAC,Merrimack,Rocco Westfield,G,Freshman,FOUND
+MAAC,Mount St. Mary's,Ryan Brzezanski,F,Freshman,FOUND
+MAAC,Mount St. Mary's,Crue Gard,F,Freshman,FOUND
+MAAC,Mount St. Mary's,Liam Joyce,F,Senior,FOUND
+MAAC,Mount St. Mary's,Noah Limol,F,Freshman,FOUND
+MAAC,Mount St. Mary's,Miquel Llompart,G,Junior,FOUND
+MAAC,Mount St. Mary's,Julien Smith,G,Freshman,FOUND
+MAAC,Mount St. Mary's,Redd Thompson Jr.,G,Junior,FOUND
 MAAC,Sacred Heart,DJ Brown,G,Freshman,STILL MISSING
 MAAC,Sacred Heart,Kedrick Curtis,F,Senior,STILL MISSING
 MAAC,Sacred Heart,Landon Krygier,F,Freshman,STILL MISSING
-MAAC,Manhattan,Quron Elliott,G,Sophomore,STILL MISSING
+MAAC,Manhattan,Quron Elliott,G,Sophomore,FOUND
 MAAC,Manhattan,Dusan Eric,F,Freshman,STILL MISSING
 MAAC,Manhattan,Jahzar Greene,G,Freshman,STILL MISSING
 MAAC,Manhattan,Isaac Johnson,F,Junior,STILL MISSING
@@ -385,13 +385,13 @@ MAAC,Canisius,Alex Mack,G,Freshman,FOUND
 MAAC,Canisius,Dorsett Mulcahy,G,Freshman,FOUND
 MAAC,Canisius,Abu Riak,F,Freshman,FOUND
 MAAC,Canisius,Will Taylor,F,Sophomore,FOUND
-Northeast,New Haven,Dominick LaDuca,G,Freshman,STILL MISSING
-Northeast,New Haven,Teshaun Steele,G,Freshman,STILL MISSING
+Northeast,New Haven,Dominick LaDuca,G,Freshman,FOUND
+Northeast,New Haven,Teshaun Steele,G,Freshman,FOUND
 Ivy League,Princeton,Lucas Denault,G,Junior,STILL MISSING
-Ivy League,Princeton,Will Kutzler,F,Junior,STILL MISSING
+Ivy League,Princeton,Will Kutzler,F,Junior,FOUND
 America East,UMBC,Jose Roberto Tanchyn,F,Junior,STILL MISSING
 America East,Bryant,Timofei Rudovskii,F,Freshman,STILL MISSING
-Big West,Utah Valley,Jaxson Roberts,G,Freshman,STILL MISSING
+Big West,Utah Valley,Jaxson Roberts,G,Freshman,FOUND
 Big West,Cal Poly,Ali Assran,F,Freshman,FOUND
 Big West,Cal Poly,Jake Davis,G,Junior,FOUND
 Big West,Cal Poly,Jess Esso Essis,G,Freshman,FOUND
@@ -400,24 +400,24 @@ Big West,Cal Poly,Austin Goode,F,Freshman,FOUND
 Big West,Cal Poly,Troy Plumtree,F,Freshman,FOUND
 Big West,Cal Poly,Jason Scott,G,Freshman,FOUND
 Big West,Cal State Bakersfield,TJ James Jr.,G,Freshman,STILL MISSING
-ASUN,Lipscomb,Or Ashkenazi,F,Freshman,STILL MISSING
+ASUN,Lipscomb,Or Ashkenazi,F,Freshman,FOUND
 ASUN,Jacksonville,Michael Harper Jr.,G,Freshman,STILL MISSING
 Ohio Valley,Tennessee State,Ogien Ayo,F,Senior,STILL MISSING
-Ohio Valley,Tennessee State,Damon Howard Jr.,G,Freshman,STILL MISSING
-Ohio Valley,Tennessee State,Jayden Jones,G,Freshman,STILL MISSING
+Ohio Valley,Tennessee State,Damon Howard Jr.,G,Freshman,FOUND
+Ohio Valley,Tennessee State,Jayden Jones,G,Freshman,FOUND
 Ohio Valley,Tennessee State,Jean Yvens Lafleur,F,Junior,STILL MISSING
 Ohio Valley,Tennessee State,Jabrion Spikes,G,Senior,STILL MISSING
 Ohio Valley,Morehead State,Jon Carroll,F,Junior,STILL MISSING
-Ohio Valley,Morehead State,Chase Dawson,G,Sophomore,STILL MISSING
-Ohio Valley,Morehead State,Vince Dawson III,G,Freshman,STILL MISSING
-Ohio Valley,Morehead State,Clayton Parker,F,Freshman,STILL MISSING
-Ohio Valley,Morehead State,Jaden Priester,F,Freshman,STILL MISSING
-Ohio Valley,Morehead State,Jarvis Wright,G,Freshman,STILL MISSING
+Ohio Valley,Morehead State,Chase Dawson,G,Sophomore,FOUND
+Ohio Valley,Morehead State,Vince Dawson III,G,Freshman,FOUND
+Ohio Valley,Morehead State,Clayton Parker,F,Freshman,FOUND
+Ohio Valley,Morehead State,Jaden Priester,F,Freshman,FOUND
+Ohio Valley,Morehead State,Jarvis Wright,G,Freshman,FOUND
 Southern Conference,Samford,Judson Bjornstad,F,Sophomore,FOUND
 Southern Conference,Samford,Isaiah Campbell-Finch,G,Freshman,FOUND
 Southern Conference,Samford,Cooper Davenport,G,Freshman,FOUND
 Southern Conference,Samford,JD Gossett,G,Freshman,FOUND
-Southern Conference,Wofford,Grayson Collins,G,Sophomore,STILL MISSING
+Southern Conference,Wofford,Grayson Collins,G,Sophomore,FOUND
 Southern Conference,Wofford,Davis Miller,G,Junior,FOUND
 Southern Conference,Wofford,Maximo Ortega,G,Freshman,STILL MISSING
 Southern Conference,Wofford,Alessandro Perotti,F,Junior,STILL MISSING
@@ -436,7 +436,7 @@ Southland,Stephen F. Austin,Ahamed Mohammed,G,Senior,STILL MISSING
 Southland,Stephen F. Austin,Lateef Patrick,G,Junior,STILL MISSING
 Southland,Stephen F. Austin,Marcus Scurry,G,Freshman,FOUND
 Southland,Stephen F. Austin,Eltramon Smith Jr.,F,Sophomore,STILL MISSING
-Summit League,Omaha,Brandon Orgilbold,G,,STILL MISSING
+Summit League,Omaha,Brandon Orgilbold,G,,FOUND
 Southland,Lamar,Rob Lee Jr.,G,Junior,STILL MISSING
 Summit League,North Dakota,Mikayla Aumer,NA,,STILL MISSING
 Summit League,North Dakota,Paris Bass,NA,,STILL MISSING
@@ -454,12 +454,12 @@ Summit League,North Dakota,Jocelyn Schiller,NA,,STILL MISSING
 Summit League,North Dakota,Miranda VanderWal,NA,,STILL MISSING
 Summit League,North Dakota,Skyler Volmer,NA,,STILL MISSING
 Summit League,South Dakota,Silas Bennion,G,Senior,STILL MISSING
-Big Sky,Montana State,Isaiah Crane,G,Senior,STILL MISSING
-Big Sky,Montana State,Hale Hansen,F,Freshman,STILL MISSING
-Big Sky,Montana State,DJ Johnson,G,Freshman,STILL MISSING
+Big Sky,Montana State,Isaiah Crane,G,Senior,FOUND
+Big Sky,Montana State,Hale Hansen,F,Freshman,FOUND
+Big Sky,Montana State,DJ Johnson,G,Freshman,FOUND
 Big Sky,Northern Colorado,Campbell Blogg,G,Junior,STILL MISSING
 Big Sky,Northern Colorado,Will Gordon,G,Freshman,FOUND
-Big Sky,Northern Colorado,Jeremiah Hammond,G,Freshman,STILL MISSING
+Big Sky,Northern Colorado,Jeremiah Hammond,G,Freshman,FOUND
 Big Sky,Northern Colorado,Drew Paine,F,Freshman,FOUND
 Big Sky,Northern Colorado,Manning Shareef,F,Sophomore,FOUND
 Big Sky,Idaho,Ryan Carney,G,Freshman,FOUND
@@ -472,7 +472,7 @@ Big Sky,Idaho,Diego Trejo-Delgado,F,Senior,FOUND
 Big Sky,Idaho,TJ Wal,G,Freshman,FOUND
 Big Sky,Idaho,Jalen Williams,G,Freshman,FOUND
 Big Sky,Eastern Washington,Alan Gballou,F,Freshman,FOUND
-Big Sky,Eastern Washington,Ayden Hamilton,F,Sophomore,STILL MISSING
+Big Sky,Eastern Washington,Ayden Hamilton,F,Sophomore,FOUND
 Big Sky,Eastern Washington,Alton Hamilton IV,F,Senior,FOUND
 Big Sky,Eastern Washington,Isak Homelius,G,Sophomore,STILL MISSING
 Big Sky,Eastern Washington,Lance Horntvedt Jr.,F,Freshman,STILL MISSING
@@ -505,13 +505,13 @@ Big Sky,Utah Tech,Kyle Lemke,C,Junior,STILL MISSING
 Big Sky,Utah Tech,Owen Mackay,G,Freshman,STILL MISSING
 Big Sky,Utah Tech,Petros Ragkos,G,Senior,STILL MISSING
 Big Sky,Utah Tech,Aris Rodriguez,G,Junior,STILL MISSING
-Big Sky,Southern Utah,Rashaad Davis,G,Freshman,STILL MISSING
-Big Sky,Southern Utah,Chase Degraffenried,G,Sophomore,STILL MISSING
-Big Sky,Southern Utah,Dezhon Hall,G,Freshman,STILL MISSING
-Big Sky,Southern Utah,Jalik Nicholls,F,Sophomore,STILL MISSING
-Big Sky,Southern Utah,Mikhail Protsenko,C,Freshman,STILL MISSING
-Big Sky,Southern Utah,Dylan Sanders,G,Junior,STILL MISSING
-Big Sky,Southern Utah,DJ Smith,F,Freshman,STILL MISSING
+Big Sky,Southern Utah,Rashaad Davis,G,Freshman,FOUND
+Big Sky,Southern Utah,Chase Degraffenried,G,Sophomore,FOUND
+Big Sky,Southern Utah,Dezhon Hall,G,Freshman,FOUND
+Big Sky,Southern Utah,Jalik Nicholls,F,Sophomore,FOUND
+Big Sky,Southern Utah,Mikhail Protsenko,C,Freshman,FOUND
+Big Sky,Southern Utah,Dylan Sanders,G,Junior,FOUND
+Big Sky,Southern Utah,DJ Smith,F,Freshman,FOUND
 Big South,High Point,Alexandros Alexakis,G,Freshman,FOUND
 Big South,High Point,Jared Grey,F,Freshman,FOUND
 Big South,High Point,Trey Pearson,G,Freshman,FOUND
@@ -547,19 +547,19 @@ United Athletic,Central Arkansas,Chris Mason,F,Sophomore,STILL MISSING
 United Athletic,Central Arkansas,Luke Moore,G,Freshman,FOUND
 United Athletic,Central Arkansas,R.J. Newton,G,Freshman,FOUND
 United Athletic,Central Arkansas,J.C. Shulman,G,Freshman,FOUND
-Big South,Longwood,Jorke Aav,G,Freshman,STILL MISSING
+Big South,Longwood,Jorke Aav,G,Freshman,FOUND
 Big South,Longwood,Gerald Burr III,G,Sophomore,FOUND
-Big South,Longwood,Will Dopfer,G,Freshman,STILL MISSING
+Big South,Longwood,Will Dopfer,G,Freshman,FOUND
 Big South,Longwood,Isaiah Kalala,F,Sophomore,FOUND
 Big South,Longwood,Elijah Kelly,G,Sophomore,FOUND
-Big South,Longwood,Kany Musungay,F,Junior,STILL MISSING
-Big South,Longwood,Elijah Thomas,G,Freshman,STILL MISSING
+Big South,Longwood,Kany Musungay,F,Junior,FOUND
+Big South,Longwood,Elijah Thomas,G,Freshman,FOUND
 United Athletic,Little Rock,Kellen Robinson,G,Freshman,STILL MISSING
 United Athletic,Little Rock,Tracy Steele Jr.,G,Senior,STILL MISSING
 United Athletic,North Alabama,Cortez Graham-Howard,G,Freshman,STILL MISSING
-SWAC,Arkansas-Pine Bluff,Milhan Charles,G,Freshman,STILL MISSING
+SWAC,Arkansas-Pine Bluff,Milhan Charles,G,Freshman,FOUND
 SWAC,Southern,D'Mari Wiltz,G,Senior,STILL MISSING
-SWAC,Florida A&M,Antonio Baker Jr.,G,Junior,STILL MISSING
+SWAC,Florida A&M,Antonio Baker Jr.,G,Junior,FOUND
 SWAC,Florida A&M,Jacobi Hall,F,Freshman,STILL MISSING
 SWAC,Florida A&M,Anthony Knowles,G,Freshman,STILL MISSING
 SWAC,Florida A&M,Miles Ndalama,C,Junior,STILL MISSING
@@ -588,14 +588,14 @@ MEAC,Delaware State,Omar Stephen,F,Senior,STILL MISSING
 Southland,New Orleans,Panagiotis Pagonis,F,Freshman,STILL MISSING
 Southland,Texas A&M-Corpus Christi,Cenker Evran,F,Senior,STILL MISSING
 Southland,Texas A&M-Corpus Christi,Jaden Haire,F,Junior,STILL MISSING
-Southland,Texas A&M-Corpus Christi,Cedric Horton,G,Freshman,STILL MISSING
-Southland,Texas A&M-Corpus Christi,Daniel Michelini-Jackson,G,Junior,STILL MISSING
+Southland,Texas A&M-Corpus Christi,Cedric Horton,G,Freshman,FOUND
+Southland,Texas A&M-Corpus Christi,Daniel Michelini-Jackson,G,Junior,FOUND
 Southland,Texas A&M-Corpus Christi,Trenton Pane,G,Freshman,STILL MISSING
 Southland,Texas A&M-Corpus Christi,Kobi Pearson,F,Freshman,STILL MISSING
-Southland,Texas A&M-Corpus Christi,Bryson Wheatfall,G,Freshman,STILL MISSING
+Southland,Texas A&M-Corpus Christi,Bryson Wheatfall,G,Freshman,FOUND
 Southland,Texas A&M-Corpus Christi,Franck Yetna,F,Senior,STILL MISSING
 Sun Belt,Appalachian State,Tre McKinnon,F,Freshman,STILL MISSING
-Sun Belt,Appalachian State,Ted Neal,G,Freshman,STILL MISSING
+Sun Belt,Appalachian State,Ted Neal,G,Freshman,FOUND
 ASUN,Queens,Tyler Crider,G,Freshman,STILL MISSING
 ASUN,Queens,Saif-Allah Zatari,G,Freshman,STILL MISSING
 Northeast,Saint Francis (PA),Ahmad Harrison,G,Senior,STILL MISSING
