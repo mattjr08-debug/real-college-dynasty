@@ -97,13 +97,17 @@ const yrNum = s => { s = String(s || '').toLowerCase(); return /^fr|^freshman|^r
 // ---- 2027 rows by team and name (where each returning player plays NOW) ----
 const t27 = {}, name27 = {}; for (const p of p27) { (t27[p.team] = t27[p.team] || []).push(p); (name27[key(p.name)] = name27[key(p.name)] || []).push(p); }
 
-const seenKeys = new Set(Object.keys(name27));
-const out = {}, report = { sample: null, statMatched: 0, fr247: 0, noData: 0, players: 0, shortRosters: [] };
+const seenKeys = new Set(Object.keys(name27)); const staleSchools = [];
+const out = {}, report = { gone: 0, sample: null, statMatched: 0, fr247: 0, noData: 0, players: 0, shortRosters: [] };
 for (const s of schools) {
   const cand = new Map();
   // ESPN roster (authoritative list of who is here now)
   let espnAth = [];
   if (s.espn && fs.existsSync(RD(`espn-rosters/${s.espn}.json`))) { try { espnAth = JSON.parse(fs.readFileSync(RD(`espn-rosters/${s.espn}.json`), 'utf8')).athletes || []; } catch (e) {} }
+  let espnStale = false; if (s.espn && fs.existsSync(RD(`espn-rosters/${s.espn}.json`))) { try { const sd = JSON.parse(fs.readFileSync(RD(`espn-rosters/${s.espn}.json`), 'utf8')).season; espnStale = !(sd && sd.displayName === '2026-27'); } catch (e) {} }
+  // ESPN sometimes labels last season's roster as 2026-27: if most of its freshmen already played here last season, the classes were never advanced
+  if (!espnStale && espnAth.length) { const fr = espnAth.filter(x => yrNum(x.experience && (x.experience.displayValue || x.experience.abbreviation)) === 1); const had = fr.filter(x => (by26[key(x.fullName || x.displayName)] || []).some(p => p.team === s.tv && yrNum(p.yr) === 1)); if (fr.length >= 3 && had.length / fr.length > 0.34) { espnStale = true; report.laggedLabel = (report.laggedLabel || 0) + 1; } }
+  if (espnStale) staleSchools.push(s.name); // ESPN still shows last season's roster: keep its non-seniors (one class up), Torvik 2027 and 247 commits
   for (const a of espnAth) {
     const ht = a.height ? Math.round(a.height) : inches(a.displayHeight);
     const k = key(a.fullName || a.displayName);
@@ -111,16 +115,23 @@ for (const s of schools) {
     const elsewhere = (name27[k] || []).find(p => p.team !== s.tv && Math.abs(p.ht - ht) <= 2);
     const here = (name27[k] || []).find(p => p.team === s.tv);
     if (elsewhere && !here) continue;
-    cand.set(k, { name: a.fullName || a.displayName, ht, espnPos: a.position && a.position.abbreviation, y: yrNum(a.experience && (a.experience.displayValue || a.experience.abbreviation)), wt: a.weight });
+    // he played here last season but Torvik's 2027 file does not list him here: graduated, drafted or transferred out
+    // (only seniors: Torvik's 2027 file leaves out low-minute players who are still on the team)
+    if (!here && (by26[k] || []).some(p => p.team === s.tv && yrNum(p.yr) === 4 && (!ht || Math.abs(p.ht - ht) <= 2))) { report.gone++; continue; }
+    if (espnStale && !here && yrNum(a.experience && (a.experience.displayValue || a.experience.abbreviation)) === 4) { report.gone++; continue; }
+    cand.set(k, { name: a.fullName || a.displayName, ht, espnPos: a.position && a.position.abbreviation, y: yrNum(a.experience && (a.experience.displayValue || a.experience.abbreviation)), wt: a.weight, stale: espnStale });
   }
-  for (const p of (t27[s.tv] || [])) { const k = key(p.name); const c = cand.get(k) || { name: p.name, ht: p.ht }; c.tv27 = p; c.ht = c.ht || p.ht; c.y = c.y || yrNum(p.yr); cand.set(k, c); }
+  for (const p of (t27[s.tv] || [])) { const k = key(p.name); const c = cand.get(k) || { name: p.name, ht: p.ht }; c.tv27 = p; c.ht = c.ht || p.ht; c.y = yrNum(p.yr) || c.y; c.y27 = 1; cand.set(k, c); }
+  // incoming 2026 freshmen who signed here (the only way a stale-ESPN school gets them)
+  if (espnStale) for (const r of rk) if (r.commit === s.name) { const k = key(r.name); if (!cand.has(k)) cand.set(k, { name: r.name, ht: inches(r.ht), y: 1, espnPos: r.pos }); }
   cand.forEach((_, k) => seenKeys.add(k));
   const R = [];
   for (const [k, c] of cand) {
     // last season's line: by Torvik id if he is in the 2027 file, else by name (unique, similar height)
     let st = c.tv27 ? byPid26.get(c.tv27.pid) : null;
-    if (!st) { const m = (by26[k] || []).filter(p => !c.ht || Math.abs(p.ht - c.ht) <= 2); if (m.length === 1 && (!c.y || c.y > 1)) st = m[0]; }
-    const y = c.y || (st ? Math.min(4, yrNum(st.yr) + 1) : 1);
+    if (!st) { const m = (by26[k] || []).filter(p => !c.ht || Math.abs(p.ht - c.ht) <= 2); if (m.length === 1) st = m[0]; }
+    // class for 2026-27: Torvik's 2027 label, else last season's class + 1 (ESPN's label is often last season's), else ESPN
+    const y = c.y27 && c.y ? c.y : st && yrNum(st.yr) ? Math.min(4, yrNum(st.yr) + 1) : c.y ? (c.stale ? Math.min(4, c.y + 1) : c.y) : 1;
     const ht = c.ht || (st && st.ht) || 77;
     const pos = (st && posFromRole(st.role)) || posFromEspn(c.espnPos, ht);
     let o, src;
@@ -184,6 +195,7 @@ fs.writeFileSync(path.join(ROOT, 'src/js/0000c-RealRosters.js'), lines.join('\n'
 // ---- report ----
 const rating = r => { const a = r.slice().sort((x, y) => y.o - x.o).slice(0, 8), w = [0.2, 0.17, 0.15, 0.13, 0.1, 0.09, 0.08, 0.08]; return Math.round(a.reduce((q, p, i) => q + p.o * w[i], 0) / w.slice(0, a.length).reduce((x, y) => x + y, 0)); };
 const tr = Object.entries(out).map(([n, t]) => [n, rating(t.r), t.tr, t.w + '-' + t.l]).sort((a, b) => b[1] - a[1]);
+console.log('stale ESPN schools', staleSchools.length, 'players dropped as gone', report.gone);
 console.log('schools', schools.length, 'noTorvik', noTv, 'noESPN', noEspn);
 console.log(`players kept ${report.players}; with stats ${report.statMatched}; freshmen via 247 ${report.fr247}; no data ${report.noData}; short rosters (<10): ${report.shortRosters.join(', ')}`);
 console.log('TOP 30 by roster rating (name, rating, Torvik rank last yr, record):\n' + tr.slice(0, 30).map(x => x.join(' | ')).join('\n'));
