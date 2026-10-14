@@ -187,6 +187,10 @@ fs.writeFileSync(path.join(ROOT, 'src/js/0000c-RealRosters.js'), lines.join('\n'
   // anyone with a photo file in a 2026-27 school folder is on that roster, so not an unsigned portal player
   for (const d of fs.readdirSync(RD('photos-src'))) { try { for (const f of fs.readdirSync(RD('photos-src/' + d))) seenKeys.add(key(f.replace(/\.[a-z]+$/i, ''))); } catch (e) {} }
   const pool = p26.filter(p => !seenKeys.has(key(p.name)) && /^(Fr|So|Jr)/.test(p.yr) && p.gp >= 5 && p.min >= 10);
+  // On3: players who entered the portal and have not committed anywhere yet (realdata/on3-entrants.json: [name, pos, ht, old school, hs class, E/X, date])
+  const ENT = fs.existsSync(RD('on3-entrants.json')) ? JSON.parse(fs.readFileSync(RD('on3-entrants.json'), 'utf8')) : [], entPid = new Set(); let entMiss = 0;
+  for (const r of ENT) { const k = key(r[0]); if (seenKeys.has(k) && !pool.some(p => key(p.name) === k)) continue; const m = (by26[k] || []).filter(p => !r[2] || Math.abs(p.ht - inches(r[2])) <= 2); if (m.length !== 1 || m[0].gp < 3 || m[0].min < 3) { entMiss++; continue; } if (!pool.includes(m[0])) pool.push(m[0]); entPid.add(m[0].pid); }
+  console.log('On3 entrants', ENT.length, 'matched to a 2026 stat line', entPid.size, 'no stat line (skipped)', entMiss);
   const rows = pool.map(p => {
     const y = Math.min(4, yrNum(p.yr) + 1);
     let o = Math.round(clamp(ovrOf(p), 40, 97));
@@ -196,7 +200,7 @@ fs.writeFileSync(path.join(ROOT, 'src/js/0000c-RealRosters.js'), lines.join('\n'
   }).filter(r => r.o < 86).sort((a, b) => b.o - a.o);
   const full = csv(RD('torvik-players-2026.csv'));
   const raw = new Map(full.map(r => [r[32], r]));
-  const arr = rows.slice(0, 160).map(({ p, y, o, t, k }) => {
+  const arr = rows.slice(0, 220).map(({ p, y, o, t, k }) => {
     const r = raw.get(p.pid), gp = +r[3], n = x => Math.round(+x || 0), fga = +r[17] + +r[20], fta = +r[14], to = +r[12];
     const tov = to >= 100 ? 0 : to / (100 - to) * (fga + 0.44 * fta);
     return [p.name, posFromRole(p.role) || 'SF', y, p.ht, o, t, +p.ppg.toFixed(1), +p.rpg.toFixed(1), +p.apg.toFixed(1), p.team, 's',
