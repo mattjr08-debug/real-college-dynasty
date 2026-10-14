@@ -11,14 +11,14 @@ const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().re
 const M={};for(const r of rows){(M[norm(r[0])+'|'+r[1]]=M[norm(r[0])+'|'+r[1]]||[]).push(r)}
 let hit=0,miss=0;
 for(const nm in T)for(const p of T[nm].r){
-  p.length=Math.min(p.length,11);
-  if(p[6]==null||!p[9]){continue}
+  const kk=p[12];p.length=Math.min(p.length,11);
+  if(p[6]==null||!p[9]){if(kk){while(p.length<11)p.push(null);p[11]=null;p[12]=kk}continue}
   const c=(M[norm(p[0])+'|'+p[9]]||[]).filter(r=>Math.abs((+r[63])-p[6])<0.06);
-  if(c.length!==1){miss++;continue}
+  if(c.length!==1){miss++;if(kk){while(p.length<11)p.push(null);p[11]=null;p[12]=kk}continue}
   const r=c[0],gp=+r[3],n=x=>Math.round(+x||0);
   const fgm=+r[16]+ +r[19],fga=+r[17]+ +r[20],ftm=+r[13],fta=+r[14],to=+r[12];
   const tov=to>=100?0:to/(100-to)*(fga+0.44*fta);
-  p[11]=[gp,+(+r[4]*0.4).toFixed(1),n((+r[61])*gp),n((+r[62])*gp),n(tov),n(fgm),n(fga),n(r[19]),n(r[20]),n(ftm),n(fta)];hit++;
+  p[11]=[gp,+(+r[4]*0.4).toFixed(1),n((+r[61])*gp),n((+r[62])*gp),n(tov),n(fgm),n(fga),n(r[19]),n(r[20]),n(ftm),n(fta)];if(kk)p[12]=kk;hit++;
 }
 const lines=src.split('\n');const out=[];let inT=false;
 for(const l of lines){const m=l.match(/^ ("(?:[^"\\]|\\.)*"): \{ w:/);if(m){const nm=JSON.parse(m[1]);const t=T[nm];out.push(` ${m[1]}: { w: ${t.w}, l: ${t.l}, cw: ${t.cw}, cl: ${t.cl??null}, tr: ${t.tr}, r: [`+t.r.map(p=>JSON.stringify(p)).join(',')+'] },');}else out.push(l)}

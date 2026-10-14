@@ -19,7 +19,7 @@ function W_mkp(e, p, t) {
     // Item 43: a player with one year left (a graduate transfer) asks for less
     (p.g && (q.ask = Math.round((q.ask * 0.75) / 1e3) * 1e3), (q.name = p.n),
       (q.faceSeed = p.f),
-      (q.attrs = q.attrs.map((a) => le(a + d, 25, 99))),
+      (q.attrs = q.attrs.map((a, i) => le(a + d + (p.k ? W_kOff(p.k, i) : 0), 25, 99))),
       (q.ovr = p.o),
       (q.potential = Math.max(p.o, p.t)),
       (q.history = [

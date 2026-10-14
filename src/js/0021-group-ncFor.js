@@ -173,7 +173,7 @@ function W_realMk(e, t) {
   const g = Math.max(20, rt.w + rt.l),
     R = rt.r.slice(0, 13).map((r) => {
       const rs = j(e, 1, 2147483647),
-        p = { i: Ff(e, "w"), n: r[0], p: r[1], y: r[2], o: r[4], t: Math.max(r[4], r[5]), f: (typeof REAL_PHOTO_SEED === "function" && REAL_PHOTO_SEED(r[0], t.name)) || rs, s: { g: 0, p: 0, r: 0, a: 0, s: 0, b: 0, t: 0 } };
+        p = { i: Ff(e, "w"), n: r[0], p: r[1], y: r[2], o: r[4], t: Math.max(r[4], r[5]), k: r[12] || undefined, f: (typeof REAL_PHOTO_SEED === "function" && REAL_PHOTO_SEED(r[0], t.name)) || rs, s: { g: 0, p: 0, r: 0, a: 0, s: 0, b: 0, t: 0 } };
       if (typeof REAL_INJURIES !== "undefined") { const ik = (n) => String(n || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z]/g, ""), hit = REAL_INJURIES.find((x) => ik(x[0]) === ik(r[0]) && ik(x[1]) === ik(t.name)); hit && hit[3] > 0 && (p.ij = hit[3]); }
       if (r[6] != null) { const L = W_realLine(r, g); p.hs = [{ y: e.year - 1, g: L.G, p: L.p, r: L.r, a: L.a, s: L.s, b: L.b, t: L.t }]; }
       return p;
@@ -191,6 +191,7 @@ function W_realPortalP(e, r) {
   const sd = typeof REAL_PHOTO_SEED === "function" && REAL_PHOTO_SEED(r[0], "_portal");
   sd && (P.faceSeed = sd);
   let a = P.attrs.slice();
+  r[12] && (a = a.map((v, i) => le(v + W_kOff(r[12], i), 25, 96)));
   for (let k = 0; k < 8; k++) { const d = o - W_ovr(a, P.pos); if (!d) break; a = a.map((v) => le(v + d, 25, 96)); }
   P.attrs = a; P.ovr = W_ovr(a, P.pos); P.potential = Math.max(P.ovr, r[5]);
   const x = r[11], gp = x ? x[0] : 30;
@@ -207,6 +208,7 @@ function W_realPlayer(e, r, school) {
   const sd = typeof REAL_PHOTO_SEED === "function" && REAL_PHOTO_SEED(r[0], school);
   sd && (P.faceSeed = sd);
   let a = P.attrs.slice();
+  r[12] && (a = a.map((v, i) => le(v + W_kOff(r[12], i), 25, 96)));
   for (let k = 0; k < 8; k++) {
     const d = o - W_ovr(a, P.pos);
     if (!d) break;

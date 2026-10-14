@@ -41,6 +41,49 @@ const prior = p => p.rec ? clamp((p.rec - 62) / 22, -1.2, 2.4) : -0.75; // last 
 const shrunk = p => { const w = p.min / (p.min + 18); return w * zVal(p) + (1 - w) * prior(p); };
 const refV = rot.map(shrunk).sort((a, b) => a - b);
 const pctOf = v => { let lo = 0, hi = refV.length; while (lo < hi) { const m = (lo + hi) >> 1; if (refV[m] < v) lo = m + 1; else hi = m; } return lo / refV.length; };
+// ---- earlier seasons (2025, 2024), class progression fitted from the data, and per-skill offsets ----
+const yearObj = (pf, tf) => {
+  const tt = {}; csv(RD(tf)).slice(1).forEach(r => tt[r[1]] = { conf: r[2], em: +r[4] - +r[6] });
+  const acc = {}; Object.values(tt).forEach(t => (acc[t.conf] = acc[t.conf] || []).push(t.em));
+  const ce = {}; for (const c in acc) ce[c] = mean(acc[c]); const all = Object.values(tt).map(t => t.em), lg = mean(all);
+  const pl = csv(RD(pf)).map(P), rt = pl.filter(p => p.min >= 30 && p.gp >= 8);
+  const aB = p => p.bpm + 0.25 * ((ce[p.conf] ?? lg) - lg);
+  const m1 = mean(rt.map(p => p.por)), s1 = sd(rt.map(p => p.por), m1), m2 = mean(rt.map(aB)), s2 = sd(rt.map(aB), m2);
+  return { by: new Map(pl.map(p => [p.pid, p])), z: p => 0.62 * (p.por - m1) / s1 + 0.38 * (aB(p) - m2) / s2 };
+};
+const Y25 = yearObj('torvik-players-2025.csv', 'torvik-team-2025.csv'), Y24 = yearObj('torvik-players-2024.csv', 'torvik-team-2024.csv');
+// class progression in z units: average change in value from last season to this one for players with real minutes both years
+const DELTA = { 1: 0.35, 2: 0.2, 3: 0.1, 4: 0 };
+{ const acc = { 1: [], 2: [], 3: [] }; for (const p of p26) { const q = Y25.by.get(p.pid); if (!q || p.min < 30 || q.min < 30 || p.gp < 8 || q.gp < 8) continue; const c = yrNumEarly(q.yr); if (acc[c]) acc[c].push(zVal(p) - Y25.z(q)); }
+  for (const c in acc) if (acc[c].length > 40) DELTA[c] = mean(acc[c]); }
+function yrNumEarly(s) { s = String(s || '').toLowerCase(); return /^fr/.test(s) ? 1 : /^so/.test(s) ? 2 : /^jr/.test(s) ? 3 : /^sr/.test(s) ? 4 : 0; }
+// value of a player from up to three seasons (older seasons count less and get the class progression added)
+const valueOf = st => {
+  const parts = [[st.min, zVal(st), 1]]; const q = Y25.by.get(st.pid), r = q && Y24.by.get(st.pid);
+  let c = yrNumEarly(st.yr);
+  if (q && q.min >= 5) { parts.push([q.min * 0.5, Y25.z(q) + (DELTA[yrNumEarly(q.yr)] || 0), 0.5]); }
+  if (r && r.min >= 5 && q) { parts.push([r.min * 0.25, Y24.z(r) + (DELTA[yrNumEarly(r.yr)] || 0) + (DELTA[yrNumEarly(q.yr)] || 0), 0.25]); }
+  const W = parts.reduce((a, x) => a + x[0], 0), z = parts.reduce((a, x) => a + x[0] * x[1], 0) / W, w = W / (W + 18);
+  return w * z + (1 - w) * prior(st);
+};
+// skill offsets: how this player's real numbers compare with players at his position (16 attributes, base36 digits, 10 = no change)
+const POSG = {}; for (const p of rot) (POSG[posFromRoleEarly(p.role)] = POSG[posFromRoleEarly(p.role)] || []).push(p);
+function posFromRoleEarly(r) { return { 'Pure PG': 'PG', 'Scoring PG': 'PG', 'Combo G': 'SG', 'Wing G': 'SG', 'Wing F': 'SF', 'Stretch 4': 'PF', 'PF/C': 'PF', 'C': 'C', 'Center': 'C' }[r] || 'SF'; }
+const RAW26 = new Map(csv(RD('torvik-players-2026.csv')).map(r => [r[32], r]));
+const met = r => { const g = i => +r[i] || 0, twoa = g(17), thra = g(20), fta = g(14), min = g(4); return {
+  two: [g(18), twoa / (twoa + 60)], ftr: [g(24), 0.5], three: [g(21), thra / (thra + 80)], thrr: [thra / Math.max(1, twoa + thra), 0.6], ft: [g(15), fta / (fta + 50)],
+  to: [-g(12), 0.7], ast: [g(11), 0.8], stl: [g(23), 0.8], blk: [g(22), 0.8], orb: [g(9), 0.8], drb: [g(10), 0.8], min: [g(4), 1] }; };
+const SKILLSTAT = {}; for (const pg in POSG) { const m = POSG[pg].map(p => met(RAW26.get(p.pid))), o = {}; for (const k in m[0]) { const v = m.map(x => x[k][0]), mu = mean(v); o[k] = [mu, sd(v, mu) || 1]; } SKILLSTAT[pg] = o; }
+const skillK = (st, pos) => {
+  const r = RAW26.get(st.pid); if (!r || st.min < 8) return '';
+  const m = met(r), S = SKILLSTAT[pos] || SKILLSTAT.SF, z = k => clamp(((m[k][0] - S[k][0]) / S[k][1]) * m[k][1], -2.5, 2.5), tw = st.min / (st.min + 25);
+  const v = [0.6 * z('two') + 0.4 * z('ftr'), 0.7 * z('two'), 0.7 * z('three') + 0.3 * z('thrr'), z('ft'), 0.5 * z('to') + 0.5 * z('ast'), z('ast'), 0.7 * z('stl') + 0.3 * z('blk'), 0.6 * z('blk') + 0.4 * z('drb'), z('stl'), z('blk'), z('orb'), z('drb'), 0, 0, 0.4 * z('blk'), 0.5 * z('min')];
+  const meas = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15], off = v.map(x => x * 5 * tw), mu = mean(meas.map(i => off[i]));
+  return off.map((x, i) => (meas.includes(i) ? clamp(Math.round(x - mu), -9, 9) : 0) + 10).map(x => x.toString(36)).join('');
+};
+const refV2 = rot.map(valueOf).sort((a, b) => a - b);
+const pctOf2 = v => { let lo = 0, hi = refV2.length; while (lo < hi) { const m = (lo + hi) >> 1; if (refV2[m] < v) lo = m + 1; else hi = m; } return lo / refV2.length; };
+const ovrOf = st => qOvr(pctOf2(valueOf(st) + (DELTA[yrNumEarly(st.yr)] || 0)));
 // the base game's own scale for its top 9 players per team (measured from 3 generated leagues)
 const QS = [44,49,51,52,53,53,54,55,55,56,56,57,57,57,58,58,59,59,59,60,60,60,60,61,61,61,62,62,62,62,63,63,63,63,64,64,64,65,65,65,65,66,66,66,67,67,67,68,68,68,69,69,69,70,70,70,71,71,71,72,72,72,73,73,74,74,74,75,75,76,76,77,77,78,78,78,79,79,80,81,81,82,82,83,84,84,85,86,86,87,88,89,90,91,92,93,93,94,96,97,97];
 const qOvr = pc => { const x = clamp(pc, 0, 1) * 100, i = Math.floor(x), f = x - i; return QS[i] + (QS[Math.min(100, i + 1)] - QS[i]) * f; };
@@ -81,14 +124,13 @@ for (const s of schools) {
     const ht = c.ht || (st && st.ht) || 77;
     const pos = (st && posFromRole(st.role)) || posFromEspn(c.espnPos, ht);
     let o, src;
-    if (st && st.min >= 3 && st.gp >= 3) { o = qOvr(pctOf(shrunk(st))); src = 's'; report.statMatched++; }
+    if (st && st.min >= 3 && st.gp >= 3) { o = ovrOf(st); src = 's'; report.statMatched++; }
     else if (y === 1 && (rkBy[k] || []).length) { const r = rkBy[k].sort((a, b) => (b.commit === s.name) - (a.commit === s.name))[0]; o = fr247(r.rank); src = 'r'; report.fr247++; }
     else { const m = (s.hi + s.lo) / 2; o = clamp(46 + (m - 48) * 0.33 + (y > 1 ? 4 : 0) + ((hash(k) % 7) - 3), 42, 66); src = 'n'; report.noData++; }
-    if (y > 1 && src === 's') o += y === 2 ? 2 : y === 3 ? 1.5 : 1;       // a year older than the stats
     o = Math.round(clamp(o, 40, 97));
     const grow = { 1: 11, 2: 8, 3: 3, 4: 0 }[y] * (1 - Math.max(0, (o - 72) / 40));
     const t = Math.round(clamp(o + grow + ((hash(k + 't') % 5) - 2) * (y < 4 ? 1 : 0), o, 98));
-    R.push({ n: c.name, p: pos, y, h: ht, o, t, src, ls: st ? { g: st.gp, m: Math.round(st.min), pt: +st.ppg.toFixed(1), rb: +st.rpg.toFixed(1), as: +st.apg.toFixed(1), tm: st.team } : null });
+    R.push({ n: c.name, p: pos, y, h: ht, o, t, src, k: st ? skillK(st, pos) : '', ls: st ? { g: st.gp, m: Math.round(st.min), pt: +st.ppg.toFixed(1), rb: +st.rpg.toFixed(1), as: +st.apg.toFixed(1), tm: st.team } : null });
   }
   R.sort((a, b) => b.o - a.o);
   const keep = R.slice(0, 15);
@@ -97,10 +139,23 @@ for (const s of schools) {
   out[s.name] = { w: rec ? +rec[1] : null, l: rec ? +rec[2] : null, cw: null, tr: tt.rank || null, r: keep };
   if (tt.conrec) { const m = tt.conrec.match(/(\d+)-(\d+)/); if (m) { out[s.name].cw = +m[1]; out[s.name].cl = +m[2]; } }
 }
+// ---- team calibration: roster strength follows the Torvik 2027 preseason order (partial pull, capped) ----
+{
+  const rt = r => { const a = r.slice().sort((x, y) => y.o - x.o).slice(0, 8), w = [0.2, 0.17, 0.15, 0.13, 0.1, 0.09, 0.08, 0.08]; return a.reduce((q, p, i) => q + p.o * w[i], 0) / w.slice(0, a.length).reduce((x, y) => x + y, 0); };
+  const b27 = {}; csv(RD('torvik-team-2027.csv')).slice(1).forEach(r => b27[r[1]] = +r[8]);
+  const names = schools.filter(x => x.tv && b27[x.tv] != null && out[x.name]).sort((a, b) => b27[b.tv] - b27[a.tv]);
+  const raw = names.map(x => rt(out[x.name].r)), dist = raw.slice().sort((a, b) => b - a);
+  const PULL = +(process.env.PULL || 0.6), CAP = 8; let moved = 0, sum = 0;
+  names.forEach((x, i) => {
+    const d = Math.round(clamp((dist[i] - raw[i]) * PULL, -CAP, CAP)); sum += Math.abs(d); if (!d) return; moved++;
+    for (const p of out[x.name].r) { const o2 = Math.round(clamp(p.o + d, 40, 97)); p.t = Math.round(clamp(p.t + (o2 - p.o), o2, 98)); p.o = o2; }
+  });
+  console.log(`calibrated ${moved} of ${names.length} teams, mean |shift| ${(sum / names.length).toFixed(2)}`);
+}
 const lines = [`// REAL COLLEGE DYNASTY: last season's record and the 2026-27 roster of every school (generated by tools/build-real-rosters.js).`,
   `// Player: [name, pos, class 1-4, height in, ovr, potential, ppg, rpg, apg, last team, source (s stats, r recruit rank, n no data)].`,
   `var REAL_TEAMS = {`];
-for (const nm in out) { const t = out[nm]; lines.push(` ${JSON.stringify(nm)}: { w: ${t.w}, l: ${t.l}, cw: ${t.cw}, cl: ${t.cl ?? null}, tr: ${t.tr}, r: [` + t.r.map(p => JSON.stringify([p.n, p.p, p.y, p.h, p.o, p.t, p.ls ? p.ls.pt : null, p.ls ? p.ls.rb : null, p.ls ? p.ls.as : null, p.ls ? p.ls.tm : null, p.src])).join(',') + '] },'); }
+for (const nm in out) { const t = out[nm]; lines.push(` ${JSON.stringify(nm)}: { w: ${t.w}, l: ${t.l}, cw: ${t.cw}, cl: ${t.cl ?? null}, tr: ${t.tr}, r: [` + t.r.map(p => JSON.stringify([p.n, p.p, p.y, p.h, p.o, p.t, p.ls ? p.ls.pt : null, p.ls ? p.ls.rb : null, p.ls ? p.ls.as : null, p.ls ? p.ls.tm : null, p.src, null, p.k || null])).join(',') + '] },'); }
 lines.push('};');
 fs.writeFileSync(path.join(ROOT, 'src/js/0000c-RealRosters.js'), lines.join('\n') + '\n');
 // ---- REAL_PORTAL: real 2025-26 players who are on no 2026-27 roster (unsigned portal entrants), with their real stats ----
@@ -110,18 +165,18 @@ fs.writeFileSync(path.join(ROOT, 'src/js/0000c-RealRosters.js'), lines.join('\n'
   const pool = p26.filter(p => !seenKeys.has(key(p.name)) && /^(Fr|So|Jr)/.test(p.yr) && p.gp >= 5 && p.min >= 10);
   const rows = pool.map(p => {
     const y = Math.min(4, yrNum(p.yr) + 1);
-    let o = qOvr(pctOf(shrunk(p))); o += y === 2 ? 2 : y === 3 ? 1.5 : 1; o = Math.round(clamp(o, 40, 97));
+    let o = Math.round(clamp(ovrOf(p), 40, 97));
     const grow = { 2: 8, 3: 3, 4: 0 }[y] * (1 - Math.max(0, (o - 72) / 40));
     const t = Math.round(clamp(o + grow, o, 98));
-    return { p, y, o, t };
+    return { p, y, o, t, k: skillK(p, posFromRole(p.role) || 'SF') };
   }).filter(r => r.o < 86).sort((a, b) => b.o - a.o);
   const full = csv(RD('torvik-players-2026.csv'));
   const raw = new Map(full.map(r => [r[32], r]));
-  const arr = rows.slice(0, 160).map(({ p, y, o, t }) => {
+  const arr = rows.slice(0, 160).map(({ p, y, o, t, k }) => {
     const r = raw.get(p.pid), gp = +r[3], n = x => Math.round(+x || 0), fga = +r[17] + +r[20], fta = +r[14], to = +r[12];
     const tov = to >= 100 ? 0 : to / (100 - to) * (fga + 0.44 * fta);
     return [p.name, posFromRole(p.role) || 'SF', y, p.ht, o, t, +p.ppg.toFixed(1), +p.rpg.toFixed(1), +p.apg.toFixed(1), p.team, 's',
-      [gp, +(+r[4] * 0.4).toFixed(1), n(+r[61] * gp), n(+r[62] * gp), n(tov), n(+r[16] + +r[19]), n(fga), n(r[19]), n(r[20]), n(r[13]), n(fta)]];
+      [gp, +(+r[4] * 0.4).toFixed(1), n(+r[61] * gp), n(+r[62] * gp), n(tov), n(+r[16] + +r[19]), n(fga), n(r[19]), n(r[20]), n(r[13]), n(fta)], k];
   });
   fs.writeFileSync(path.join(ROOT, 'src/js/0000f-RealPortal.js'), '// REAL COLLEGE DYNASTY: real players from last season who are on no 2026-27 roster (the starting transfer portal). Same row layout as REAL_TEAMS.\nvar REAL_PORTAL = ' + JSON.stringify(arr) + ';\n');
   console.log('REAL_PORTAL', arr.length, 'of pool', rows.length); console.log(arr.slice(0, 25).map(a => `${a[0]} ${a[1]} y${a[2]} o${a[4]} ${a[6]}/${a[7]}/${a[8]} @${a[9]}`).join('\n'));
