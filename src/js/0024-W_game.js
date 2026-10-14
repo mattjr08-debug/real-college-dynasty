@@ -46,7 +46,7 @@ function W_game(e, A, B) {
       let uw = (z) => z.m * Math.pow((z.a[0] + z.a[2] + 50) / 130, TUNE.statCal ? (TUNE.gUse || TUNE.statUse) : 2.2) * z.ug,
         si = pick(O, uw),
         S = O[si],
-        ugP = TUNE.ugEff ? TUNE.ugEff * (uw(S) / O.reduce((s, z) => s + uw(z), 0) / (S.m / 200) - 1) : 0;
+        ugP = TUNE.ugEff ? TUNE.ugEff * (uw(S) / O.reduce((s, z) => s + uw(z), 0) / (S.m / 200) - TUNE.ugCtr) : 0;
       if (ne(e) < 0.178) {
         ne(e) < 0.48 && D[pick(D, (z) => z.m * Math.pow(z.a[8] / 60, TUNE.statCal ? TUNE.statStl : 1.8))].st++;
         return;
