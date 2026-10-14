@@ -97,6 +97,16 @@ const yrNum = s => { s = String(s || '').toLowerCase(); return /^fr|^freshman|^r
 // ---- 2027 rows by team and name (where each returning player plays NOW) ----
 const t27 = {}, name27 = {}; for (const p of p27) { (t27[p.team] = t27[p.team] || []).push(p); (name27[key(p.name)] = name27[key(p.name)] || []).push(p); }
 
+
+// ---- On3 transfer commitments (realdata/on3-transfers.json: [name, pos, ht, old school, new school, hs class, C/E, date]) ----
+const ON3 = fs.existsSync(RD('on3-transfers.json')) ? JSON.parse(fs.readFileSync(RD('on3-transfers.json'), 'utf8')) : [];
+const nk3 = x => String(x || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\bst\.?(?=\s|$)/g, 'state').replace(/&/g, 'and').replace(/[^a-z0-9]/g, '');
+const ON3ALIAS = { 'loyolachi': 'loyolachicago', 'loyolamd': 'loyolamaryland', 'miamifl': 'miami', 'miamioh': 'miamioh', 'unc': 'northcarolina', 'ole miss': 'mississippi', 'olemiss': 'mississippi', 'ucf': 'centralflorida', 'uconn': 'connecticut', 'lsu': 'lsu', 'vcu': 'vcu', 'byu': 'byu', 'usc': 'usc', 'smu': 'smu', 'unlv': 'unlv', 'utep': 'utep', 'utsa': 'utsa', 'uab': 'uab' };
+const schoolBy3 = new Map(); for (const sc of schools) { for (const nm of [sc.name, sc.tv]) if (nm) schoolBy3.set(nk3(nm), sc.name); }
+const ON3MAP = { 'George Washington University': 'George Washington', "Saint Mary's College of California": "Saint Mary's", 'Grand Canyon University': 'Grand Canyon', 'Gonzaga University': 'Gonzaga', 'University of California-San Diego': 'UC San Diego', 'College of Charleston': 'Charleston', 'Queens University of Charlotte': 'Queens', 'The University of Texas at Arlington': 'UT Arlington', 'Long Island University': 'LIU', 'Middle Tennessee State': 'Middle Tennessee', 'Arkansas-Little Rock': 'Little Rock', 'The University of Texas Rio Grande Valley': 'UT Rio Grande Valley', 'Stonehill College': 'Stonehill', 'California State University-Bakersfield': 'Cal State Bakersfield', 'University of California-Santa Barbara': 'UC Santa Barbara', 'Purdue University Fort Wayne': 'Purdue Fort Wayne', 'Denver University': 'Denver', 'Pennsylvania': 'Penn', 'St. Bonaventure University': 'St. Bonaventure', 'University of Massachusetts-Lowell': 'UMass Lowell', 'California State University-Northridge': 'Cal State Northridge', 'USF': 'South Florida', 'University of Maryland-Baltimore County': 'UMBC', 'Belmont University': 'Belmont', 'Bryant University': 'Bryant', 'University of California-Irvine': 'UC Irvine', 'University of California-Riverside': 'UC Riverside', 'California Baptist University': 'California Baptist', 'Cleveland State University': 'Cleveland State', 'Fairfield University': 'Fairfield', 'Manhattan College': 'Manhattan', 'Santa Clara University': 'Santa Clara', 'Seattle University': 'Seattle U', 'University of North Carolina Wilmington': 'UNC Wilmington', 'University of San Francisco': 'San Francisco', 'University of Southern Indiana': 'Southern Indiana', 'Southeast Missouri State': 'Southeast Missouri', 'Wisconsin-Milwaukee': 'Milwaukee', 'Illinois-Chicago': 'UIC', 'Missouri-Kansas City': 'Kansas City', 'Massachusetts': 'UMass', 'Connecticut': 'UConn', 'Loyola (Chi)': 'Loyola Chicago', 'Hawaii': "Hawai'i", 'New Jersey Institute of Technology': 'NJIT', 'McNeese State': 'McNeese', 'Nicholls State': 'Nicholls', 'Tarleton State': 'Tarleton' };
+const on3School = nm => { if (ON3MAP[nm] && schoolBy3.has(nk3(ON3MAP[nm]))) return schoolBy3.get(nk3(ON3MAP[nm])); const k = nk3(nm); return schoolBy3.get(k) || schoolBy3.get(ON3ALIAS[k] || '') || null; };
+const on3Moved = {}, on3In = {}, on3Unmatched = {};
+for (const r of ON3) { const nw = on3School(r[4]), old = on3School(r[3]); if (!nw) { on3Unmatched[r[4]] = (on3Unmatched[r[4]] || 0) + 1; continue; } const k = key(r[0]); (on3Moved[k] = on3Moved[k] || []).push({ old, nw, r }); (on3In[nw] = on3In[nw] || []).push(r); }
 const seenKeys = new Set(Object.keys(name27)); const staleSchools = [];
 const out = {}, report = { gone: 0, sample: null, statMatched: 0, fr247: 0, noData: 0, players: 0, shortRosters: [] };
 for (const s of schools) {
@@ -119,9 +129,12 @@ for (const s of schools) {
     // (only seniors: Torvik's 2027 file leaves out low-minute players who are still on the team)
     if (!here && (by26[k] || []).some(p => p.team === s.tv && yrNum(p.yr) === 4 && (!ht || Math.abs(p.ht - ht) <= 2))) { report.gone++; continue; }
     if (espnStale && !here && yrNum(a.experience && (a.experience.displayValue || a.experience.abbreviation)) === 4) { report.gone++; continue; }
+    if ((on3Moved[k] || []).some(m => m.old === s.name && m.nw !== s.name) && !(on3Moved[k] || []).some(m => m.nw === s.name)) { report.xferOut = (report.xferOut || 0) + 1; continue; }
     cand.set(k, { name: a.fullName || a.displayName, ht, espnPos: a.position && a.position.abbreviation, y: yrNum(a.experience && (a.experience.displayValue || a.experience.abbreviation)), wt: a.weight, stale: espnStale });
   }
-  for (const p of (t27[s.tv] || [])) { const k = key(p.name); const c = cand.get(k) || { name: p.name, ht: p.ht }; c.tv27 = p; c.ht = c.ht || p.ht; c.y = yrNum(p.yr) || c.y; c.y27 = 1; cand.set(k, c); }
+  for (const p of (t27[s.tv] || [])) { const k = key(p.name); if ((on3Moved[k] || []).some(m => m.old === s.name && m.nw !== s.name)) { report.xferOut = (report.xferOut || 0) + 1; continue; } const c = cand.get(k) || { name: p.name, ht: p.ht }; c.tv27 = p; c.ht = c.ht || p.ht; c.y = yrNum(p.yr) || c.y; c.y27 = 1; cand.set(k, c); }
+  // transfers who committed here (On3)
+  for (const r of (on3In[s.name] || [])) { const k = key(r[0]); if (cand.has(k)) { cand.get(k).on3 = 1; continue; } report.xferIn = (report.xferIn || 0) + 1; cand.set(k, { name: r[0], ht: inches(r[2]), y: Math.min(4, Math.max(1, 2026 - (r[5] || 2023))), espnPos: r[1] === 'CG' ? 'G' : r[1], on3: 1, on3old: r[3], lastResort: 1 }); }
   // incoming 2026 freshmen who signed here (the only way a stale-ESPN school gets them)
   if (espnStale) for (const r of rk) if (r.commit === s.name) { const k = key(r.name); if (!cand.has(k)) cand.set(k, { name: r.name, ht: inches(r.ht), y: 1, espnPos: r.pos }); }
   cand.forEach((_, k) => seenKeys.add(k));
@@ -195,6 +208,7 @@ fs.writeFileSync(path.join(ROOT, 'src/js/0000c-RealRosters.js'), lines.join('\n'
 // ---- report ----
 const rating = r => { const a = r.slice().sort((x, y) => y.o - x.o).slice(0, 8), w = [0.2, 0.17, 0.15, 0.13, 0.1, 0.09, 0.08, 0.08]; return Math.round(a.reduce((q, p, i) => q + p.o * w[i], 0) / w.slice(0, a.length).reduce((x, y) => x + y, 0)); };
 const tr = Object.entries(out).map(([n, t]) => [n, rating(t.r), t.tr, t.w + '-' + t.l]).sort((a, b) => b[1] - a[1]);
+console.log('On3 transfers added', report.xferIn || 0, 'removed from old school', report.xferOut || 0, 'unmatched new schools', JSON.stringify(on3Unmatched));
 console.log('stale ESPN schools', staleSchools.length, 'players dropped as gone', report.gone);
 console.log('schools', schools.length, 'noTorvik', noTv, 'noESPN', noEspn);
 console.log(`players kept ${report.players}; with stats ${report.statMatched}; freshmen via 247 ${report.fr247}; no data ${report.noData}; short rosters (<10): ${report.shortRosters.join(', ')}`);
