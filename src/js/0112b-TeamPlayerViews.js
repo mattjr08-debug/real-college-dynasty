@@ -121,6 +121,17 @@ function ForeignPlayerCard({ g, pl, onClose, openTeam }) {
 // ---- the shared link layer ----
 // The index only remembers WHO is called what (ids and school ids). When a name is clicked the player is looked up again in the current game, so a card can never show numbers
 // from an older moment (this used to cache the player objects: after simming games a card still showed the old averages).
+// names of real players (REAL_TEAMS rows and the real portal pool): they get a small R after the name wherever it appears
+let W_realNames = null;
+function W_isRealName(n) {
+  if (!W_realNames) {
+    W_realNames = new Set();
+    const nk = (x) => String(x || "").replace(/\s+/g, " ").trim();
+    if (typeof REAL_TEAMS !== "undefined") for (const k of Object.keys(REAL_TEAMS)) for (const r of REAL_TEAMS[k].r || []) W_realNames.add(nk(r[0]));
+    if (typeof REAL_PORTAL !== "undefined") for (const r of REAL_PORTAL) W_realNames.add(nk(r[0]));
+  }
+  return W_realNames.has(n);
+}
 function W_linkInstall(ref) {
   let idx = null, idxKey = null, timer = null;
   const norm = (t) => String(t || "").replace(/\s+/g, " ").trim();
@@ -173,13 +184,14 @@ function W_linkInstall(ref) {
   const scan = () => {
     timer = null; const I = build(); if (!I) return;
     document.querySelectorAll("main td, main th, main span, main strong, main b, main h3, main h4, main small, main p, main li, main div, .modal td, .modal span, .modal strong, .modal h3, .modal h4, .modal small, .modal p, .modal div, .table-overlay td, .table-overlay span, .ceremony span, .ceremony h4").forEach((el) => {
-      if (el.childElementCount) { unlink(el); return; }
+      if (el.childElementCount) { unlink(el); el.classList.remove("rl-real"); return; }
       const t = norm(el.textContent);
-      if (!t || t.length < 4 || t.length > 40 || el.closest(".lk-btn, a, select, .sidebar")) { unlink(el); return; }
+      if (!t || t.length < 4 || t.length > 40 || el.closest(".lk-btn, a, select, .sidebar")) { unlink(el); el.classList.remove("rl-real"); return; }
       // inside a button (a game result, the next-game card) only a school name is a link; the rest of the button keeps doing what it did
       const inBtn = !!el.closest("button, [role=button]"), isT = I.teams.has(t), isP = !isT && I.players.has(t) && !inBtn;
       const own = isP && I.players.get(t).every((c) => c.kind === "own") && clickable(el), linkIt = isT || (isP && !own);
       el.classList.toggle("lk-team", isT); el.classList.toggle("lk-player", isP && !own);
+      el.classList.toggle("rl-real", !isT && W_isRealName(t));
       if (linkIt) { el.setAttribute("role", "link"); el.tabIndex = inBtn ? -1 : 0; } else unlink(el);
     });
   };
