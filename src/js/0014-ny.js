@@ -238,7 +238,7 @@ function ny(e, a, op) {
       px++;
       let sw = (I) => {
           let b =
-            tm(I.id) * Math.pow((I.attrs[0] + I.attrs[2] + 50) / 130, TUNE.statCal ? TUNE.statUse : 2.2) * tw(I.id, "usage") * shotPriW(I.id) * (1 + 0.25 * (htm[I.id] || 0) * (TUNE.heat ? 1 : 0));
+            tm(I.id) * Math.pow((I.attrs[0] + I.attrs[2] + 50) / 130, TUNE.statCal ? (TUNE.nUse || TUNE.statUse) : 2.2) * tw(I.id, "usage") * shotPriW(I.id) * (1 + 0.25 * (htm[I.id] || 0) * (TUNE.heat ? 1 : 0));
           return cl
             ? b * Math.pow(I.ovr / 70, 3) * tw(I.id, "clutch")
             : gb

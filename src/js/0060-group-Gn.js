@@ -92,6 +92,7 @@ var Gn =
     redshirtUsed: x.boolean(),
     injury: A,
     susp: A.optional(),
+    realInj: x.string().optional(),
     med: A.optional(),
     medUsed: x.boolean().optional(),
     stars: A,

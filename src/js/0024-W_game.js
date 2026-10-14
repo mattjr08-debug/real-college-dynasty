@@ -4,7 +4,7 @@ function W_game(e, A, B) {
   if (!ra || !rb || ra.length < 6 || rb.length < 6) return ry(e, A, B);
   let M = TUNE.statCal ? [36, 31, 27, 24, 22, 17, 13, 9, 6] : [32, 30, 28, 26, 24, 18, 14, 10, 8],
     T = (R) => {
-      let tp = R.slice(0, 9),
+      let tp = R.filter((p) => !(p.ij > 0) || (p.ij--, !1)).slice(0, 9),
         ms = M.slice(0, tp.length),
         tot = ms.reduce((x, y) => x + y, 0);
       return tp.map((p, i) => ({
@@ -42,7 +42,7 @@ function W_game(e, A, B) {
       return L.length - 1;
     },
     poss = (O, D, k, fx) => {
-      let si = pick(O, (z) => z.m * Math.pow((z.a[0] + z.a[2] + 50) / 130, TUNE.statCal ? TUNE.statUse : 2.2)),
+      let si = pick(O, (z) => z.m * Math.pow((z.a[0] + z.a[2] + 50) / 130, TUNE.statCal ? (TUNE.gUse || TUNE.statUse) : 2.2)),
         S = O[si];
       if (ne(e) < 0.178) {
         ne(e) < 0.48 && D[pick(D, (z) => z.m * Math.pow(z.a[8] / 60, TUNE.statCal ? TUNE.statStl : 1.8))].st++;
@@ -55,8 +55,8 @@ function W_game(e, A, B) {
         // missed last free throw: a live rebound (rarely the offense's; the possession still ends)
         mk ||
           (ne(e) < 0.15
-            ? O[pick(O, (z) => z.m * Math.pow(z.a[10] / 60, 2.6))].r++
-            : D[pick(D, (z) => z.m * Math.pow(z.a[11] / 60, 2.6))].r++);
+            ? O[pick(O, (z) => z.m * Math.pow(z.a[10] / 60, TUNE.gReb || 2.6))].r++
+            : D[pick(D, (z) => z.m * Math.pow(z.a[11] / 60, TUNE.gReb || 2.6))].r++);
         return;
       }
       let cur = S;
@@ -102,11 +102,11 @@ function W_game(e, A, B) {
         }
         if (ne(e) < 0.113) D[pick(D, (z) => z.m * Math.pow((z.a[9] + z.a[7]) / 120, TUNE.statCal ? TUNE.statBlk : 1.8))].bl++;
         if (ne(e) < 0.28) {
-          let ri = pick(O, (z) => z.m * Math.pow(z.a[10] / 60, 2.6));
+          let ri = pick(O, (z) => z.m * Math.pow(z.a[10] / 60, TUNE.gReb || 2.6));
           O[ri].r++;
           cur = O[ri];
         } else {
-          D[pick(D, (z) => z.m * Math.pow(z.a[11] / 60, 2.6))].r++;
+          D[pick(D, (z) => z.m * Math.pow(z.a[11] / 60, TUNE.gReb || 2.6))].r++;
           return;
         }
       }

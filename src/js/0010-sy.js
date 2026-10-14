@@ -67,6 +67,7 @@ function sy(e, a, t, l = Date.now()) {
     // the real 2026-27 roster, rated from last year's stats and recruiting rank
     rr.r.slice(0, 15).forEach((row) => o.roster.push(W_realPlayer(o, row, u.name)));
     for (let k = o.roster.length; k < 10; k++) o.roster.push(Gf(o, "Roster", Math.max(45, Math.min(...o.roster.map((p) => p.ovr)) - 5), j(o, 1, 2), Le[k % 5]));
+    W_applyRealInjuries(o, u.name);
   } else
   for (let i = 0; i < 15; i++) {
     let d = Gf(o, "Roster", u.rating + j(o, -6, 7), i < r ? 4 : j(o, 1, 3), Le[i % 5]);

@@ -153,6 +153,20 @@ function W_realLine(r, g) {
   const x = r[11], G = x ? x[0] : g;
   return { G, p: Math.round(r[6] * G), r: Math.round(r[7] * G), a: Math.round(r[8] * G), s: x ? x[2] : 0, b: x ? x[3] : 0, t: x ? x[4] : 0 };
 }
+// Real-life injuries (REAL_INJURIES, from tools/fetch-injuries.js): a hurt player on your roster starts the season injured for the real number of games
+function W_applyRealInjuries(o, school) {
+  if (typeof REAL_INJURIES === "undefined") return;
+  const k = (n) => String(n || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z]/g, "");
+  for (const [name, sc, inj, g] of REAL_INJURIES) {
+    if (k(sc) !== k(school)) continue;
+    const p = o.roster.find((x) => k(x.name) === k(name));
+    if (!p || g <= 0) continue;
+    p.injury = g;
+    p.ih = { n: 1, g, major: g >= 8 ? 1 : 0 };
+    p.realInj = inj;
+    Be(o, "Injury report", `${p.name} is hurt in real life (${inj}) and will miss ${g} games.`);
+  }
+}
 function W_realMk(e, t) {
   const rt = REAL_ON && REAL_TEAMS[t.name];
   if (!rt) return null;
@@ -160,6 +174,7 @@ function W_realMk(e, t) {
     R = rt.r.slice(0, 13).map((r) => {
       const rs = j(e, 1, 2147483647),
         p = { i: Ff(e, "w"), n: r[0], p: r[1], y: r[2], o: r[4], t: Math.max(r[4], r[5]), f: (typeof REAL_PHOTO_SEED === "function" && REAL_PHOTO_SEED(r[0], t.name)) || rs, s: { g: 0, p: 0, r: 0, a: 0, s: 0, b: 0, t: 0 } };
+      if (typeof REAL_INJURIES !== "undefined") { const ik = (n) => String(n || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z]/g, ""), hit = REAL_INJURIES.find((x) => ik(x[0]) === ik(r[0]) && ik(x[1]) === ik(t.name)); hit && hit[3] > 0 && (p.ij = hit[3]); }
       if (r[6] != null) { const L = W_realLine(r, g); p.hs = [{ y: e.year - 1, g: L.G, p: L.p, r: L.r, a: L.a, s: L.s, b: L.b, t: L.t }]; }
       return p;
     });

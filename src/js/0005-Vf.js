@@ -1,4 +1,4 @@
-function Vf(e) {
+function Vf(e, later) {
   e.prospects = [];
   // High school class: a star pyramid of 300 (7% five-star, 27% four, 37% three, 20% two, 7% one, 3% unranked).
   // Rating ranges per star level are unchanged. The 80 transfers after it are unchanged.
@@ -18,7 +18,8 @@ function Vf(e) {
     let m = Math.floor(ne(e) * (k + 1));
     [tq[k], tq[m]] = [tq[m], tq[k]];
   }
-  for (let a = 0; a < HS + 80; a++) {
+  // Real College Dynasty: after the first season the portal holds only REAL players (the best entrants from the real rosters, see W_pt); no made-up transfers
+  for (let a = 0; a < HS + (REAL_ON && later ? 0 : 80); a++) {
     let t = a < HS ? "High school" : "Transfer",
       l = ne(e),
       u =

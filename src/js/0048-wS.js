@@ -246,7 +246,7 @@ function wS(e) {
         l.id !== e.school.id && (l.rating = le(l.rating + j(e, -3, 3), 50, 88)));
     }),
     e.opponents.forEach((l) => (l.rating = le(l.rating + j(e, -2, 2), 45, 95))),
-    ((e.__pt = W_off(e, bd)), Vf(e), W_pt(e, e.__pt), delete e.__pt),
+    ((e.__pt = W_off(e, bd)), Vf(e, !0), W_pt(e, e.__pt), delete e.__pt),
     (e.pw = e.prospects.some((q) => q.fid) ? 1 : 0),
     (e.pv = TUNE.pvisits),
     (e.ov = TUNE.ovisits + ((e.staff?.rec || 0) >= 2 ? 1 : 0) + ((e.staff?.rec || 0) >= 3 ? 1 : 0)),
