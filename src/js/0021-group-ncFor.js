@@ -208,7 +208,7 @@ function W_realPlayer(e, r, school) {
   const sd = typeof REAL_PHOTO_SEED === "function" && REAL_PHOTO_SEED(r[0], school);
   sd && (P.faceSeed = sd);
   let a = P.attrs.slice();
-  r[12] && (a = a.map((v, i) => le(v + W_kOff(r[12], i), 25, 96)));
+  r[12] && (a = a.map((v, i) => le(v + W_kOff(r[12], i), 25, 96)), (P.tend = Object.assign({}, P.tend, { k: r[12] })));
   for (let k = 0; k < 8; k++) {
     const d = o - W_ovr(a, P.pos);
     if (!d) break;

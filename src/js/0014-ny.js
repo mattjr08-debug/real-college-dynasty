@@ -289,6 +289,7 @@ function ny(e, a, op) {
                 f * TUNE.f * (gb ? 0.4 : 1) -
                 ld -
                 shotPriPen(L.id) -
+                (TUNE.ugEff ? TUNE.ugEff * (sw(L) / lp.reduce((s, I2) => s + sw(I2), 0) * lp.length - 1) : 0) -
                 (TUNE.statCal ? Math.max(0, g.min - 30) * 0.0035 : Math.max(0, g.min - 32) * 0.0022) +
                 (bo[0] > 0 ? TUNE.toBoost : 0) +
                 (htm[L.id] || 0) * TUNE.heat +

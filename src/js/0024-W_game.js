@@ -10,6 +10,7 @@ function W_game(e, A, B) {
       return tp.map((p, i) => ({
         p,
         a: W_at(p),
+        ug: W_ug(p),
         m: (ms[i] * 200) / tot,
         pts: 0,
         r: 0,
@@ -42,8 +43,10 @@ function W_game(e, A, B) {
       return L.length - 1;
     },
     poss = (O, D, k, fx) => {
-      let si = pick(O, (z) => z.m * Math.pow((z.a[0] + z.a[2] + 50) / 130, TUNE.statCal ? (TUNE.gUse || TUNE.statUse) : 2.2)),
-        S = O[si];
+      let uw = (z) => z.m * Math.pow((z.a[0] + z.a[2] + 50) / 130, TUNE.statCal ? (TUNE.gUse || TUNE.statUse) : 2.2) * z.ug,
+        si = pick(O, uw),
+        S = O[si],
+        ugP = TUNE.ugEff ? TUNE.ugEff * (uw(S) / O.reduce((s, z) => s + uw(z), 0) / (S.m / 200) - 1) : 0;
       if (ne(e) < 0.178) {
         ne(e) < 0.48 && D[pick(D, (z) => z.m * Math.pow(z.a[8] / 60, TUNE.statCal ? TUNE.statStl : 1.8))].st++;
         return;
@@ -77,7 +80,8 @@ function W_game(e, A, B) {
           le(
             (th ? 0.325 : c2 ? 0.54 : 0.485) +
               (g - 65) * 0.003 +
-              fx * 0.003 +
+              fx * 0.003 -
+              ugP +
               (k === 0 ? mm : -mm) * TUNE.mom -
               // lead drag: as the game goes on the leader eases off and the trailer presses (keeps margins realistic)
               (sc[k] - sc[1 - k]) * 0.0045 * (pn / h),

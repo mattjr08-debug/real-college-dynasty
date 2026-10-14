@@ -1,5 +1,12 @@
 var W_AC = new WeakMap();
 // real players: per-skill offsets from their real stats (one base36 digit per attribute, 10 = no change)
+// real usage rate (17th character of k) as a shot-share multiplier: 20% usage = 1, 28% = 1.36
+function W_ug(p) {
+  const k = p.k || (p.tend && p.tend.k);
+  if (!k || String(k).length < 17 || !TUNE.ugUse) return 1;
+  const u = parseInt(String(k).charAt(16), 36);
+  return isNaN(u) ? 1 : le(1 + TUNE.ugUse * (u - 20), 0.65, 1.5);
+}
 function W_kOff(k, i) {
   const c = parseInt(String(k).charAt(i), 36);
   return isNaN(c) ? 0 : c - 10;

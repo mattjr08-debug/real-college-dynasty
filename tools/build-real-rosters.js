@@ -79,7 +79,7 @@ const skillK = (st, pos) => {
   const m = met(r), S = SKILLSTAT[pos] || SKILLSTAT.SF, z = k => clamp(((m[k][0] - S[k][0]) / S[k][1]) * m[k][1], -2.5, 2.5), tw = st.min / (st.min + 25);
   const v = [0.6 * z('two') + 0.4 * z('ftr'), 0.7 * z('two'), 0.7 * z('three') + 0.3 * z('thrr'), z('ft'), 0.5 * z('to') + 0.5 * z('ast'), z('ast'), 0.7 * z('stl') + 0.3 * z('blk'), 0.6 * z('blk') + 0.4 * z('drb'), z('stl'), z('blk'), z('orb'), z('drb'), 0, 0, 0.4 * z('blk'), 0.5 * z('min')];
   const meas = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15], off = v.map(x => x * 5 * tw), mu = mean(meas.map(i => off[i]));
-  return off.map((x, i) => (meas.includes(i) ? clamp(Math.round(x - mu), -9, 9) : 0) + 10).map(x => x.toString(36)).join('');
+  return off.map((x, i) => (meas.includes(i) ? clamp(Math.round(x - mu), -9, 9) : 0) + 10).map(x => x.toString(36)).join('') + clamp(Math.round(+r[6] || 20), 5, 35).toString(36); // 17th char: his real usage rate
 };
 const refV2 = rot.map(valueOf).sort((a, b) => a - b);
 const pctOf2 = v => { let lo = 0, hi = refV2.length; while (lo < hi) { const m = (lo + hi) >> 1; if (refV2[m] < v) lo = m + 1; else hi = m; } return lo / refV2.length; };
