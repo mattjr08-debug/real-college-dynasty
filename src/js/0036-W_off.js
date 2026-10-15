@@ -102,7 +102,7 @@ function W_off(e, bd) {
     t.pr = le(Math.round((t.pr == null ? 50 : t.pr) + (wp - exp) * 22 + (wp > 0.78 ? 3 : 0)), 8, 95);
     let chg = !!t.fired;
     e.tmoves[t.id] = { y: e.year, prev: R.map((q) => q.i), out: [] };
-    const mvOut = (q, y, why, extra) => e.tmoves[t.id].out.push({ i: q.i, n: q.n, p: q.p, y, o: q.o, t: q.t, f: q.f, s: { ...q.s }, why, ...extra });
+    const mvOut = (q, y, why, extra) => e.tmoves[t.id].out.push({ i: q.i, n: q.n, p: q.p, y, o: q.o, t: q.t, f: q.f, rl: q.rl, s: { ...q.s }, why, ...extra });
     if (t.fired) {
       t.fired = !1;
       let old = t.coach && t.coach.n;
@@ -182,6 +182,7 @@ function W_off(e, bd) {
         o: p.ovr,
         t: Math.max(p.ovr, p.potential),
         f: p.faceSeed,
+        rl: p.rl,
         s: { g: 0, p: 0, r: 0, a: 0, s: 0, b: 0, t: 0 },
       });
   }
@@ -189,7 +190,16 @@ function W_off(e, bd) {
   // each at the closest-rated of random schools with an open spot (W_pdest). Item 41: some leave the game, and
   // power-conference players often move down (W_fate).
   pt.sort((a, b) => b[0].o - a[0].o);
-  for (let [p, t0] of pt.slice(TUNE.portalShow)) {
+  // Who you see: the best TUNE.portalTop by rating plus a random sample of everyone else, so the pool has 1, 2 and 3-star players too
+  // (showing only the best 170 meant every entrant was a 4 or 5 star). The rest are decided behind the scenes.
+  const shownPt = pt.slice(0, TUNE.portalTop),
+    restPt = pt.slice(TUNE.portalTop);
+  for (let k = Math.max(0, TUNE.portalShow - shownPt.length); k > 0 && restPt.length; k--) {
+    let i, tries = 0;
+    do i = Math.floor(ne(e) * restPt.length); while (restPt[i][0].o < 51 && ++tries < 60);   // bench-level players (under 51) mostly stay behind the scenes
+    shownPt.push(restPt.splice(i, 1)[0]);
+  }
+  for (let [p, t0] of restPt) {
     let isP = pwr.has(t0.id);
     // Item 39: some change their mind and stay (TUNE.withdraw).
     if (ne(e) < TUNE.withdraw) {
@@ -201,7 +211,7 @@ function W_off(e, bd) {
     (W_tally("hidden", isP, best ? f : "leave"),
       best && ((p.s = { g: 0, p: 0, r: 0, a: 0, s: 0, b: 0, t: 0 }), ro[best.id].push(p)));
   }
-  pt = pt.slice(0, TUNE.portalShow);
+  pt = shownPt;
   // Item 44: a coach with more than 15 players releases the extra ones into the portal; they look for a school like
   // any other entrant (W_fate) and are not shown to you.
   let released = [];

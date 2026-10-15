@@ -40,6 +40,8 @@ var Gn =
     year: x.number().int().min(1).max(4),
     number: A,
     faceSeed: A.optional(),
+    rl: A.optional(),
+    gen: A.optional(),
     appearanceSeed: A.optional(),
     skinColor: x.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
     hairColor: x.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
@@ -281,7 +283,7 @@ var Gn =
     rep: A,
     chemistry: A,
     roster: x.array($f).max(15),
-    prospects: x.array($f).max(600),
+    prospects: x.array($f).max(700),
     departed: x.array(
       x.object({
         name: x.string(),

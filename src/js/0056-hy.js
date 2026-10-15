@@ -55,7 +55,7 @@ function hy(e) {
   if (a) {
     let t = e.prospects;
     (Vf(e),
-      (e.prospects = [...t, ...e.prospects].slice(0, 560)),
+      (e.prospects = [...t, ...e.prospects].slice(0, 640)),
       e.walkons.length || jf(e),
       (e.scouts = Math.max(e.scouts, 24)),
       (e.lineup = e.lineup

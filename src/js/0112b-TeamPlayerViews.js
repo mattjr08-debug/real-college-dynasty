@@ -121,7 +121,7 @@ function ForeignPlayerCard({ g, pl, onClose, openTeam }) {
 // ---- the shared link layer ----
 // The index only remembers WHO is called what (ids and school ids). When a name is clicked the player is looked up again in the current game, so a card can never show numbers
 // from an older moment (this used to cache the player objects: after simming games a card still showed the old averages).
-// names of real players (REAL_TEAMS rows and the real portal pool): they get a small R after the name wherever it appears
+// R badge: new careers tag every real player (rl: 1). W_isRealName (names from REAL_TEAMS and REAL_PORTAL) is only the fallback for older saves that have no tag.
 let W_realNames = null;
 function W_isRealName(n) {
   if (!W_realNames) {
@@ -139,13 +139,15 @@ function W_linkInstall(ref) {
   const build = () => {
     const g = ref.current.g; if (!g || !g.opponents) return null;
     let total = 0; for (const o of g.opponents) total += (g.rosters[o.id] || []).length;
-    const key = `${g.year}:${g.phase}:${g.round}:${g.pw || 0}:${g.roster ? g.roster.length : 0}:${g.history ? g.history.length : 0}:${total}:${g.tmoves ? 1 : 0}`;
+    const key = `${g.year}:${g.phase}:${g.round}:${g.pw || 0}:${g.roster ? g.roster.length : 0}:${g.history ? g.history.length : 0}:${total}:${g.tmoves ? 1 : 0}:${g.prospects ? g.prospects.length : 0}`;
     if (idx && idxKey === key) return idx;
-    const teams = new Map(), players = new Map();
-    for (const t of g.opponents) { if (t.id === g.school.id) continue; teams.set(norm(t.name), t.id); for (const q of g.rosters[t.id] || []) add(players, q.n, { kind: "roster", id: q.i, teamId: t.id, teamName: t.name, o: q.o }); }
+    const teams = new Map(), players = new Map(), prospRl = new Set();
+    let flags = false;   // a career made with the real-player tag (rl); older saves have none and fall back to the name list
+    for (const t of g.opponents) { if (t.id === g.school.id) continue; teams.set(norm(t.name), t.id); for (const q of g.rosters[t.id] || []) { q.rl && (flags = true); add(players, q.n, { kind: "roster", id: q.i, teamId: t.id, teamName: t.name, o: q.o, rl: q.rl }); } }
+    for (const p of g.prospects || []) if (p.rl) { flags = true; prospRl.add(p.name); }
     if (g.tmoves) for (const tid of Object.keys(g.tmoves)) { const t = tvTeam(g, tid); for (const q of g.tmoves[tid].out || []) add(players, q.n, { kind: "gone", id: q.i, teamId: tid, teamName: t ? t.name : "", o: q.o }); }
-    for (const p of g.roster || []) add(players, p.name, { kind: "own", id: p.id, o: p.ovr });
-    idx = { teams, players }; idxKey = key; return idx;
+    for (const p of g.roster || []) { p.rl && (flags = true); add(players, p.name, { kind: "own", id: p.id, o: p.ovr, rl: p.rl }); }
+    idx = { teams, players, prospRl, flags }; idxKey = key; return idx;
   };
   const clickable = (el) => { for (let a = el.parentElement, n = 0; a && n < 7; a = a.parentElement, n++) { if (/^(BUTTON|A|SELECT|INPUT|TEXTAREA)$/.test(a.tagName) || a.getAttribute("role") === "button") return true; if (!a.classList.contains("lk-team") && !a.classList.contains("lk-player") && getComputedStyle(a).cursor === "pointer") return true; if (a.tagName === "MAIN" || a.classList.contains("modal")) break; } return false; };
   const pick = (list, el) => {
@@ -191,7 +193,8 @@ function W_linkInstall(ref) {
       const inBtn = !!el.closest("button, [role=button]"), isT = I.teams.has(t), isP = !isT && I.players.has(t) && !inBtn;
       const own = isP && I.players.get(t).every((c) => c.kind === "own") && clickable(el), linkIt = isT || (isP && !own);
       el.classList.toggle("lk-team", isT); el.classList.toggle("lk-player", isP && !own);
-      el.classList.toggle("rl-real", !isT && W_isRealName(t));
+      // R only for real players: the tag (rl) is on each real player; made-up players never get it, even when their name matches a real one
+      el.classList.toggle("rl-real", !isT && (I.flags ? (I.prospRl.has(t) || (I.players.get(t) || []).some((c) => c.rl)) : W_isRealName(t)));
       if (linkIt) { el.setAttribute("role", "link"); el.tabIndex = inBtn ? -1 : 0; } else unlink(el);
     });
   };

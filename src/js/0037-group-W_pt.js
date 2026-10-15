@@ -8,7 +8,17 @@ function W_pt(e, pt) {
     // fate = where he ends up if you do not sign him (item 41: leave, move down, same level)
     ((q.fid = t.id), (q.why = why), (q.fate = W_fate(pwr.has(t.id), ne(e))), (q.pwv = k < shown.length * 0.25 ? 1 : k < shown.length * 0.6 ? 2 : 3), W_showBids(e, q, pwr), e.prospects.push(q));
   }
-  e.prospects = e.prospects.slice(0, 560);
+  // Made-up transfers (tagged gen, never an R) fill out the pool with the lower star levels: about 25% 1-star, 35% 2-star, 40% 3-star
+  for (let k = 0; k < (TUNE.portalGen || 0); k++) {
+    const r = ne(e), o = r < 0.25 ? j(e, 51, 56) : r < 0.6 ? j(e, 57, 63) : j(e, 64, 71), t = jl(e, e.opponents), yr = j(e, 2, 4);
+    let q = Gf(e, "Transfer", o, yr, jl(e, Le));
+    yr >= 4 && (q.ask = Math.round((q.ask * 0.75) / 1e3) * 1e3);
+    q.sg = q.stars; q.stars = q.hsStars = starRate(q, !0);
+    q.history = [{ year: e.year - 1, team: t.name, stats: { ...zs(), gp: 30, min: 30 * j(e, 8, 26), pts: 30 * j(e, 2, 12), reb: 30 * j(e, 1, 6), ast: 30 * j(e, 0, 4) } }];
+    q.gen = 1; q.fid = t.id; q.why = jl(e, ["Too little playing time", "Too little playing time", "Personal reasons", "Wants a bigger program", "Bigger NIL offer elsewhere"]);
+    q.fate = W_fate(pwr.has(t.id), ne(e)); q.pwv = j(e, 1, 3); W_showBids(e, q, pwr); e.prospects.push(q);
+  }
+  e.prospects = e.prospects.slice(0, 640);
 }
 // A portal prospect from a compact player p ({n,f,o,t,y,p,s}) who left school t.
 function W_mkp(e, p, t) {
@@ -19,6 +29,7 @@ function W_mkp(e, p, t) {
     // Item 43: a player with one year left (a graduate transfer) asks for less
     (p.g && (q.ask = Math.round((q.ask * 0.75) / 1e3) * 1e3), (q.name = p.n),
       (q.faceSeed = p.f),
+      p.rl && (q.rl = 1),
       (q.attrs = q.attrs.map((a, i) => le(a + d + (p.k ? W_kOff(p.k, i) : 0), 25, 99))),
       (q.ovr = p.o),
       (q.potential = Math.max(p.o, p.t)),
@@ -57,6 +68,7 @@ function W_userEntrant(e, d) {
       {
         n: l.name,
         f: l.faceSeed,
+        rl: l.rl,
         o: l.ovr,
         t: l.potential,
         y: Math.min(3, l.year),
@@ -79,6 +91,7 @@ function W_place(e, a, t) {
     o: a.ovr,
     t: Math.max(a.ovr, a.potential),
     f: a.faceSeed,
+    rl: a.rl,
     s: { g: 0, p: 0, r: 0, a: 0, s: 0, b: 0, t: 0 },
     hs: ((h) => (h && h.stats && h.stats.gp ? [{ y: h.year, g: h.stats.gp, p: h.stats.pts, r: h.stats.reb, a: h.stats.ast, s: h.stats.stl || 0, b: h.stats.blk || 0, t: h.stats.to || 0 }] : undefined))((a.history || []).at(-1)),
   });

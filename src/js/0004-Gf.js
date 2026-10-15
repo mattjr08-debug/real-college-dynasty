@@ -1,6 +1,12 @@
 var INTL_COUNTRIES = ["Serbia", "Australia", "Nigeria", "France", "Canada", "Lithuania", "Brazil", "Spain", "Germany", "Senegal", "Croatia", "New Zealand"];
+// A made-up player's name. It never matches a real player (the R badge is only for real players), so a name that is on the real list is drawn again.
+function W_pName(e) {
+  let n;
+  for (let k = 0; k < 8; k++) { n = jl(e, SS) + " " + jl(e, CS); if (!W_isRealName(n)) break; }
+  return n;
+}
 function Gf(e, a, t, l = 1, u = jl(e, Le)) {
-  let o = jl(e, SS) + " " + jl(e, CS),
+  let o = W_pName(e),
     r = Le.indexOf(u),
     n = il.map((y, h) =>
       le(

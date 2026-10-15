@@ -102,37 +102,32 @@ function W_nilMarketTransfer(e, starPro, year, stats) {
   };
 }
 
+// The market tables above are in THOUSANDS of dollars as shown on screen. Asks are stored in base dollars (the screen shows base x MONEY, see MONEY), in steps of 1,000.
+// (Before this the table number was stored as the ask itself, so every high school recruit asked for 100 base dollars, shown as $400.)
+function W_nilAskBase(thousandsShown) {
+  return Math.max(1000, Math.round((thousandsShown * 1000) / MONEY / 1000) * 1000);
+}
 // Assign NIL market values to a recruit pool
 // Modifies players in place, adding nilMarket, recruiting rank, and updating ask
 function W_nilAssignMarkets(e, prospects) {
-  // Create a shuffled ranking for high school recruits (1-300)
-  const hsPlayers = prospects.filter((p) => p.origin === "High school");
-  const rankIndices = hsPlayers.map((_, i) => i);
-  
-  // Fisher-Yates shuffle within each star tier to create randomized national rankings
-  for (let i = rankIndices.length - 1; i > 0; i--) {
-    const j_idx = Math.floor(ne(e) * (i + 1));
-    [rankIndices[i], rankIndices[j_idx]] = [rankIndices[j_idx], rankIndices[i]];
-  }
-  
-  // Assign national recruiting rankings to HS players
+  // National recruiting rank: by star level first, then by overall and upside, with a little noise inside a level (the old code shuffled everybody,
+  // so a 5-star could rank 280th and ask for almost nothing while a 2-star ranked 3rd).
+  const hsPlayers = prospects
+    .filter((p) => p.origin === "High school")
+    .map((p) => ({ p, k: (p.hsStars ?? p.stars) * 1000 + p.ovr + p.potential * 0.5 + (ne(e) - 0.5) * 6 }))
+    .sort((a, b) => b.k - a.k)
+    .map((z) => z.p);
   let rankCounter = 0;
-  for (const idx of rankIndices) {
-    const p = hsPlayers[idx];
+  for (const p of hsPlayers) {
     const valuation = W_nilMarketHS(e, rankCounter);
     p.recruitRank = valuation.recruitRank;
     p.nilMarket = valuation.nilMarket;
-    
-    // Update ask to be based on market value with modest variation
-    // The ask should reflect the market value, not a fixed minimum
-    const askVariation = W_gauss(e) * 0.12; // ±12% variation
-    const newAsk = Math.round(p.nilMarket * (1 + askVariation) / 100) * 100;
-    // Set minimum to 100 (in thousands) which is $100K
-    p.ask = Math.max(100, newAsk);
-    
+    // the ask follows the market value with a little variation
+    const askVariation = W_gauss(e) * 0.12; // +-12%
+    p.ask = W_nilAskBase(p.nilMarket * (1 + askVariation));
     rankCounter++;
   }
-  
+
   // Assign portal rankings to transfers
   const transferPlayers = prospects.filter((p) => p.origin === "Transfer");
   for (const p of transferPlayers) {
@@ -143,7 +138,6 @@ function W_nilAssignMarkets(e, prospects) {
     
     // Update ask for transfers
     const askVariation = W_gauss(e) * 0.12;
-    const newAsk = Math.round(p.nilMarket * (1 + askVariation) / 100) * 100;
-    p.ask = Math.max(100, newAsk);
+    p.ask = W_nilAskBase(p.nilMarket * (1 + askVariation));
   }
 }

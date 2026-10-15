@@ -173,7 +173,7 @@ function W_realMk(e, t) {
   const g = Math.max(20, rt.w + rt.l),
     R = rt.r.slice(0, 13).map((r) => {
       const rs = j(e, 1, 2147483647),
-        p = { i: Ff(e, "w"), n: r[0], p: r[1], y: r[2], o: r[4], t: Math.max(r[4], r[5]), k: r[12] || undefined, f: (typeof REAL_PHOTO_SEED === "function" && REAL_PHOTO_SEED(r[0], t.name)) || rs, s: { g: 0, p: 0, r: 0, a: 0, s: 0, b: 0, t: 0 } };
+        p = { i: Ff(e, "w"), rl: 1, n: r[0], p: r[1], y: r[2], o: r[4], t: Math.max(r[4], r[5]), k: r[12] || undefined, f: (typeof REAL_PHOTO_SEED === "function" && REAL_PHOTO_SEED(r[0], t.name)) || rs, s: { g: 0, p: 0, r: 0, a: 0, s: 0, b: 0, t: 0 } };
       if (typeof REAL_INJURIES !== "undefined") { const ik = (n) => String(n || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z]/g, ""), hit = REAL_INJURIES.find((x) => ik(x[0]) === ik(r[0]) && ik(x[1]) === ik(t.name)); hit && hit[3] > 0 && (p.ij = hit[3]); }
       if (r[6] != null) { const L = W_realLine(r, g); p.hs = [{ y: e.year - 1, g: L.G, p: L.p, r: L.r, a: L.a, s: L.s, b: L.b, t: L.t }]; }
       return p;
@@ -187,7 +187,7 @@ function W_realMk(e, t) {
 // a real portal player (row layout as REAL_TEAMS, last team in r[9]) as a full prospect with his real stat line as history
 function W_realPortalP(e, r) {
   const o = r[4], P = Gf(e, "Transfer", o, r[2], r[1]);
-  P.name = r[0]; P.height = r[3]; P.age = 17 + r[2];
+  P.name = r[0]; P.height = r[3]; P.age = 17 + r[2]; P.rl = 1;
   const sd = typeof REAL_PHOTO_SEED === "function" && REAL_PHOTO_SEED(r[0], "_portal");
   sd && (P.faceSeed = sd);
   let a = P.attrs.slice();
@@ -205,6 +205,7 @@ function W_realPlayer(e, r, school) {
   P.name = r[0];
   P.height = r[3];
   P.age = 17 + r[2];
+  P.rl = 1;
   const sd = typeof REAL_PHOTO_SEED === "function" && REAL_PHOTO_SEED(r[0], school);
   sd && (P.faceSeed = sd);
   let a = P.attrs.slice();
@@ -227,7 +228,7 @@ function W_p(e, o, y, pos) {
   let v = le(Math.round(o), 38, 97);
   return {
     i: Ff(e, "w"),
-    n: jl(e, SS) + " " + jl(e, CS),
+    n: W_pName(e),
     p: pos || jl(e, Le),
     y: y,
     o: v,
