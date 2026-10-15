@@ -107,6 +107,15 @@ function W_nilMarketTransfer(e, starPro, year, stats) {
 function W_nilAskBase(thousandsShown) {
   return Math.max(1000, Math.round((thousandsShown * 1000) / MONEY / 1000) * 1000);
 }
+// What a transfer of a given overall is worth in the real market (thousands shown): a bench transfer asks little, a starter at a mid-major a few hundred thousand, a star millions.
+// The star table above ranks by production and can price a 55 overall at $700K, so the ask is capped by this curve.
+const NIL_OVR_CURVE = [[48, 4], [55, 12], [60, 30], [65, 80], [70, 200], [75, 450], [80, 1000], [85, 1900], [90, 2800], [99, 3500]];
+function W_nilOvrMarket(ovr) {
+  const c = NIL_OVR_CURVE;
+  if (ovr <= c[0][0]) return c[0][1];
+  for (let i = 1; i < c.length; i++) if (ovr <= c[i][0]) { const t = (ovr - c[i - 1][0]) / (c[i][0] - c[i - 1][0]); return Math.exp(Math.log(c[i - 1][1]) * (1 - t) + Math.log(c[i][1]) * t); }
+  return c[c.length - 1][1];
+}
 // Assign NIL market values to a recruit pool
 // Modifies players in place, adding nilMarket, recruiting rank, and updating ask
 function W_nilAssignMarkets(e, prospects) {
@@ -134,7 +143,7 @@ function W_nilAssignMarkets(e, prospects) {
     const prodStats = p.history?.[0]?.stats || {};
     const valuation = W_nilMarketTransfer(e, p.sg || p.stars, p.year, prodStats);
     p.portalRank = valuation.portalRank;
-    p.nilMarket = valuation.nilMarket;
+    p.nilMarket = Math.max(1, Math.min(valuation.nilMarket, Math.round(W_nilOvrMarket(p.ovr) * 1.5)));
     
     // Update ask for transfers
     const askVariation = W_gauss(e) * 0.12;

@@ -141,12 +141,17 @@ function W_posMkt(e) {
     Le.map((k) => [k, +le((pm[k] || 1) * 0.5 + (1 + (1.2 * (m - c[k])) / m) * 0.5 + j(e, -5, 5) / 100, 0.8, 1.3).toFixed(3)])
   );
 }
+// Bench-level players ask little in real life ($5K to $30K shown): the price formula below is scaled down for low overalls (x0.15 at 52 and under, rising along a curve to x1 at 72 and up).
+function W_lowAsk(o) {
+  return o >= 72 ? 1 : o <= 52 ? 0.15 : 0.15 + Math.pow((o - 52) / 20, 1.6) * 0.85;
+}
 function W_ask(e, o, origin, pos) {
   return (
     Math.round(
       ((e.mkt || 1) *
         (e.pm?.[pos] || 1) *
         (4e3 + Math.pow(Math.max(2, o - 43), 2) * 110 * (o >= 64 ? 2.1 : 1)) *
+        W_lowAsk(o) *
         (origin === "Transfer" ? 1.15 : origin === "High school" ? 0.7 : 1)) /
         1e3
     ) * 1e3

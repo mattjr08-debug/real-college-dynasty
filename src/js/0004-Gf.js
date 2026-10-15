@@ -36,6 +36,7 @@ function Gf(e, a, t, l = 1, u = jl(e, Le)) {
         ((e.mkt || 1) *
           (e.pm?.[u] || 1) *
           (4e3 + Math.pow(Math.max(2, t - 43), 2) * 110 * (t >= 64 ? 2.1 : 1)) *
+          W_lowAsk(t) *
           (a === "Transfer" ? 1.15 : a === "High school" ? 0.7 : 1) *
           (a === "Roster"
             ? 1
