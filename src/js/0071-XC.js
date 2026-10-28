@@ -72,11 +72,42 @@ function XC({ onStart: e, onCancel: a, existing: t, busy: l }) {
                   }),
                 ],
               }),
-              (0, s.jsx)("input", {
-                className: "school-search",
-                placeholder: "Search all " + REAL_N + " schools, mascots, conferences or players",
-                value: sq,
-                onChange: (ev) => setSq(ev.target.value),
+              (0, s.jsxs)("div", {
+                className: "school-search-row",
+                style: { display: "flex", gap: 8, alignItems: "stretch", flexWrap: "wrap" },
+                children: [
+                  (0, s.jsx)("input", {
+                    className: "school-search",
+                    style: { flex: "1 1 220px", minWidth: 0 },
+                    placeholder: "Search all " + REAL_N + " schools, mascots, conferences or players",
+                    value: sq,
+                    onChange: (ev) => setSq(ev.target.value),
+                  }),
+                  (0, s.jsx)("button", {
+                    type: "button",
+                    className: "btn random-school-btn",
+                    title: "Pick any school at random",
+                    onClick: () => {
+                      // Random school (October 2026): any school, ignoring the search box. Not game logic, so it does not use the seeded generator.
+                      const all = tiers.flatMap((g) => g.schools.map((f) => ({ f, tier: g.tier.n })));
+                      if (!all.length) return;
+                      let k = 0;
+                      try { k = crypto.getRandomValues(new Uint32Array(1))[0] % all.length; } catch (e) { k = Date.now() % all.length; }
+                      if (all.length > 1 && all[k].f.id === u.id) k = (k + 1) % all.length;
+                      const pick = all[k];
+                      setSq("");
+                      setOp(new Set([pick.tier]));
+                      o(pick.f);
+                      setTimeout(() => {
+                        try {
+                          const el = document.querySelector(".school-card.selected");
+                          if (el && el.scrollIntoView) el.scrollIntoView({ block: "center", behavior: "smooth" });
+                        } catch (e) {}
+                      }, 60);
+                    },
+                    children: "\uD83C\uDFB2 Random school",
+                  }),
+                ],
               }),
               (0, s.jsx)("div", {
                 className: "tier-list",

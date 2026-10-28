@@ -1228,3 +1228,9 @@ button.hq-chip:hover{filter:brightness(1.25)}
 
 /* R = a real player (name matches a real 2026-27 player) */
 .rl-real::after{content:"R";display:inline-block;margin-left:5px;padding:0 4px;font:700 9px/14px var(--ds-font-display,system-ui);letter-spacing:.04em;color:#0b1220;background:#7fd1ff;border-radius:3px;vertical-align:1px;text-decoration:none}
+
+/* Random school button on the start screen (October 2026) */
+.school-search-row{margin:0 0 12px}
+.school-search-row .school-search{margin:0}
+.random-school-btn{white-space:nowrap;padding:10px 14px;font-weight:700}
+@media (pointer:coarse){.random-school-btn{min-height:44px}}

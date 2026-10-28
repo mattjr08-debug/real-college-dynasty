@@ -101,3 +101,9 @@ To change a school or conference: edit data/real-schools.final.txt, then run `no
 
 ## Low-end NIL asks (Oct 15)
 - A 55-60 overall transfer or returning player asked $100K+ (the formula in `W_ask`/`Gf` ignored real-life levels). `W_lowAsk(ovr)` (0033-group-W_lab.js) scales it: x0.15 at overall 52 and under, rising along a curve to x1 at 72 and up. Start-pool transfers are also capped by `W_nilOvrMarket(ovr) x 1.5` (0033f). Shown dollars now: 50 overall $4K-24K, 55 $8K-60K, 60 median $72K, 65 median $340K, 70 median $700K. Balance not re-run.
+
+## Random school button (Oct 28)
+- **What:** a "Random school" button beside the search box on the Choose your rebuild page (`0071-XC.js`, styles at the end of `ui-polish.css`). One click picks any of the 365 schools at random (never the one already selected), clears the search box, opens only that school's tier and scrolls to the card. Then "Take the job" starts the career as usual. The same button was added to College Dynasty (base game, commit `c6f762a`).
+- **Randomness:** `crypto.getRandomValues` (falls back to the clock). It is screen code before a career exists, not game logic, so it does not use the seeded generator.
+- **Test:** `tests/random-school.js` (`npm run test:random`): button present, every click selects one school and opens one tier, 12 clicks give many different schools, a random pick starts a career, 390 px phone: button visible, 40 px+ tap target, no sideways scroll. This repo has no `node_modules`; run it with `NODE_PATH=<College Dynasty>/node_modules`.
+

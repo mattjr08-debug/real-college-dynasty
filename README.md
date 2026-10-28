@@ -10,6 +10,7 @@ College Dynasty with real Division I schools instead of made-up ones.
 
 ## Features added
 - Search for players and schools (magnifier, `/` or Ctrl/Cmd+K); the career page also finds a school by a player name.
+- **Random school** button next to the search box on the Choose your rebuild page (Oct 28): picks any of the 365 schools, opens its tier, scrolls to it. Test: `node tests/random-school.js` (needs the base game's `node_modules`).
 
 ## Open items
 - Photos for the 157 players still without one (`photo-work/Missing players - found vs still missing.csv`, Status = STILL MISSING). 371 of the original 601 were added Oct 13, and 73 more (from team sites) on Oct 13 evening; the rest are on sites that need a different harvest (Manhattan serves only a logo placeholder).
